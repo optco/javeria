@@ -86,6 +86,41 @@
     }
 
     /* PROFILE PICTURE */
+/* ✅ Clickable avatar styles */
+.avatar-link {
+  display: inline-block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar-link:hover,
+.avatar-link:active {
+  transform: scale(1.08);
+  filter: drop-shadow(0 8px 24px rgba(255,255,255,0.4));
+}
+
+/* Subtle pulse animation to hint it's clickable (optional) */
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
+  50% { box-shadow: 0 6px 32px rgba(255,255,255,0.5); }
+}
+.avatar-ring {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Disable pulse on hover for cleaner interaction */
+.avatar-link:hover .avatar-ring {
+  animation: none;
+}
+
+/* Mobile tap feedback */
+@media (hover: none) {
+  .avatar-link:active {
+    transform: scale(0.95);
+  }
+}
     .profile-section {
       display: flex;
       flex-direction: column;
@@ -267,6 +302,30 @@
       color: #fff;
       text-decoration: underline;
     }
+/* Clickable logo hover/tap effect */
+.company-logo-wrap a {
+  display: inline-block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  border-radius: 12px; /* Soft rounded hit area */
+  padding: 8px; /* Larger touch target for mobile */
+  margin: -8px; /* Offset padding to maintain layout */
+}
+
+.company-logo-wrap a:hover,
+.company-logo-wrap a:active {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+  
+  border-radius: 12px;
+}
+
+/* Mobile tap feedback */
+@media (hover: none) {
+  .company-logo-wrap a:active {
+    transform: scale(0.98);
+    filter: brightness(0.95);
+  }
+}
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
@@ -288,35 +347,42 @@
 
   <div class="container">
 
-    <!-- PROFILE PICTURE SECTION -->
-    <div class="profile-section">
-      <div class="avatar-ring">
-        <!-- ✅ Replace with real photo: <img src="your-photo.jpg" class="avatar" alt="Javeria"> -->
-        <div class="avatar" role="img" aria-label="Javeria Shamsi Akhtar Profile"></div>
-      </div>
-      <h1 class="name">Javeria Shamsi Akhtar</h1>
-      <p class="title">Property Broker & Lease Advisor</p>
-      <span class="badge">🏆 Award-Winning Full-Status Broker</span>
-
-      <!-- CONTACT / SOCIAL LINKS -->
-      <div class="social-links">
-        <a href="https://wa.me/27791654894" target="_blank" rel="noopener" class="social-btn whatsapp" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+27791654894" class="social-btn phone" title="Call">
-          <i class="fas fa-phone-alt"></i>
-        </a>
-        <a href="mailto:javeria@evolate.co.za" class="social-btn email" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://www.tiktok.com/@soldbyjaveria" target="_blank" rel="noopener" class="social-btn tiktok" title="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
-        <a href="https://www.instagram.com/soldbyjaveria" target="_blank" rel="noopener" class="social-btn instagram" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
+ <!-- PROFILE PICTURE SECTION -->
+<div class="profile-section">
+  <!-- ✅ Clickable Profile Picture -->
+  <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar" 
+     target="_blank" 
+     rel="noopener" 
+     title="View Full Profile"
+     class="avatar-link">
+    <div class="avatar-ring">
+      <div class="avatar" role="img" aria-label="Javeria Shamsi Akhtar Profile"></div>
     </div>
+  </a>
+  
+  <h1 class="name">Javeria Shamsi Akhtar</h1>
+  <p class="title">Property Broker & Lease Advisor</p>
+  <span class="badge">🏆 Award-Winning Full-Status Broker</span>
+
+  <!-- CONTACT / SOCIAL LINKS -->
+  <div class="social-links">
+    <a href="https://wa.me/27791654894" target="_blank" rel="noopener" class="social-btn whatsapp" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+27791654894" class="social-btn phone" title="Call">
+      <i class="fas fa-phone-alt"></i>
+    </a>
+    <a href="mailto:javeria@evolate.co.za" class="social-btn email" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="https://www.tiktok.com/@soldbyjaveria" target="_blank" rel="noopener" class="social-btn tiktok" title="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.instagram.com/soldbyjaveria" target="_blank" rel="noopener" class="social-btn instagram" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</div>
 
     <!-- MIDDLE LINKS BOX -->
     <div class="links-box">
@@ -345,22 +411,23 @@
     </div>
 
     <!-- COMPANY FOOTER -->
-    <div class="glass company-section">
-     <div class="company-logo-wrap">
-  <img src="https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp" 
-       alt="Evolate Properties" 
-       class="company-logo-img">
-</div>
-      <p class="company-info">
-        Formerly Titan Property Group<br>
-        Helping clients buy, sell & rent with confidence.
-      </p>
-      <div class="company-tag">
-        © 2026 <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar">Javeria Shamsi Akhtar</a> | Evolate Properties
-      </div>
-    </div>
-
+  
+<div class="glass company-section">
+  <div class="company-logo-wrap">
+    <a href="https://www.evolate.co.za" target="_blank" rel="noopener" title="Visit Evolate Properties">
+      <img src="https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp" 
+           alt="Evolate Properties" 
+           class="company-logo-img">
+    </a>
   </div>
+  <p class="company-info">
+    Formerly Titan Property Group<br>
+    Helping clients buy, sell & rent with confidence.
+  </p>
+  <div class="company-tag">
+    © 2026 <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar">Evolate Properties
+  </div>
+</div>
 
 </body>
 </html>
