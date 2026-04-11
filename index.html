@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javeria Shamsi Akhtar | Property Broker & Lease Advisor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* RESET & BASE */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      background: #0f0c29;
+    }
+
+    /* ANIMATED LIQUID GRADIENT BACKGROUND */
+    .bg-gradient {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      background: linear-gradient(-45deg, #6a11cb, #2575fc, #f4791f, #11998e, #fc466b, #3f5efb);
+      background-size: 400% 400%;
+      animation: liquidFlow 40s ease infinite;
+    }
+
+    /* LIQUID ORBS FOR DEPTH */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: -1;
+      animation: floatOrb 40s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .orb-1 { width: 250px; height: 250px; background: rgba(255,255,255,0.25); top: 10%; left: -5%; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(255,150,50,0.25); bottom: 15%; right: -8%; animation-delay: 2s; }
+    .orb-3 { width: 200px; height: 200px; background: rgba(100,200,255,0.25); top: 50%; left: 20%; animation-delay: 4s; }
+
+    @keyframes liquidFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(30px) scale(1.15); }
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    /* LIQUID GLASS CARD STYLE */
+    .glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
+      padding: 20px;
+      transition: all 0.35s ease;
+    }
+    .glass:hover {
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.35);
+      transform: translateY(-4px);
+    }
+
+    /* PROFILE PICTURE */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .avatar-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: url('https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg') no-repeat center;
+      background-size: cover;
+      border: 3px solid rgba(255,255,255,0.6);
+    }
+    .name {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      text-align: center;
+      line-height: 1.3;
+    }
+    .title {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-align: center;
+      margin-top: -4px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+    }
+    .badge {
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    /* SOCIAL / CONTACT LINKS */
+    .social-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .social-btn:hover {
+      background: rgba(255,255,255,0.35);
+      transform: scale(1.15) translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .social-btn.whatsapp:hover { background: #25d366; border-color: #25d366; }
+    .social-btn.phone:hover { background: #34b7f1; border-color: #34b7f1; }
+    .social-btn.email:hover { background: #d14836; border-color: #d14836; }
+    .social-btn.tiktok:hover { background: #000000; border-color: #69c9d0; }
+    .social-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+    /* MAIN LINKS BOX */
+    .links-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .links-box .glass {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .box-title {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+    .link-btn:hover {
+      background: rgba(255,255,255,0.35);
+      transform: translateX(6px);
+    }
+    .link-btn i { font-size: 1.1rem; }
+
+    /* COMPANY FOOTER */
+    .company-section {
+      width: 100%;
+      text-align: center;
+      padding: 24px 18px;
+      margin-top: 10px;
+      background: rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .company-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .company-logo-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: contain;
+    
+      padding: 4px;
+    }
+    .company-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .company-logo span { color: #f4d03f; }
+    .company-info {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .company-tag {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .company-tag a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .company-tag a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      .container { padding: 18px 12px; gap: 14px; }
+      .avatar-ring { width: 95px; height: 95px; }
+      .name { font-size: 1.3rem; }
+      .social-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+      .company-logo { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANIMATED GRADIENT BACKGROUND -->
+  <div class="bg-gradient"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="container">
+
+    <!-- PROFILE PICTURE SECTION -->
+    <div class="profile-section">
+      <div class="avatar-ring">
+        <!-- ✅ Replace with real photo: <img src="your-photo.jpg" class="avatar" alt="Javeria"> -->
+        <div class="avatar" role="img" aria-label="Javeria Shamsi Akhtar Profile"></div>
+      </div>
+      <h1 class="name">Javeria Shamsi Akhtar</h1>
+      <p class="title">Property Broker & Lease Advisor</p>
+      <span class="badge">🏆 Award-Winning Full-Status Broker</span>
+
+      <!-- CONTACT / SOCIAL LINKS -->
+      <div class="social-links">
+        <a href="https://wa.me/27791654894" target="_blank" rel="noopener" class="social-btn whatsapp" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+27791654894" class="social-btn phone" title="Call">
+          <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:javeria@evolate.co.za" class="social-btn email" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.tiktok.com/@soldbyjaveria" target="_blank" rel="noopener" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://www.instagram.com/soldbyjaveria" target="_blank" rel="noopener" class="social-btn instagram" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- MIDDLE LINKS BOX -->
+    <div class="links-box">
+      <div class="glass">
+        <div class="box-title">🔗 Quick Links</div>
+        
+        <a href="https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-home"></i> For Sale → Property24
+        </a>
+        <a href="https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-key"></i> To Rent → Property24
+        </a>
+        <a href="https://www.evolate.co.za/estate-agent/javeria-akhtar" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-building"></i> Listings on Evolate.co.za
+        </a>
+        <a href="https://www.evolate.co.za/about-us" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-info-circle"></i> About Evolate Properties
+        </a>
+        <a href="https://vcard.link/card/D9HC.vcf" class="link-btn" download>
+          <i class="fas fa-address-card"></i> Save Contact (vCard)
+        </a>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJs3RFH15zlR4RolPpvy-Aw4g" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-star"></i> Write a Review ❤️
+        </a>
+      </div>
+    </div>
+
+    <!-- COMPANY FOOTER -->
+    <div class="glass company-section">
+     <div class="company-logo-wrap">
+  <img src="https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp" 
+       alt="Evolate Properties" 
+       class="company-logo-img">
+</div>
+      <p class="company-info">
+        Formerly Titan Property Group<br>
+        Helping clients buy, sell & rent with confidence.
+      </p>
+      <div class="company-tag">
+        © 2026 <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar">Javeria Shamsi Akhtar</a> | Evolate Properties
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
