@@ -426,11 +426,12 @@ body {
   text-decoration: underline;
 }
 
-/* 🌓 Theme Toggle Button */
+/* 🌓 Theme Toggle Button - BOTTOM CENTERED */
 .theme-toggle {
   position: fixed;
-  top: 20px;
+  bottom: 24px;
   right: 20px;
+  margin-left: 0; /* Centers without using transform (avoids JS conflict) */
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -447,45 +448,32 @@ body {
   box-shadow: 0 4px 20px var(--glass-shadow);
   padding: 0;
 }
+
 .theme-toggle:hover {
   background: var(--glass-bg-hover);
   transform: scale(1.1) rotate(8deg);
   box-shadow: 0 6px 28px var(--glass-shadow);
 }
+
 .theme-toggle:active {
   transform: scale(0.95);
 }
-.theme-icon {
-  font-size: 1.4rem;
-  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
-  position: absolute;
-}
-.theme-icon.moon {
-  opacity: 0;
-  transform: rotate(-30deg) scale(0.8);
-}
-.theme-icon.sun {
-  opacity: 1;
-  transform: rotate(0) scale(1);
-}
-[data-theme="dark"] .theme-icon.sun {
-  opacity: 0;
-  transform: rotate(30deg) scale(0.8);
-}
-[data-theme="dark"] .theme-icon.moon {
-  opacity: 1;
-  transform: rotate(0) scale(1);
-}
+
+/* Mobile adjustment */
 @media (max-width: 480px) {
   .theme-toggle {
-    top: 12px;
-    right: 12px;
+    bottom: 16px;
     width: 42px;
     height: 42px;
+    margin-right: 12px;
   }
   .theme-icon { font-size: 1.2rem; }
 }
 
+/* 🔽 Prevent footer overlap on mobile */
+.container {
+  padding-bottom: 80px;
+}
 /* ✅ Clickable avatar styles */
 .avatar-link {
   display: inline-block;
