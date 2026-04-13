@@ -4,88 +4,488 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Javeria Shamsi Akhtar | Property Broker & Lease Advisor</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javeria Shamsi Akhtar | Property Broker & Lease Advisor</title>
+
+  <!-- 🔍 BASIC SEO & AUTHOR META -->
+  <meta name="description" content="Award-winning Property Broker & Lease Advisor at Evolate Properties. Expert guidance for buying, selling, and renting properties.">
+  <meta name="author" content="Javeria Shamsi Akhtar">
+  <meta name="keywords" content="Javeria Shamsi Akhtar, Evolate Properties, Property Broker, Lease Advisor, Real Estate South Africa, Property24, Titan Property Group">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#6a11cb">
+
+  <!-- 🔗 OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Javeria Shamsi Akhtar | Property Broker & Lease Advisor">
+  <meta property="og:description" content="Award-winning full-status broker at Evolate Properties. Helping clients find optimal investment properties.">
+  <meta property="og:image" content="https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg">
+  <meta property="og:url" content="https://agent.propcon.co.za/estate-agent/javeria-akhtar"> <!-- 🔁 REPLACE WITH YOUR LIVE URL -->
+  <meta property="og:site_name" content="Evolate Properties">
+  <meta property="profile:first_name" content="Javeria">
+  <meta property="profile:last_name" content="Shamsi Akhtar">
+  <meta property="profile:username" content="soldbyjaveria">
+
+  <!-- 🐦 TWITTER CARD -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Javeria Shamsi Akhtar | Property Broker & Lease Advisor">
+  <meta name="twitter:description" content="Award-winning full-status broker at Evolate Properties.">
+  <meta name="twitter:image" content="https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg">
+  <meta name="twitter:creator" content="@soldbyjaveria">
+
+  <!-- 📜 STRUCTURED DATA (JSON-LD) FOR SEARCH ENGINES -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Javeria Shamsi Akhtar",
+    "jobTitle": "Property Broker & Lease Advisor",
+    "url": "https://agent.propcon.co.za/estate-agent/javeria-akhtar",
+    "image": "https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg",
+    "telephone": "+27791654894",
+    "email": "javeria@evolate.co.za",
+    "sameAs": [
+      "https://www.tiktok.com/@soldbyjaveria",
+      "https://www.instagram.com/soldbyjaveria"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Evolate Properties",
+      "url": "https://www.evolate.co.za",
+      "formerName": "Titan Property Group"
+    },
+    "knowsAbout": ["Real Estate", "Property Investment", "Lease Management", "Property Renovation"]
+  }
+  </script>
+
+  <!-- 🖼️ FAVICON (Optional but recommended) -->
+  <link rel="icon" type="image/webp" href="https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp">
+
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* RESET & BASE */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* RESET & BASE */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      min-height: 100vh;
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      background: #0f0c29;
-    }
+:root {
+  /* 🌓 LIGHT MODE (default) */
+  --bg-gradient-start: #6a11cb;
+  --bg-gradient-end: #2575fc;
+  --bg-gradient-mid1: #f4791f;
+  --bg-gradient-mid2: #11998e;
+  --bg-gradient-mid3: #fc466b;
+  --bg-gradient-mid4: #3f5efb;
+  
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-bg-hover: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-shadow: rgba(31, 38, 135, 0.25);
+  
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.9);
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --text-dim: rgba(255, 255, 255, 0.55);
+  
+  --orb-color-1: rgba(255,255,255,0.25);
+  --orb-color-2: rgba(255,150,50,0.25);
+  --orb-color-3: rgba(100,200,255,0.25);
+  
+  --link-bg: rgba(255,255,255,0.15);
+  --link-bg-hover: rgba(255,255,255,0.35);
+  --link-border: rgba(255,255,255,0.3);
+  
+  --badge-bg: rgba(255,255,255,0.25);
+  --badge-border: rgba(255,255,255,0.4);
+  
+  --social-bg: rgba(255,255,255,0.15);
+  --social-bg-hover: rgba(255,255,255,0.35);
+  --social-border: rgba(255,255,255,0.4);
+  
+  --transition-speed: 0.4s;
+}
 
-    /* ANIMATED LIQUID GRADIENT BACKGROUND */
-    .bg-gradient {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2;
-      background: linear-gradient(-45deg, #6a11cb, #2575fc, #f4791f, #11998e, #fc466b, #3f5efb);
-      background-size: 400% 400%;
-      animation: liquidFlow 20s ease infinite;
-    }
+[data-theme="dark"] {
+  /* 🌑 DARK MODE OVERRIDES */
+  --bg-gradient-start: #0f0c29;
+  --bg-gradient-end: #302b63;
+  --bg-gradient-mid1: #24243e;
+  --bg-gradient-mid2: #1a1a2e;
+  --bg-gradient-mid3: #16213e;
+  --bg-gradient-mid4: #0f3460;
+  
+  --glass-bg: rgba(20, 20, 35, 0.65);
+  --glass-bg-hover: rgba(30, 30, 50, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
+  
+  --text-primary: #f8f9fa;
+  --text-secondary: rgba(248, 249, 250, 0.95);
+  --text-muted: rgba(248, 249, 250, 0.8);
+  --text-dim: rgba(248, 249, 250, 0.6);
+  
+  --orb-color-1: rgba(100,100,255,0.2);
+  --orb-color-2: rgba(255,100,150,0.15);
+  --orb-color-3: rgba(50,200,255,0.15);
+  
+  --link-bg: rgba(255,255,255,0.08);
+  --link-bg-hover: rgba(255,255,255,0.18);
+  --link-border: rgba(255,255,255,0.15);
+  
+  --badge-bg: rgba(255,255,255,0.12);
+  --badge-border: rgba(255,255,255,0.25);
+  
+  --social-bg: rgba(255,255,255,0.1);
+  --social-bg-hover: rgba(255,255,255,0.22);
+  --social-border: rgba(255,255,255,0.2);
+}
 
-    /* LIQUID ORBS FOR DEPTH */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(60px);
-      z-index: -1;
-      animation: floatOrb 10s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    .orb-1 { width: 250px; height: 250px; background: rgba(255,255,255,0.25); top: 10%; left: -5%; animation-delay: 0s; }
-    .orb-2 { width: 300px; height: 300px; background: rgba(255,150,50,0.25); bottom: 15%; right: -8%; animation-delay: 2s; }
-    .orb-3 { width: 200px; height: 200px; background: rgba(100,200,255,0.25); top: 50%; left: 20%; animation-delay: 4s; }
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  background: var(--bg-gradient-start);
+  color: var(--text-primary);
+}
 
-    @keyframes liquidFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+/* ANIMATED LIQUID GRADIENT BACKGROUND */
+.bg-gradient {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -2;
+  background: linear-gradient(-45deg, 
+    var(--bg-gradient-start), 
+    var(--bg-gradient-mid4), 
+    var(--bg-gradient-mid1), 
+    var(--bg-gradient-mid2), 
+    var(--bg-gradient-mid3), 
+    var(--bg-gradient-end)
+  );
+  background-size: 400% 400%;
+  animation: liquidFlow 12s ease infinite;
+  transition: background var(--transition-speed) ease;
+}
 
-    @keyframes floatOrb {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(30px) scale(1.15); }
-    }
+/* LIQUID ORBS FOR DEPTH */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  animation: floatOrb 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  transition: background var(--transition-speed) ease;
+}
+.orb-1 { width: 250px; height: 250px; background: var(--orb-color-1); top: 10%; left: -5%; animation-delay: 0s; }
+.orb-2 { width: 300px; height: 300px; background: var(--orb-color-2); bottom: 15%; right: -8%; animation-delay: 2s; }
+.orb-3 { width: 200px; height: 200px; background: var(--orb-color-3); top: 50%; left: 20%; animation-delay: 4s; }
 
-    /* MAIN CONTAINER */
-    .container {
-      width: 100%;
-      max-width: 420px;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-    }
+@keyframes liquidFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    /* LIQUID GLASS CARD STYLE */
-    .glass {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
-      padding: 20px;
-      transition: all 0.35s ease;
-    }
-    .glass:hover {
-      background: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.35);
-      transform: translateY(-4px);
-    }
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(30px) scale(1.15); }
+}
 
-    /* PROFILE PICTURE */
+/* MAIN CONTAINER */
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* LIQUID GLASS CARD STYLE */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px var(--glass-shadow);
+  padding: 20px;
+  transition: all var(--transition-speed) ease;
+}
+.glass:hover {
+  background: var(--glass-bg-hover);
+  box-shadow: 0 12px 40px var(--glass-shadow);
+  transform: translateY(-4px);
+}
+
+/* PROFILE PICTURE */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.avatar-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: url('https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg') no-repeat center;
+  background-size: cover;
+  border: 3px solid rgba(255,255,255,0.6);
+}
+.name {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-align: center;
+  line-height: 1.3;
+}
+.title {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+.badge {
+  background: var(--badge-bg);
+  color: var(--text-primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--badge-border);
+  backdrop-filter: blur(8px);
+}
+
+/* SOCIAL / CONTACT LINKS */
+.social-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.social-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  background: var(--social-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--social-border);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.social-btn:hover {
+  background: var(--social-bg-hover);
+  transform: scale(1.15) translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.social-btn.whatsapp:hover { background: #25d366; border-color: #25d366; color: #fff; }
+.social-btn.phone:hover { background: #34b7f1; border-color: #34b7f1; color: #fff; }
+.social-btn.email:hover { background: #d14836; border-color: #d14836; color: #fff; }
+.social-btn.tiktok:hover { background: #000000; border-color: #69c9d0; color: #fff; }
+.social-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+
+/* MAIN LINKS BOX */
+.links-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.links-box .glass {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.box-title {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--link-bg);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid var(--link-border);
+  transition: all 0.3s ease;
+}
+.link-btn:hover {
+  background: var(--link-bg-hover);
+  transform: translateX(6px);
+}
+.link-btn i { font-size: 1.1rem; }
+
+/* COMPANY FOOTER */
+.company-section {
+  width: 100%;
+  text-align: center;
+  padding: 24px 18px;
+  margin-top: 10px;
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.company-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  min-height: 60px;
+}
+.company-logo-img {
+  width: 180px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+  transition: transform 0.3s ease;
+}
+.company-logo-img:hover {
+  transform: scale(1.05);
+}
+.company-logo-wrap a {
+  display: inline-block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  border-radius: 12px;
+  padding: 8px;
+  margin: -8px;
+}
+.company-logo-wrap a:hover,
+.company-logo-wrap a:active {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+}
+@media (hover: none) {
+  .company-logo-wrap a:active {
+    transform: scale(0.98);
+    filter: brightness(0.95);
+  }
+}
+.company-info {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.company-tag {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.company-tag a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.company-tag a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* 🌓 Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 20px var(--glass-shadow);
+  padding: 0;
+}
+.theme-toggle:hover {
+  background: var(--glass-bg-hover);
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 6px 28px var(--glass-shadow);
+}
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+.theme-icon {
+  font-size: 1.4rem;
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+  position: absolute;
+}
+.theme-icon.moon {
+  opacity: 0;
+  transform: rotate(-30deg) scale(0.8);
+}
+.theme-icon.sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+[data-theme="dark"] .theme-icon.sun {
+  opacity: 0;
+  transform: rotate(30deg) scale(0.8);
+}
+[data-theme="dark"] .theme-icon.moon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+@media (max-width: 480px) {
+  .theme-toggle {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+  }
+  .theme-icon { font-size: 1.2rem; }
+}
+
 /* ✅ Clickable avatar styles */
 .avatar-link {
   display: inline-block;
@@ -94,14 +494,11 @@
   cursor: pointer;
   position: relative;
 }
-
 .avatar-link:hover,
 .avatar-link:active {
-  transform: scale(1.08);
+  transform: scale(1.5);
   filter: drop-shadow(0 8px 24px rgba(255,255,255,0.4));
 }
-
-/* Subtle pulse animation to hint it's clickable (optional) */
 @keyframes subtlePulse {
   0%, 100% { box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
   50% { box-shadow: 0 6px 32px rgba(255,255,255,0.5); }
@@ -109,236 +506,96 @@
 .avatar-ring {
   animation: subtlePulse 3s ease-in-out infinite;
 }
-
-/* Disable pulse on hover for cleaner interaction */
 .avatar-link:hover .avatar-ring {
   animation: none;
 }
-
-/* Mobile tap feedback */
 @media (hover: none) {
   .avatar-link:active {
     transform: scale(0.95);
   }
 }
-    .profile-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-    }
-    .avatar-ring {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      padding: 4px;
-      background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
-      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
-    }
-    .avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: url('https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg') no-repeat center;
-      background-size: cover;
-      border: 3px solid rgba(255,255,255,0.6);
-    }
-    .name {
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      text-align: center;
-      line-height: 1.3;
-    }
-    .title {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.9rem;
-      font-weight: 400;
-      text-align: center;
-      margin-top: -4px;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.2);
-    }
-    .badge {
-      background: rgba(255,255,255,0.25);
-      color: #fff;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      border: 1px solid rgba(255,255,255,0.4);
-      backdrop-filter: blur(8px);
-    }
 
-    /* SOCIAL / CONTACT LINKS */
-    .social-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .social-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      color: #fff;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.4);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-    .social-btn:hover {
-      background: rgba(255,255,255,0.35);
-      transform: scale(1.15) translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-    }
-    .social-btn.whatsapp:hover { background: #25d366; border-color: #25d366; }
-    .social-btn.phone:hover { background: #34b7f1; border-color: #34b7f1; }
-    .social-btn.email:hover { background: #d14836; border-color: #d14836; }
-    .social-btn.tiktok:hover { background: #000000; border-color: #69c9d0; }
-    .social-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-
-    /* MAIN LINKS BOX */
-    .links-box {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .links-box .glass {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .box-title {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-align: center;
-      margin-bottom: 6px;
-    }
-    .link-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-    }
-    .link-btn:hover {
-      background: rgba(255,255,255,0.35);
-      transform: translateX(6px);
-    }
-    .link-btn i { font-size: 1.1rem; }
-
-    /* COMPANY FOOTER */
-    .company-section {
-      width: 100%;
-      text-align: center;
-      padding: 24px 18px;
-      margin-top: 10px;
-      background: rgba(255,255,255,0.08);
-      border-top: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .company-logo-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .company-logo-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 8px;
-      object-fit: contain;
-    
-      padding: 4px;
-    }
-    .company-logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    }
-    .company-logo span { color: #f4d03f; }
-    .company-info {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-    .company-tag {
-      margin-top: 12px;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.55);
-    }
-    .company-tag a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .company-tag a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-/* Clickable logo hover/tap effect */
-.company-logo-wrap a {
-  display: inline-block;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  border-radius: 12px; /* Soft rounded hit area */
-  padding: 8px; /* Larger touch target for mobile */
-  margin: -8px; /* Offset padding to maintain layout */
+/* 🚀 ENTRANCE ANIMATIONS */
+@keyframes jumpIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(8px); }
+  60% { transform: translateY(-8px) scale(1.02); filter: blur(0); }
+  80% { transform: translateY(4px) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
-
-.company-logo-wrap a:hover,
-.company-logo-wrap a:active {
-  transform: scale(1.03);
-  filter: brightness(1.1);
-  
-  border-radius: 12px;
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.profile-section {
+  animation: jumpIn 0.8s ease-out 0.1s forwards;
+}
+.social-links {
+  animation: fadeInUp 0.6s ease-out 0.3s forwards;
+}
+.social-btn {
+  opacity: 0;
+  animation: popIn 0.5s ease-out forwards;
+}
+.social-btn:nth-child(1) { animation-delay: 0.45s; }
+.social-btn:nth-child(2) { animation-delay: 0.5s; }
+.social-btn:nth-child(3) { animation-delay: 0.55s; }
+.social-btn:nth-child(4) { animation-delay: 0.6s; }
+.social-btn:nth-child(5) { animation-delay: 0.65s; }
+.links-box {
+  animation: fadeInUp 0.7s ease-out 0.5s forwards;
+}
+.link-btn {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.link-btn:nth-child(2) { animation-delay: 0.55s; }
+.link-btn:nth-child(3) { animation-delay: 0.6s; }
+.link-btn:nth-child(4) { animation-delay: 0.65s; }
+.link-btn:nth-child(5) { animation-delay: 0.7s; }
+.link-btn:nth-child(6) { animation-delay: 0.75s; }
+.link-btn:nth-child(7) { animation-delay: 0.8s; }
+.company-section {
+  animation: fadeInUp 0.8s ease-out 0.9s forwards;
+}
+.orb {
+  opacity: 0;
+  animation: floatOrb 8s ease-in-out infinite alternate, fadeIn 1.5s ease-out forwards;
+}
+.orb-1 { animation-delay: 0s, 0.2s; }
+.orb-2 { animation-delay: 2s, 0.4s; }
+.orb-3 { animation-delay: 4s, 0.6s; }
+@keyframes fadeIn { to { opacity: 1; } }
 
-/* Mobile tap feedback */
-@media (hover: none) {
-  .company-logo-wrap a:active {
-    transform: scale(0.98);
-    filter: brightness(0.95);
+/* ✅ Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-    /* RESPONSIVE */
-    @media (max-width: 480px) {
-      .container { padding: 18px 12px; gap: 14px; }
-      .avatar-ring { width: 95px; height: 95px; }
-      .name { font-size: 1.3rem; }
-      .social-btn { width: 40px; height: 40px; font-size: 1.1rem; }
-      .company-logo { font-size: 1.3rem; }
-    }
+/* Responsive */
+@media (max-width: 480px) {
+  .container { padding: 18px 12px; gap: 14px; }
+  .avatar-ring { width: 95px; height: 95px; }
+  .name { font-size: 1.3rem; }
+  .social-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+}
   </style>
 </head>
 <body>
-
+<!-- 🌓 Theme Toggle Button -->
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+  <span class="theme-icon sun">☀️</span>
+  <span class="theme-icon moon">🌙</span>
+</button>
   <!-- ANIMATED GRADIENT BACKGROUND -->
   <div class="bg-gradient"></div>
   <div class="orb orb-1"></div>
@@ -428,6 +685,59 @@
     © 2026 <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar">Evolate Properties
   </div>
 </div>
+
+
+<script>
+  // 🌓 Dark/Light Mode Toggle with localStorage persistence
+  (function() {
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const STORAGE_KEY = 'javeria-theme-preference';
+    
+    // Check for saved preference or system preference
+    const getPreferredTheme = () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return saved;
+      
+      // Fallback to system preference
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    
+    // Apply theme
+    const applyTheme = (theme) => {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem(STORAGE_KEY, theme);
+      
+      // Update toggle button animation
+      toggle.style.transform = 'scale(0.9) rotate(180deg)';
+      setTimeout(() => {
+        toggle.style.transform = 'scale(1) rotate(0deg)';
+      }, 150);
+    };
+    
+    // Initialize theme on load
+    applyTheme(getPreferredTheme());
+    
+    // Toggle on click
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      
+      // Optional: subtle haptic feedback on mobile
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10);
+      }
+    });
+    
+    // Listen for system theme changes (if user hasn't set preference)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
