@@ -573,28 +573,27 @@ body {
 .social-btn:nth-child(3) { animation-delay: 0.55s; }
 .social-btn:nth-child(4) { animation-delay: 0.6s; }
 .social-btn:nth-child(5) { animation-delay: 0.65s; }
-.links-box {
-  opacity: 0;
-  animation: fadeIn 1.2s ease-out 0.8s forwards;
+/* 📦 MIDDLE LINKS BOX - SEQUENTIAL FADE-IN */
+.links-box .glass {
+  animation: none;
+  opacity: 1;
 }
-.link-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px;
-  border-radius: 14px;
-  background: var(--link-bg);
-  color: var(--text-primary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  border: 1px solid var(--link-border);
-  transition: background-color 0.3s ease,
-              border-color 0.3s ease,
-              color 0.3s ease,
-              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease;
+
+/* Target title & links for staggered animation */
+.links-box .box-title,
+.links-box .link-btn {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* ⏱️ Staggered delays (adjust timing as needed) */
+.links-box .box-title             { animation-delay: 0.3s; }
+.links-box .link-btn:nth-child(2) { animation-delay: 0.4s; }
+.links-box .link-btn:nth-child(3) { animation-delay: 0.5s; }
+.links-box .link-btn:nth-child(4) { animation-delay: 0.6s; }
+.links-box .link-btn:nth-child(5) { animation-delay: 0.7s; }
+.links-box .link-btn:nth-child(6) { animation-delay: 0.8s; }
+.links-box .link-btn:nth-child(7) { animation-delay: 0.9s; }
 }
 .link-btn:hover {
   background: var(--link-bg-hover);
