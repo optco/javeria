@@ -233,13 +233,24 @@ body {
 }
 
 /* PROFILE PICTURE */
+
 .profile-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
+  animation: jumpIn 0.8s ease-out 0.1s forwards;
 }
+
+.profile-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
 .avatar-ring {
   width: 110px;
   height: 110px;
@@ -261,29 +272,24 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  text-align: center;
+  text-align: left;
   line-height: 1.3;
 }
 .title {
   color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
   margin-top: -4px;
   text-shadow: 0 1px 6px rgba(0,0,0,0.2);
 }
 .badge {
-  background: var(--badge-bg);
-  color: var(--text-primary);
-  padding: 4px 14px;
-  border-radius: 20px;
+  
+  
   font-size: 0.75rem;
   font-weight: 500;
-  border: 0px solid var(--badge-border);
-  backdrop-filter: blur(8px);
-  transition: background-color var(--transition-speed) ease,
-              border-color var(--transition-speed) ease,
-              color var(--transition-speed) ease;
+
+  
 }
 
 /* SOCIAL / CONTACT LINKS */
@@ -662,20 +668,24 @@ body {
 
  <!-- PROFILE PICTURE SECTION -->
 <div class="profile-section">
-  <!-- ✅ Clickable Profile Picture -->
-  <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar" 
-     target="_blank" 
-     rel="noopener" 
-     title="View Full Profile"
-     class="avatar-link">
-    <div class="avatar-ring">
-      <div class="avatar" role="img" aria-label="Javeria Shamsi Akhtar Profile"></div>
+  <div class="profile-main">
+    <!-- Clickable Profile Picture -->
+    <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar" 
+       target="_blank" 
+       rel="noopener" 
+       title="View Full Profile"
+       class="avatar-link">
+      <div class="avatar-ring">
+        <div class="avatar" role="img" aria-label="Javeria Shamsi Akhtar Profile"></div>
+      </div>
+    </a>
+    
+    <div class="profile-info">
+      <h1 class="name">Javeria Shamsi Akhtar</h1>
+      <p class="title">Property Broker & Lease Advisor</p>
+      <span class="badge">🏆 Multiple Award-Winning Agent</span>
     </div>
-  </a>
-  
-  <h1 class="name">Javeria Shamsi Akhtar</h1>
-  <p class="title">Property Broker & Lease Advisor</p>
-  <span class="badge">🏆 Multiple Award-Winning Agent</span>
+  </div>
 
   <!-- CONTACT / SOCIAL LINKS -->
   <div class="social-links">
