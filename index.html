@@ -291,6 +291,31 @@ body {
 
   
 }
+.badge2 {
+  background: var(--badge-bg);
+  color: var(--text-primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--badge-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              transform 0.3s ease,
+              box-shadow 0.3s ease;
+  text-decoration: none; /* 👈 Removes underline */
+  display: inline-block;
+  cursor: default;
+}
+
+/* 🔒 Safeguard: Strips underline from any link that wraps or contains the badge */
+a.badge,
+a .badge {
+  text-decoration: none;
+}
 
 /* SOCIAL / CONTACT LINKS */
 .social-links {
@@ -683,7 +708,8 @@ body {
     <div class="profile-info">
       <h1 class="name">Javeria Shamsi Akhtar</h1>
       <p class="title">Property Broker & Lease Advisor</p>
-      <span class="badge">🏆 Multiple Award-Winning Agent<br>tinyurl.com/javbio</span>
+      <span class="badge">🏆 Multiple Award-Winning Agent</span>
+	  <span><a href="https://tinyurl.com/javbio" class=badge2>tinyurl.com/javbio</a></span>
     </div>
   </div>
 
