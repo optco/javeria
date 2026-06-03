@@ -54,7 +54,7 @@
   document.body.appendChild(stripe);
   
   const link = document.createElement('a');
-  link.href = 'https://akhtar.co.za/home';
+  link.href = 'https://akhtar.co.za/';
   link.className = 'fixed-corner-link';
   link.style.cssText = `
     position: fixed;
