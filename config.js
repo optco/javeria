@@ -19,7 +19,7 @@ const AGENT_CONFIG = {
   // ── Short Link ──
   shortLink: {
     url: "https://shamsi.co.za",
-    text: "shamsi.co.za"
+    text: "shamsi.co.za (theattn.com/javeria"
   },
 
   // ── Contact ──
