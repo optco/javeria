@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javeria Shamsi Akhtar — Real Estate Transaction Coordinator & Property Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --emerald:    #1A4A3A;
+    --emerald-mid:#2D7A5F;
+    --emerald-lt: #4CAF87;
+    --gold:       #C9943A;
+    --gold-lt:    #E8C47A;
+    --cream:      #FAF7F2;
+    --sand:       #F0EAE0;
+    --coral:      #D4695A;
+    --plum:       #6B3D5E;
+    --sky:        #3A7FA6;
+    --ink:        #1C1C1C;
+    --muted:      #6B6B6B;
+    --white:      #FFFFFF;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  /* ── HEADER ──────────────────────────────── */
+  .header {
+    background: var(--emerald);
+    padding: 40px 56px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: 'JSA';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    letter-spacing: -8px;
+    pointer-events: none;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .header-name h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .header-name h1 span {
+    color: var(--gold-lt);
+  }
+
+  .title-badge {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,148,58,0.18);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 5px 14px;
+  }
+
+  .title-badge span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+
+  .title-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .contact-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    margin-top: 4px;
+  }
+
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 13px 5px 10px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.82);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .pill svg {
+    width: 12px; height: 12px;
+    fill: var(--gold-lt);
+    flex-shrink: 0;
+  }
+
+  /* ── SUMMARY RIBBON ──────────────────────── */
+  .summary-ribbon {
+    background: var(--emerald-mid);
+    padding: 18px 56px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .summary-ribbon::before {
+    content: '';
+    flex-shrink: 0;
+    width: 3px;
+    height: auto;
+    align-self: stretch;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .summary-ribbon p {
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ── BODY ────────────────────────────────── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+  }
+
+  /* ── MAIN COLUMN ─────────────────────────── */
+  .main {
+    padding: 30px 40px 30px;
+    border-right: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .section { margin-bottom: 25px; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .section-label .icon-dot {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--emerald);
+    letter-spacing: -0.2px;
+  }
+
+  .section-label .rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(26,74,58,0.3), transparent);
+  }
+
+  /* ── TIMELINE ────────────────────────────── */
+  .timeline { position: relative; }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 0 16px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .tl-item:last-child { margin-bottom: 0; }
+
+  .tl-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+  }
+
+  .tl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px currentColor;
+  }
+
+  .tl-line {
+    flex: 1;
+    width: 2px;
+    background: linear-gradient(to bottom, currentColor, rgba(0,0,0,0.06));
+    margin-top: 4px;
+  }
+
+  .tl-item:last-child .tl-line { display: none; }
+
+  .tl-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .tl-company {
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 1px;
+    margin-bottom: 5px;
+  }
+
+  .tl-period {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+
+  .tl-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tl-bullets li {
+    font-size: 11px;
+    line-height: 1.55;
+    color: #444;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .tl-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+  }
+
+  /* color themes per role */
+  .role-emerald .tl-dot { color: var(--emerald-mid); }
+  .role-emerald .tl-line { color: var(--emerald-mid); }
+  .role-emerald .tl-company { color: var(--emerald-mid); }
+  .role-emerald .tl-period { background: #E8F4EE; color: var(--emerald); }
+  .role-emerald .tl-bullets li::before { color: var(--emerald-mid); }
+
+  .role-gold .tl-dot { color: var(--gold); }
+  .role-gold .tl-line { color: var(--gold); }
+  .role-gold .tl-company { color: var(--gold); }
+  .role-gold .tl-period { background: #FBF3E4; color: #8A5E1A; }
+  .role-gold .tl-bullets li::before { color: var(--gold); }
+
+  .role-coral .tl-dot { color: var(--coral); }
+  .role-coral .tl-line { color: var(--coral); }
+  .role-coral .tl-company { color: var(--coral); }
+  .role-coral .tl-period { background: #FAECEA; color: #8C3527; }
+  .role-coral .tl-bullets li::before { color: var(--coral); }
+
+  .role-plum .tl-dot { color: var(--plum); }
+  .role-plum .tl-line { color: var(--plum); }
+  .role-plum .tl-company { color: var(--plum); }
+  .role-plum .tl-period { background: #F3EEF2; color: #4A2642; }
+  .role-plum .tl-bullets li::before { color: var(--plum); }
+
+  .role-sky .tl-dot { color: var(--sky); }
+  .role-sky .tl-line { color: var(--sky); }
+  .role-sky .tl-company { color: var(--sky); }
+  .role-sky .tl-period { background: #E6F2F8; color: #1E5470; }
+  .role-sky .tl-bullets li::before { color: var(--sky); }
+
+  /* ── SIDEBAR ─────────────────────────────── */
+  .sidebar {
+    background: var(--sand);
+    padding: 30px 25px 30px;
+  }
+
+  .sb-section { margin-bottom: 20px; }
+
+  .sb-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .sb-label .bar {
+    width: 3px; height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .sb-label h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--emerald);
+    letter-spacing: -0.1px;
+  }
+
+  .edu-card, .award-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--emerald-lt);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .award-card.c-gold { border-left-color: var(--gold); }
+  .award-card.c-sky { border-left-color: var(--sky); }
+
+  .award-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--emerald);
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+
+  .award-desc {
+    font-size: 9.5px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .edu-card.c-gold { border-left-color: var(--gold); }
+  .edu-card.c-coral { border-left-color: var(--coral); }
+  .edu-card.c-plum { border-left-color: var(--plum); }
+  .edu-card.c-sky { border-left-color: var(--sky); }
+
+  .edu-year {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .edu-qual {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 1px;
+  }
+
+  .edu-inst {
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+  .location-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    margin-bottom: 10px;
+  }
+
+  .location-chip svg { width: 13px; height: 13px; fill: var(--emerald-mid); flex-shrink: 0; }
+
+  .comp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  .tag-em { background: #E8F4EE; color: var(--emerald); }
+  .tag-go { background: #FBF3E4; color: #7A5010; }
+  .tag-co { background: #FAECEA; color: #7A2010; }
+  .tag-pl { background: #F3EEF2; color: #4A2642; }
+  .tag-sk { background: #E6F2F8; color: #1E5470; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .footer {
+    background: var(--emerald);
+    padding: 12px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+  }
+
+  .footer .websites {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer .websites a {
+    font-size: 10px;
+    color: var(--gold-lt);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── MOBILE OPTIMIZATION ─────────────────── */
+  @media screen and (max-width: 768px) {
+    .header { padding: 30px 20px 20px; }
+    .header-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .header-name h1 { font-size: 32px; }
+    .contact-pills { align-items: flex-start; width: 100%; }
+    
+    .summary-ribbon { padding: 15px 20px; }
+    
+    .body { grid-template-columns: 1fr; }
+    
+    .main { 
+      padding: 20px; 
+      border-right: none; 
+      border-bottom: 1px solid rgba(0,0,0,0.07); 
+    }
+    
+    .sidebar { padding: 20px; }
+    
+    .footer { 
+      flex-direction: column; 
+      gap: 10px; 
+      text-align: center; 
+      padding: 15px 20px; 
+    }
+  }
+
+  /* ── PRINT OPTIMIZATION (CRITICAL FIX) ───── */
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body {
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .header::before { display: none !important; }
+    
+    .body { min-height: auto !important; }
+    
+    .main, .sidebar, .tl-item, .edu-card, .sb-section, .award-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Aggressively tighten spacing to guarantee 1-page fit */
+    .header { padding: 20px 30px 15px !important; }
+    .header-name h1 { font-size: 30px !important; }
+    .title-badge span { font-size: 10px !important; padding: 3px 10px !important; }
+    .contact-pills { gap: 5px !important; }
+    .pill { font-size: 10px !important; padding: 4px 10px 4px 8px !important; }
+    .pill svg { width: 10px !important; height: 10px !important; }
+    
+    .summary-ribbon { padding: 10px 30px !important; }
+    .summary-ribbon p { font-size: 11px !important; line-height: 1.5 !important; }
+    
+    .main { padding: 15px 25px 15px !important; }
+    .section { margin-bottom: 10px !important; }
+    .section-label { margin-bottom: 10px !important; }
+    .section-label h2 { font-size: 14px !important; }
+    .section-label .icon-dot { width: 22px !important; height: 22px !important; }
+    
+    .tl-item { margin-bottom: 10px !important; }
+    .tl-role { font-size: 12px !important; }
+    .tl-company { font-size: 10px !important; margin-bottom: 3px !important; }
+    .tl-period { font-size: 9px !important; padding: 1px 6px !important; margin-bottom: 4px !important; }
+    .tl-bullets { gap: 2px !important; }
+    .tl-bullets li { font-size: 10.5px !important; line-height: 1.4 !important; }
+    .tl-bullets li::before { top: 6px !important; }
+    
+    .sidebar { padding: 15px 20px 15px !important; }
+    .sb-section { margin-bottom: 12px !important; }
+    .sb-label h3 { font-size: 12px !important; }
+    .sb-label .bar { height: 12px !important; }
+    
+    .award-card, .edu-card { padding: 8px 10px !important; margin-bottom: 6px !important; }
+    .award-title { font-size: 10.5px !important; }
+    .award-desc, .edu-year { font-size: 9px !important; }
+    .edu-qual { font-size: 10.5px !important; }
+    .edu-inst { font-size: 9.5px !important; }
+    
+    .tag { font-size: 9px !important; padding: 2px 7px !important; }
+    
+    .footer { padding: 8px 30px !important; }
+    .footer p, .footer .websites a { font-size: 9px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <div class="header-name">
+      <h1>Javeria <span>Shamsi Akhtar</span></h1>
+      <div class="title-badge">
+        <span>Real Estate Transaction Coordinator &amp; Property Operations</span>
+      </div>
+    </div>
+    <div class="contact-pills">
+      <a href="tel:+27791654894" class="pill">
+        <svg viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+        +27 79 165 4894
+      </a>
+      
+      <a href="https://shamsi.co.za" class="pill" target="_blank">
+        <svg viewBox="0 0 20 20"><path d="M10 1a9 9 0 100 18A9 9 0 0010 1zm0 2c1.2 0 2.4.9 3.3 2.5H6.7C7.6 3.9 8.8 3 10 3zm-4.5 4h9a13 13 0 010 6h-9a13 13 0 010-6zm.6 8h7.8A7.1 7.1 0 0110 17a7.1 7.1 0 01-3.9-2zm-2.6-2A7 7 0 013 10a7 7 0 01.5-3h1.7a15 15 0 000 6H3.5zm12.8 0h-1.7a15 15 0 000-6h1.7A7 7 0 0117 10a7 7 0 01-.5 3z"/></svg>
+        shamsi.co.za
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SUMMARY RIBBON -->
+<div class="summary-ribbon">
+  <p>Detail-oriented Real Estate Professional with extensive experience managing residential property transactions, lease administration, and portfolio operations. Adept at reviewing property documents, coordinating with vendors and legal teams, and maintaining accurate transaction files to facilitate smooth closings. Proven ability to manage multiple concurrent transactions while identifying discrepancies and resolving issues before they cause delays.</p>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- MAIN -->
+  <main class="main">
+    <section class="section">
+      <div class="section-label">
+        <div class="icon-dot" style="background:#E8F4EE;">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="6" width="14" height="11" rx="2" stroke="#2D7A5F" stroke-width="1.8"/>
+            <path d="M7 6V5a3 3 0 016 0v1" stroke="#2D7A5F" stroke-width="1.8"/>
+            <line x1="7" y1="11" x2="13" y2="11" stroke="#2D7A5F" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2>Work Experience</h2>
+        <div class="rule"></div>
+        <span style="font-size:9px;color:#999;letter-spacing:0.6px;white-space:nowrap;">TRANSACTION &amp; OPERATIONS FOCUS</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item role-sky">
+          <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Real Estate Administrator</div>
+            <div class="tl-company">Manzella Real Estate</div>
+            <div class="tl-period">2009 – 2010</div>
+            <ul class="tl-bullets"><li>Managed front-desk operations, organized property records, and coordinated administrative workflows to support the brokerage team.</li></ul>
+          </div>
+        </div>
+
+        <div class="tl-item role-plum">
+          <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Private Tutor &amp; Independent Contractor</div>
+            <div class="tl-company">Home Tuition</div>
+            <div class="tl-period">2011 – 2016 &amp; 2018 – 2020</div>
+            <ul class="tl-bullets">
+              <li>Managed independent scheduling, client relations, and service delivery with strict attention to detail.</li>
+              <li>Built strong interpersonal and problem-solving skills by tailoring complex information to diverse needs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item role-coral">
+          <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Accounts &amp; Administrative Coordinator</div>
+            <div class="tl-company">Virgin Spa</div>
+            <div class="tl-period">2017 – 2018</div>
+            <ul class="tl-bullets">
+              <li>Managed financial records, invoicing, and reconciliations with strict attention to detail, ensuring accuracy in billing and compliance.</li>
+              <li>Organized administrative files and streamlined operational processes to improve efficiency and data integrity.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item role-gold">
+          <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Sales Practitioner &amp; Transaction Coordinator</div>
+            <div class="tl-company">Titan Property Group</div>
+            <div class="tl-period">2022 – 2025</div>
+            <ul class="tl-bullets">
+              <li>Coordinated residential property sales from offer to closing, liaising with conveyancers, title teams, and clients to ensure accurate documentation.</li>
+              <li>Reviewed property documents, offers to purchase, and title conditions to identify missing information or potential issues prior to closing.</li>
+              <li>Managed multiple concurrent transaction files, tracking deadlines and following up with vendors to prevent costly delays.</li>
+              <li>Supported the closing process by organizing transaction files and ensuring all conditions were met for a smooth transfer.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item role-emerald">
+          <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Full Status Property Broker &amp; Transaction Coordinator</div>
+            <div class="tl-company">Evolate Properties</div>
+            <div class="tl-period">
+              2025 – Present
+              <span style="margin-left:6px;background:var(--emerald);color:white;font-size:9px;padding:1px 7px;border-radius:8px;letter-spacing:0.4px;">CURRENT</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Manage end-to-end property transactions, reviewing lease agreements, legal descriptions, and property records for accuracy and compliance.</li>
+              <li>Coordinate with vendors, contractors, and external teams to resolve property concerns, maintenance issues, and compliance requirements.</li>
+              <li>Maintain meticulously organized transaction files for a portfolio of 20+ exclusive properties, ensuring all documentation is updated and audit-ready.</li>
+              <li>Communicate effectively with clients, landlords, and internal staff to resolve questions quickly and keep transactions on schedule.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="location-chip">
+        <svg viewBox="0 0 20 20"><path d="M10 1.5a6 6 0 00-6 6c0 4.5 6 11 6 11s6-6.5 6-11a6 6 0 00-6-6zm0 8.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+        Johannesburg, South Africa (Remote)
+      </div>
+    </div>
+
+    <!-- AWARDS & MILESTONES -->
+    <div class="sb-section">
+      <div class="sb-label">
+        <div class="bar" style="background:var(--gold);"></div>
+        <h3>Awards &amp; Milestones</h3>
+      </div>
+      
+      <div class="award-card c-gold">
+        <div class="award-title">Millionaire Club &amp; Sale of the Year</div>
+        <div class="award-desc">Top 1% Commission Earner &amp; Highest Single Deal (2023, 2024, 2025)</div>
+      </div>
+      
+      <div class="award-card">
+        <div class="award-title">Best Agent: Sales &amp; Rentals</div>
+        <div class="award-desc">Consecutive Annual Winner (2023, 2024, 2025)</div>
+      </div>
+      
+      <div class="award-card c-sky">
+        <div class="award-title">Portfolio Management</div>
+        <div class="award-desc">Successfully managed administrative and operational workflows for 20+ exclusive properties simultaneously.</div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="sb-section">
+      <div class="sb-label">
+        <div class="bar" style="background:var(--emerald-mid);"></div>
+        <h3>Education &amp; Certifications</h3>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2002</div>
+        <div class="edu-qual">Matric</div>
+        <div class="edu-inst">Queens High School</div>
+      </div>
+      <div class="edu-card c-sky">
+        <div class="edu-year">2010</div>
+        <div class="edu-qual">Au Pair &amp; First Aid Certificate</div>
+        <div class="edu-inst">First Class Domestic Child Care</div>
+      </div>
+      <div class="edu-card c-gold">
+        <div class="edu-year">2014</div>
+        <div class="edu-qual">National Diploma NQF6</div>
+        <div class="edu-inst">Institute of Certified Bookkeepers</div>
+      </div>
+      <div class="edu-card c-plum">
+        <div class="edu-year">2016</div>
+        <div class="edu-qual">TEFL — Teaching English</div>
+        <div class="edu-inst">Global Language Training</div>
+      </div>
+      <div class="edu-card c-coral">
+        <div class="edu-year">2022</div>
+        <div class="edu-qual">Sales Mastery Training</div>
+        <div class="edu-inst">ExSell Consulting</div>
+      </div>
+    </div>
+
+    <!-- KEY COMPETENCIES -->
+    <div class="sb-section">
+      <div class="sb-label">
+        <div class="bar" style="background:var(--gold);"></div>
+        <h3>Core Competencies</h3>
+      </div>
+      <div class="comp-tags">
+        <span class="tag tag-em">Transaction Coordination</span>
+        <span class="tag tag-go">Document Review</span>
+        <span class="tag tag-em">Vendor Coordination</span>
+        <span class="tag tag-co">Title &amp; Closing Support</span>
+        <span class="tag tag-pl">Property Records</span>
+        <span class="tag tag-sk">File Management</span>
+        <span class="tag tag-go">Contract Review</span>
+        <span class="tag tag-em">Problem Solving</span>
+        <span class="tag tag-co">MS Office &amp; Google Workspace</span>
+        <span class="tag tag-pl">Multi-Transaction Mgmt</span>
+        <span class="tag tag-sk">PPRA Compliance</span>
+        <span class="tag tag-go">Dispute Resolution</span>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>PPRA Registered &nbsp;·&nbsp; Full Status Property Practitioner</p>
+  <div class="websites">
+    <a href="https://shamsi.co.za" target="_blank">shamsi.co.za</a>
+  </div>
+</footer>
+
+</body>
+</html>
