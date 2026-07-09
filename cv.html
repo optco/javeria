@@ -33,33 +33,33 @@
     overflow-x: hidden;
   }
 
-  /* ── CONTROLS PANEL (TOP CENTER) ────────── */
+  /* ── CONTROLS PANEL (PINNED TO TOP, FLAT TOP, ROUNDED BOTTOM) ── */
   .controls-panel {
     position: fixed;
-    top: 20px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
     display: flex;
-    gap: 8px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(26, 74, 58, 0.15);
-    border-radius: 12px;
-    padding: 8px;
-    box-shadow: 0 8px 32px rgba(26, 74, 58, 0.15);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 4px;
+    box-shadow: 0 4px 16px rgba(26, 74, 58, 0.1);
   }
 
   .ctrl-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 8px;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 0 0 5px 5px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -72,8 +72,8 @@
   .ctrl-btn:hover {
     background: var(--emerald-mid);
     border-color: var(--emerald-mid);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(26, 74, 58, 0.2);
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(26, 74, 58, 0.15);
   }
 
   .ctrl-btn:active {
@@ -81,8 +81,8 @@
   }
 
   .ctrl-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     fill: currentColor;
     flex-shrink: 0;
   }
@@ -541,9 +541,8 @@
   /* ── MOBILE OPTIMIZATION ─────────────────── */
   @media screen and (max-width: 768px) {
     .controls-panel {
-      top: auto;
-      bottom: 20px;
-      padding: 10px;
+      top: 0;
+      padding: 4px;
     }
     
     .header { padding: 40px 25px 30px; }
@@ -571,14 +570,12 @@
     }
   }
 
-  /* ── PRINT OPTIMIZATION (CRITICAL FIX) ───── */
+  /* ── PRINT OPTIMIZATION (STRICT CONSTRAINTS) ── */
   @media print {
     @page { size: A4; margin: 0; }
     
-    /* Hide controls panel in print */
     .controls-panel { display: none !important; }
     
-    /* Reset formatting to guarantee fit */
     .cv-wrapper {
       max-width: none !important;
       width: 100% !important;
@@ -604,7 +601,7 @@
         page-break-inside: avoid;
     }
 
-    /* Aggressively tighten spacing & lock specific font sizes to guarantee 1-page fit */
+    /* Lock down separate exact print font sizing layout to preserve pristine single-page limit */
     .header { padding: 20px 30px 15px !important; }
     .header-name h1 { font-size: 30px !important; }
     .title-badge { margin-top: 8px !important; padding: 4px 12px !important; }
@@ -657,6 +654,7 @@
 </head>
 <body>
 
+<!-- CONTROLS PANEL (PINNED TO TOP, FLAT TOP, ROUNDED BOTTOM) -->
 <div class="controls-panel">
   <button class="ctrl-btn" onclick="window.print()" title="Print / Save as PDF">
     <svg viewBox="0 0 20 20"><path d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v3a1 1 0 001 1h10a1 1 0 001-1v-3h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a1 1 0 00-1-1H6a1 1 0 00-1 1zm2 0h6v3H7V4zM6 12h8v5H6v-5z"/></svg>
@@ -664,8 +662,10 @@
   </button>
 </div>
 
+<!-- CV CONTENT WRAPPER -->
 <div class="cv-wrapper">
 
+<!-- HEADER -->
 <header class="header">
   <div class="header-top">
     <div class="header-name">
@@ -688,12 +688,15 @@
   </div>
 </header>
 
+<!-- SUMMARY RIBBON -->
 <div class="summary-ribbon">
   <p>Detail-oriented Real Estate Professional with extensive experience managing residential property transactions, lease administration, and portfolio operations. Adept at reviewing property documents, coordinating with vendors and legal teams, and maintaining accurate transaction files to facilitate smooth closings. Proven ability to manage multiple concurrent transactions while identifying discrepancies and resolving issues before they cause delays.</p>
 </div>
 
+<!-- BODY -->
 <div class="body">
 
+  <!-- MAIN -->
   <main class="main">
     <section class="section">
       <div class="section-label">
@@ -782,6 +785,7 @@
     </section>
   </main>
 
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb-section">
       <div class="location-chip">
@@ -790,6 +794,7 @@
       </div>
     </div>
 
+    <!-- AWARDS & MILESTONES -->
     <div class="sb-section">
       <div class="sb-label">
         <div class="bar" style="background:var(--gold);"></div>
@@ -812,6 +817,7 @@
       </div>
     </div>
 
+    <!-- EDUCATION -->
     <div class="sb-section">
       <div class="sb-label">
         <div class="bar" style="background:var(--emerald-mid);"></div>
@@ -844,6 +850,7 @@
       </div>
     </div>
 
+    <!-- KEY COMPETENCIES -->
     <div class="sb-section">
       <div class="sb-label">
         <div class="bar" style="background:var(--gold);"></div>
@@ -868,6 +875,7 @@
   </aside>
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
   <p>PPRA Registered &nbsp;·&nbsp; Full Status Property Practitioner</p>
   <div class="websites">
@@ -875,5 +883,7 @@
   </div>
 </footer>
 
-</div></body>
+</div><!-- END CV WRAPPER -->
+
+</body>
 </html>
