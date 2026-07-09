@@ -22,14 +22,89 @@
     --ink:        #1C1C1C;
     --muted:      #6B6B6B;
     --white:      #FFFFFF;
+    --base-font-size: 16px;
   }
 
   @page { size: A4; margin: 0; }
+
+  html {
+    font-size: var(--base-font-size);
+  }
 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
+  }
+
+  /* ── CONTROLS PANEL ─────────────────────── */
+  .controls-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(26, 74, 58, 0.15);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 32px rgba(26, 74, 58, 0.12);
+  }
+
+  .ctrl-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid rgba(26, 74, 58, 0.15);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--emerald);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .ctrl-btn:hover {
+    background: var(--emerald);
+    color: var(--white);
+    border-color: var(--emerald);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26, 74, 58, 0.2);
+  }
+
+  .ctrl-btn:active {
+    transform: translateY(0);
+  }
+
+  .ctrl-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .ctrl-primary {
+    background: var(--emerald);
+    color: var(--white);
+    border-color: var(--emerald);
+  }
+
+  .ctrl-primary:hover {
+    background: var(--emerald-mid);
+    border-color: var(--emerald-mid);
+  }
+
+  .ctrl-divider {
+    width: 1px;
+    background: rgba(26, 74, 58, 0.15);
+    margin: 4px 2px;
   }
 
   /* ── HEADER ──────────────────────────────── */
@@ -159,7 +234,7 @@
   /* ── BODY ────────────────────────────────── */
   .body {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 320px;
     gap: 0;
   }
 
@@ -460,6 +535,30 @@
 
   /* ── MOBILE OPTIMIZATION ─────────────────── */
   @media screen and (max-width: 768px) {
+    .controls-panel {
+      top: auto;
+      bottom: 15px;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      padding: 6px;
+      gap: 6px;
+    }
+    
+    .ctrl-btn {
+      padding: 7px 10px;
+      font-size: 11px;
+    }
+    
+    .ctrl-btn span {
+      display: none;
+    }
+    
+    .ctrl-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    
     .header { padding: 30px 20px 20px; }
     .header-top { flex-direction: column; align-items: flex-start; gap: 20px; }
     .header-name h1 { font-size: 32px; }
@@ -488,11 +587,18 @@
   /* ── PRINT OPTIMIZATION (CRITICAL FIX) ───── */
   @media print {
     @page { size: A4; margin: 0; }
+    
+    /* Hide controls panel in print */
+    .controls-panel {
+      display: none !important;
+    }
+    
     html, body {
         height: auto !important;
         min-height: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
+        font-size: 16px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -550,6 +656,23 @@
 </style>
 </head>
 <body>
+
+<!-- CONTROLS PANEL -->
+<div class="controls-panel" id="controlsPanel">
+  <button class="ctrl-btn" onclick="adjustFontSize(-1)" title="Decrease font size">
+    <svg viewBox="0 0 20 20"><path d="M4 10a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z"/></svg>
+    <span>A-</span>
+  </button>
+  <button class="ctrl-btn" onclick="adjustFontSize(1)" title="Increase font size">
+    <svg viewBox="0 0 20 20"><path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/></svg>
+    <span>A+</span>
+  </button>
+  <div class="ctrl-divider"></div>
+  <button class="ctrl-btn ctrl-primary" onclick="window.print()" title="Print / Save as PDF">
+    <svg viewBox="0 0 20 20"><path d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v3a1 1 0 001 1h10a1 1 0 001-1v-3h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a1 1 0 00-1-1H6a1 1 0 00-1 1zm2 0h6v3H7V4zM6 12h8v5H6v-5z"/></svg>
+    <span>Print / Save</span>
+  </button>
+</div>
 
 <!-- HEADER -->
 <header class="header">
@@ -768,6 +891,35 @@
     <a href="https://shamsi.co.za" target="_blank">shamsi.co.za</a>
   </div>
 </footer>
+
+<script>
+  // Font size adjustment
+  const MIN_FONT = 12;
+  const MAX_FONT = 22;
+  const STEP = 1;
+  
+  function adjustFontSize(delta) {
+    const root = document.documentElement;
+    const currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-font-size'));
+    const newSize = Math.max(MIN_FONT, Math.min(MAX_FONT, currentSize + delta));
+    root.style.setProperty('--base-font-size', newSize + 'px');
+  }
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key === '=' || e.key === '+') {
+        e.preventDefault();
+        adjustFontSize(1);
+      } else if (e.key === '-') {
+        e.preventDefault();
+        adjustFontSize(-1);
+      } else if (e.key === 'p') {
+        // Let the browser handle Ctrl+P naturally
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
