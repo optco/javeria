@@ -34,6 +34,7 @@
   }
 
   /* ── CONTROLS PANEL (PINNED TO TOP, FLAT TOP, ROUNDED BOTTOM) ── */
+ /* ── CLEANED CONTROLS PANEL ── */
   .controls-panel {
     position: fixed;
     top: 0;
@@ -41,14 +42,10 @@
     transform: translateX(-50%);
     z-index: 9999;
     display: flex;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 0.5px solid rgba(26, 74, 58, 0.15);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    padding: 4px;
-    box-shadow: 0 4px 16px rgba(26, 74, 58, 0.1);
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
   }
 
   .ctrl-btn {
@@ -56,35 +53,26 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 6px 12px;
+    padding: 5px 12px;
     border-radius: 0 0 5px 5px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
     background: var(--emerald);
     color: var(--white);
-    border: 0.5px solid var(--emerald);
+    border: none;
   }
 
   .ctrl-btn:hover {
     background: var(--emerald-mid);
-    border-color: var(--emerald-mid);
     transform: translateY(1px);
-    box-shadow: 0 2px 8px rgba(26, 74, 58, 0.15);
   }
 
   .ctrl-btn:active {
     transform: translateY(0);
-  }
-
-  .ctrl-btn svg {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
-    flex-shrink: 0;
   }
 
   /* ── CV CONTENT WRAPPER ─────────────────── */
