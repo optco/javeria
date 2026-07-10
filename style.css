@@ -125,7 +125,7 @@ body {
 }
 .short-link {
   display: inline-flex; align-items: center; gap: 6px;
-  background: var(--badge-bg); color: var(--text-secondary); padding: 5px 12px; border-radius: 20px;
+   color: var(--text-secondary); padding: 5px 12px; border-radius: 20px;
   font-size: 0.72rem; font-weight: 500; border: 1px solid var(--badge-border);
   text-decoration: none; transition: background 0.3s;
   text-align: left;
