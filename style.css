@@ -36,9 +36,7 @@
   --orb-color-3: rgba(50,200,255,0.15);
   --link-bg: rgba(255,255,255,0.08); --link-bg-hover: rgba(255,255,255,0.18);
   --link-border: rgba(255,255,255,0.15);
-  --badge-bg: rgba(255,255,255,0.12); --badge-border: rgba(255,255,255,0.25);
-  --social-bg: rgba(255,255,255,0.1); --social-bg-hover: rgba(255,255,255,0.22);
-  --social-border: rgba(255,255,255,0.2);
+ 
   --input-bg: rgba(255,255,255,0.05); --input-border: rgba(255,255,255,0.15);
   --input-focus-border: rgba(255,255,255,0.4); --input-placeholder: rgba(255,255,255,0.4);
   --btn-primary-bg: linear-gradient(135deg, #5a0db5, #1a68e0);
