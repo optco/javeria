@@ -239,10 +239,16 @@
             border-radius: 10px;
         }
 
-        .ad-image-slot img {
+        /* Square mode: images fill horizontally */
+        .format-square .ad-image-slot img {
             width: 100%;
+            height: auto;
+        }
+
+        /* Vertical mode: images fill vertically */
+        .format-vertical .ad-image-slot img {
+            width: auto;
             height: 100%;
-            object-fit: contain; /* Changed from 'cover' to preserve aspect ratio */
         }
 
         .property-features {
@@ -789,7 +795,6 @@
         
         if (select.value === 'hosted') {
             customContainer.classList.add('hidden');
-            // TODO: Ensure this URL points to your actual hosted evolate.png file
             logo.src = 'https://shamsi.co.za/evolate.png'; 
             logo.style.display = 'block';
         } else if (select.value === 'custom') {
