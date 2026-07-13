@@ -547,19 +547,19 @@
             <div class="features-grid">
                 <div class="feature-field">
                     <label class="feature-label">Beds</label>
-                    <input type="text" id="bedsInput" placeholder="3" value="3" oninput="updateFeature('bedsValue', this.value)">
+                    <input type="text" id="bedsInput" placeholder="3" value="" oninput="updateFeature('bedsValue', this.value)">
                 </div>
                 <div class="feature-field">
                     <label class="feature-label">Baths</label>
-                    <input type="text" id="bathsInput" placeholder="2" value="2" oninput="updateFeature('bathsValue', this.value)">
+                    <input type="text" id="bathsInput" placeholder="2" value="" oninput="updateFeature('bathsValue', this.value)">
                 </div>
                 <div class="feature-field">
                     <label class="feature-label">Parking</label>
-                    <input type="text" id="parkingInput" placeholder="2" value="2" oninput="updateFeature('parkingValue', this.value)">
+                    <input type="text" id="parkingInput" placeholder="2" value="" oninput="updateFeature('parkingValue', this.value)">
                 </div>
                 <div class="feature-field">
                     <label class="feature-label">Area (sqm)</label>
-                    <input type="text" id="areaInput" placeholder="250" value="250" oninput="updateFeature('areaValue', this.value)">
+                    <input type="text" id="areaInput" placeholder="250" value="" oninput="updateFeature('areaValue', this.value)">
                 </div>
             </div>
         </div>
@@ -571,15 +571,15 @@
 
         <div class="control-group">
             <h3>Agent Details</h3>
-            <input type="text" id="agentName" placeholder="Agent Name" value="Name" oninput="updateText('agentNameDisplay', this.value)" style="margin-bottom: 6px;">
-            <input type="text" id="agentContact" placeholder="Contact Details" value="087 654 321" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
-            <input type="text" id="agentEmail" placeholder="Email" value="email@example.com" oninput="updateText('agentEmailDisplay', this.value)">
+            <input type="text" id="agentName" placeholder="Agent Name" value="" oninput="updateText('agentNameDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="agentContact" placeholder="Contact Details" value="" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="agentEmail" placeholder="Email" value="" oninput="updateText('agentEmailDisplay', this.value)">
         </div>
 
         <div class="control-group">
             <h3>Company Logo (PNG)</h3>
             <input type="file" id="logoUpload" accept="image/png" onchange="loadLogo(this)" style="margin-bottom: 6px;">
-            <input type="text" id="companyWebsite" placeholder="Company Website" value="www.example.com" oninput="updateText('companyWebsiteDisplay', this.value)">
+            <input type="text" id="companyWebsite" placeholder="Company Website" value="" oninput="updateText('companyWebsiteDisplay', this.value)">
         </div>
 
         <button class="btn-primary" onclick="exportAd()">Download PNG</button>
