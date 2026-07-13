@@ -242,7 +242,7 @@
         .ad-image-slot img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Changed from 'cover' to preserve aspect ratio */
         }
 
         .property-features {
@@ -291,7 +291,7 @@
             left: 50%;
             transform: translate(-50%, -50%) rotate(-12deg);
             border: 2px solid var(--danger-color);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             color: var(--danger-color);
@@ -313,7 +313,7 @@
             margin-top: auto;
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Horizontally aligns agent block and logo */
+            align-items: center;
         }
 
         .footer-left { 
@@ -357,9 +357,9 @@
         }
 
         .company-logo {
-            width: 130px;       /* Fixed width */
-            height: auto;       /* Maintains natural aspect ratio (prevents stretching) */
-            max-height: 100px;  /* Safety cap so extremely tall logos don't break layout */
+            width: 130px;
+            height: auto;
+            max-height: 100px;
             object-fit: contain;
             display: block;
         }
@@ -794,10 +794,8 @@
             logo.style.display = 'block';
         } else if (select.value === 'custom') {
             customContainer.classList.remove('hidden');
-            // Clear the logo until the user uploads a new one
             logo.src = '';
             logo.style.display = 'none';
-            // Reset the file input so onchange triggers even if they select the same file again
             document.getElementById('logoUpload').value = '';
         }
     }
@@ -853,7 +851,6 @@
 
     // Initialize
     updateTheme();
-    // Set default to hosted logo on load
     handleLogoSourceChange();
 </script>
 </body>
