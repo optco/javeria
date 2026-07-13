@@ -80,7 +80,7 @@
 
         input[type="color"] {
             width: 100%;
-            height: 44px; /* Increased for better mobile tap target */
+            height: 44px;
             border: 1px solid var(--panel-border);
             border-radius: 8px;
             padding: 4px;
@@ -134,7 +134,7 @@
 
         .toggle-btn {
             flex: 1;
-            padding: 10px; /* Increased for mobile tap target */
+            padding: 10px;
             border: none;
             background: transparent;
             border-radius: 6px;
@@ -154,7 +154,7 @@
 
         .btn-primary {
             width: 100%;
-            padding: 14px; /* Increased for mobile tap target */
+            padding: 14px;
             background: #ffffff;
             color: #1e1e24;
             border: none;
@@ -391,13 +391,13 @@
             }
             
             .preview-wrapper {
-                order: -1; /* Show preview at the top on mobile for better UX */
+                order: -1;
                 position: relative;
                 top: 0;
                 padding: 16px;
                 min-height: auto;
                 border-radius: 12px;
-                overflow: visible; /* Allow transform to render properly */
+                overflow: visible;
             }
 
             .glass-panel {
@@ -417,7 +417,6 @@
                 gap: 8px;
             }
 
-            /* Prevent iOS auto-zoom on input focus */
             input[type="text"], input[type="file"], select, textarea {
                 font-size: 16px;
             }
@@ -432,15 +431,14 @@
                 margin-right: auto;
             }
 
-            /* Scale canvas to fit mobile width while maintaining resolution logic */
             .format-square {
                 transform: scale(0.75);
-                margin-bottom: -125px; /* 500 - (500 * 0.75) = 125px gap compensation */
+                margin-bottom: -125px;
             }
 
             .format-vertical {
                 transform: scale(0.75);
-                margin-bottom: -177px; /* 711 - (711 * 0.75) = 177.75px gap compensation */
+                margin-bottom: -177px;
             }
         }
 
@@ -451,12 +449,12 @@
 
             .format-square {
                 transform: scale(0.68);
-                margin-bottom: -160px; /* 500 - (500 * 0.68) = 160px */
+                margin-bottom: -160px;
             }
 
             .format-vertical {
                 transform: scale(0.68);
-                margin-bottom: -227px; /* 711 - (711 * 0.68) = 227.5px */
+                margin-bottom: -227px;
             }
         }
     </style>
@@ -577,8 +575,18 @@
         </div>
 
         <div class="control-group">
-            <h3>Company Logo (PNG)</h3>
-            <input type="file" id="logoUpload" accept="image/png" onchange="loadLogo(this)" style="margin-bottom: 6px;">
+            <h3>Company Logo</h3>
+            <select id="logoSourceSelect" onchange="handleLogoSourceChange()" style="margin-bottom: 6px;">
+                <option value="none">None</option>
+                <option value="hosted1">Hosted Logo 1</option>
+                <option value="hosted2">Hosted Logo 2</option>
+                <option value="custom">Custom Upload</option>
+            </select>
+            
+            <div id="customLogoUploadContainer" class="hidden" style="margin-bottom: 6px;">
+                <input type="file" id="logoUpload" accept="image/png, image/jpeg" onchange="loadLogo(this)">
+            </div>
+            
             <input type="text" id="companyWebsite" placeholder="Company Website" value="" oninput="updateText('companyWebsiteDisplay', this.value)">
         </div>
 
@@ -769,6 +777,30 @@
         }
     }
 
+    function handleLogoSourceChange() {
+        const select = document.getElementById('logoSourceSelect');
+        const customContainer = document.getElementById('customLogoUploadContainer');
+        const logo = document.getElementById('canvasLogo');
+        
+        if (select.value === 'none') {
+            customContainer.classList.add('hidden');
+            logo.style.display = 'none';
+            logo.src = '';
+        } else if (select.value === 'hosted1') {
+            customContainer.classList.add('hidden');
+            // TODO: REPLACE THIS URL WITH YOUR ACTUAL HOSTED LOGO URL
+            logo.src = 'https://shamsi.co.za/logo1.png'; 
+            logo.style.display = 'block';
+        } else if (select.value === 'hosted2') {
+            customContainer.classList.add('hidden');
+            // TODO: REPLACE THIS URL WITH YOUR ACTUAL HOSTED LOGO URL
+            logo.src = 'https://shamsi.co.za/logo2.png';
+            logo.style.display = 'block';
+        } else if (select.value === 'custom') {
+            customContainer.classList.remove('hidden');
+        }
+    }
+
     function loadLogo(input) {
         const logo = document.getElementById('canvasLogo');
         if (input.files && input.files[0]) {
@@ -784,23 +816,19 @@
     function exportAd() {
         const originalCanvas = document.getElementById('ad-canvas');
         
-        // Clone the canvas to avoid visual jumps and capture at full native resolution
         const clone = originalCanvas.cloneNode(true);
         
-        // Reset any mobile scaling transforms on the clone
         clone.style.transform = 'none';
         clone.style.marginBottom = '0';
         clone.style.marginLeft = '0';
         clone.style.marginRight = '0';
         
-        // Position it off-screen
         clone.style.position = 'absolute';
         clone.style.left = '-9999px';
         clone.style.top = '0';
         
         document.body.appendChild(clone);
         
-        // Small delay to ensure images and styles are fully applied to the clone
         setTimeout(() => {
             html2canvas(clone, {
                 scale: 3,
@@ -813,7 +841,6 @@
                 link.href = renderedCanvas.toDataURL('image/png');
                 link.click();
                 
-                // Clean up
                 document.body.removeChild(clone);
             }).catch(err => {
                 console.error("Export failed:", err);
