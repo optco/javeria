@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Ad Generator - Elegant</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,11 +41,7 @@
             align-items: start;
         }
 
-        @media (max-width: 900px) {
-            .app-container { grid-template-columns: 1fr; }
-        }
-
-        /* Sidebar Panel - Scrolls naturally */
+        /* Sidebar Panel */
         .glass-panel {
             background: var(--panel-bg);
             border-radius: 16px;
@@ -84,21 +80,25 @@
 
         input[type="color"] {
             width: 100%;
-            height: 36px;
+            height: 44px; /* Increased for better mobile tap target */
             border: 1px solid var(--panel-border);
             border-radius: 8px;
-            padding: 2px;
+            padding: 4px;
             background: var(--panel-input-bg);
             cursor: pointer;
         }
 
-        .color-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+        input[type="file"] {
+            padding: 8px;
+            font-size: 0.85rem;
+            color: var(--panel-text);
+            background: var(--panel-input-bg);
+            border-radius: 8px;
+            border: 1px solid var(--panel-border);
+            cursor: pointer;
         }
 
-        .color-row-double {
+        .color-row, .color-row-double {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
@@ -134,7 +134,7 @@
 
         .toggle-btn {
             flex: 1;
-            padding: 8px;
+            padding: 10px; /* Increased for mobile tap target */
             border: none;
             background: transparent;
             border-radius: 6px;
@@ -143,6 +143,7 @@
             font-size: 0.8rem;
             color: #9a9aa3;
             transition: all 0.2s;
+            touch-action: manipulation;
         }
 
         .toggle-btn.active {
@@ -153,7 +154,7 @@
 
         .btn-primary {
             width: 100%;
-            padding: 12px;
+            padding: 14px; /* Increased for mobile tap target */
             background: #ffffff;
             color: #1e1e24;
             border: none;
@@ -163,11 +164,13 @@
             cursor: pointer;
             transition: opacity 0.2s;
             margin-top: 10px;
+            touch-action: manipulation;
         }
 
         .btn-primary:hover { opacity: 0.9; }
+        .btn-primary:active { opacity: 0.7; }
 
-        /* STICKY PREVIEW - Floats so you can see the poster all the time */
+        /* PREVIEW WRAPPER */
         .preview-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -211,18 +214,7 @@
             color: var(--title-color);
         }
 
-        .format-square .ad-images {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 6px;
-            margin: 0 24px;
-            background: transparent;
-            position: relative;
-            max-height: 220px;
-        }
-
+        .format-square .ad-images,
         .format-vertical .ad-images {
             flex: 1;
             display: grid;
@@ -232,8 +224,10 @@
             margin: 0 24px;
             background: transparent;
             position: relative;
-            max-height: 400px;
         }
+
+        .format-square .ad-images { max-height: 220px; }
+        .format-vertical .ad-images { max-height: 400px; }
 
         .ad-image-slot {
             background: #e8e8ed;
@@ -249,10 +243,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .ad-image-slot.empty::after {
-            content: '';
         }
 
         .property-features {
@@ -292,11 +282,9 @@
             font-style: italic;
         }
 
-        .custom-caption:empty {
-            display: none;
-        }
+        .custom-caption:empty { display: none; }
 
-        /* Stamp Effect - Transparent white bg */
+        /* Stamp Effect */
         .stamp-overlay {
             position: absolute;
             top: 50%;
@@ -328,9 +316,7 @@
             align-items: flex-end;
         }
 
-        .footer-left {
-            flex: 1;
-        }
+        .footer-left { flex: 1; }
 
         .footer-right {
             display: flex;
@@ -347,19 +333,12 @@
             letter-spacing: -0.01em;
         }
 
-        .agent-contact {
+        .agent-contact, .agent-email {
             font-size: 0.8rem;
             color: var(--text-color);
             opacity: 0.7;
             font-weight: 400;
             margin-bottom: 2px;
-        }
-
-        .agent-email {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.7;
-            font-weight: 400;
         }
 
         .company-logo {
@@ -401,12 +380,91 @@
             opacity: 1;
             text-decoration: underline;
         }
+
+        /* =========================================
+           MOBILE OPTIMIZATIONS
+           ========================================= */
+        @media (max-width: 900px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .preview-wrapper {
+                order: -1; /* Show preview at the top on mobile for better UX */
+                position: relative;
+                top: 0;
+                padding: 16px;
+                min-height: auto;
+                border-radius: 12px;
+                overflow: visible; /* Allow transform to render properly */
+            }
+
+            .glass-panel {
+                padding: 16px;
+            }
+
+            .control-group {
+                margin-bottom: 16px;
+            }
+
+            h2 {
+                font-size: 1rem;
+                margin-bottom: 16px;
+            }
+
+            .features-grid {
+                gap: 8px;
+            }
+
+            /* Prevent iOS auto-zoom on input focus */
+            input[type="text"], input[type="file"], select, textarea {
+                font-size: 16px;
+            }
+
+            input[type="file"] {
+                padding: 10px;
+            }
+
+            #ad-canvas {
+                transform-origin: top center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Scale canvas to fit mobile width while maintaining resolution logic */
+            .format-square {
+                transform: scale(0.75);
+                margin-bottom: -125px; /* 500 - (500 * 0.75) = 125px gap compensation */
+            }
+
+            .format-vertical {
+                transform: scale(0.75);
+                margin-bottom: -177px; /* 711 - (711 * 0.75) = 177.75px gap compensation */
+            }
+        }
+
+        @media (max-width: 400px) {
+            .preview-wrapper {
+                padding: 8px;
+            }
+
+            .format-square {
+                transform: scale(0.68);
+                margin-bottom: -160px; /* 500 - (500 * 0.68) = 160px */
+            }
+
+            .format-vertical {
+                transform: scale(0.68);
+                margin-bottom: -227px; /* 711 - (711 * 0.68) = 227.5px */
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-    <!-- Controls Panel (Scrolls naturally) -->
+    <!-- Controls Panel -->
     <div class="glass-panel">
         <h2>Ad Generator</h2>
 
@@ -514,20 +572,20 @@
         <div class="control-group">
             <h3>Agent Details</h3>
             <input type="text" id="agentName" placeholder="Agent Name" value="Name" oninput="updateText('agentNameDisplay', this.value)" style="margin-bottom: 6px;">
-            <input type="text" id="agentContact" placeholder="Contact Details" value="087 654 321" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="agentContact" placeholder="Contact Details" value="082 123 4567" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
             <input type="text" id="agentEmail" placeholder="Email" value="email@example.com" oninput="updateText('agentEmailDisplay', this.value)">
         </div>
 
         <div class="control-group">
             <h3>Company Logo (PNG)</h3>
             <input type="file" id="logoUpload" accept="image/png" onchange="loadLogo(this)" style="margin-bottom: 6px;">
-            <input type="text" id="companyWebsite" placeholder="Company Website" value="www.example.com" oninput="updateText('companyWebsiteDisplay', this.value)">
+            <input type="text" id="companyWebsite" placeholder="Company Website" value="www.evolate.co.za" oninput="updateText('companyWebsiteDisplay', this.value)">
         </div>
 
         <button class="btn-primary" onclick="exportAd()">Download PNG</button>
     </div>
 
-    <!-- Preview Panel (Sticky - floats as you scroll) -->
+    <!-- Preview Panel -->
     <div class="preview-wrapper">
         <div id="ad-canvas" class="format-square">
             <div class="ad-header">
@@ -567,12 +625,12 @@
             <div class="ad-footer">
                 <div class="footer-left">
                     <div class="agent-name" id="agentNameDisplay">Name</div>
-                    <div class="agent-contact" id="agentContactDisplay">+27</div>
+                    <div class="agent-contact" id="agentContactDisplay">082 123 4567</div>
                     <div class="agent-email" id="agentEmailDisplay">email@example.com</div>
                 </div>
                 <div class="footer-right">
                     <img id="canvasLogo" class="company-logo" src="" style="display: none;">
-                    <div class="company-website" id="companyWebsiteDisplay">www.example.com</div>
+                    <div class="company-website" id="companyWebsiteDisplay">www.evolate.co.za</div>
                 </div>
             </div>
         </div>
@@ -724,26 +782,49 @@
     }
 
     function exportAd() {
-        const canvas = document.getElementById('ad-canvas');
-        const originalRadius = canvas.style.borderRadius;
-        canvas.style.borderRadius = '0';
-
-        html2canvas(canvas, {
-            scale: 3,
-            backgroundColor: null,
-            useCORS: true
-        }).then(function(renderedCanvas) {
-            const link = document.createElement('a');
-            link.download = `property-ad-${Date.now()}.png`;
-            link.href = renderedCanvas.toDataURL('image/png');
-            link.click();
-            canvas.style.borderRadius = originalRadius;
-        });
+        const originalCanvas = document.getElementById('ad-canvas');
+        
+        // Clone the canvas to avoid visual jumps and capture at full native resolution
+        const clone = originalCanvas.cloneNode(true);
+        
+        // Reset any mobile scaling transforms on the clone
+        clone.style.transform = 'none';
+        clone.style.marginBottom = '0';
+        clone.style.marginLeft = '0';
+        clone.style.marginRight = '0';
+        
+        // Position it off-screen
+        clone.style.position = 'absolute';
+        clone.style.left = '-9999px';
+        clone.style.top = '0';
+        
+        document.body.appendChild(clone);
+        
+        // Small delay to ensure images and styles are fully applied to the clone
+        setTimeout(() => {
+            html2canvas(clone, {
+                scale: 3,
+                backgroundColor: null,
+                useCORS: true,
+                allowTaint: true
+            }).then(function(renderedCanvas) {
+                const link = document.createElement('a');
+                link.download = `property-ad-${Date.now()}.png`;
+                link.href = renderedCanvas.toDataURL('image/png');
+                link.click();
+                
+                // Clean up
+                document.body.removeChild(clone);
+            }).catch(err => {
+                console.error("Export failed:", err);
+                document.body.removeChild(clone);
+                alert("Failed to generate image. Please try again.");
+            });
+        }, 100);
     }
 
     // Initialize
     updateTheme();
 </script>
-
 </body>
 </html>
