@@ -603,14 +603,15 @@
             transform: scale(1.05);
         }
 
-        /* Property Features - NO LABELS */
+        /* Property Features — CLEAR BACKGROUND, ACCENT BORDER */
         .property-features {
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 14px 28px;
             margin: 8px 24px 0 24px;
-            background: rgba(255,255,255,0.5);
+            background: transparent;
+            border: 1.5px solid var(--ad-accent-color);
             border-radius: var(--radius);
         }
 
@@ -851,7 +852,6 @@
                 overflow: visible;
             }
 
-            /* FIX: Use transform-origin and proper sizing instead of negative margins */
             .format-square {
                 transform: scale(0.72);
                 transform-origin: top center;
@@ -1027,8 +1027,6 @@
                 <select id="statusSelect" onchange="updateStatus()">
                     <option value="FOR SALE">For Sale</option>
                     <option value="TO RENT">To Rent</option>
-                    <option value="SOLD">Sold</option>
-                    <option value="RENTED">Rented</option>
                     <option value="CUSTOM">Custom Text...</option>
                 </select>
                 <input type="text" id="customStatus" class="hidden" placeholder="Enter custom status text" oninput="updateCustomStatus()" style="margin-top: 8px;">
@@ -1189,7 +1187,7 @@
                 <div class="stamp-overlay" id="stampOverlay"></div>
             </div>
 
-            <!-- Property Features - NO LABELS -->
+            <!-- Property Features — CLEAR BACKGROUND, ACCENT BORDER -->
             <div class="property-features">
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fas fa-bed"></i></div>
