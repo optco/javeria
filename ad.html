@@ -52,7 +52,6 @@
         .color-picker-wrapper { position: relative; display: flex; align-items: center; gap: 10px; }
         input[type="color"] { width: 44px; height: 44px; border: 2px solid var(--border-color); border-radius: var(--radius-sm); padding: 3px; background: var(--bg-panel); cursor: pointer; transition: border-color 0.2s; }
         input[type="color"]:hover { border-color: var(--accent-light); }
-        .color-value { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); font-family: 'SF Mono', monospace; text-transform: uppercase; }
         .toggle-group { display: flex; gap: 4px; background: var(--bg-input); padding: 4px; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); }
         .toggle-btn { flex: 1; padding: 10px 12px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.85rem; color: var(--text-secondary); transition: all 0.2s; touch-action: manipulation; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .toggle-btn i { font-size: 0.8rem; }
@@ -107,10 +106,10 @@
         .theme-hero .status-badge { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ad-title-color); line-height: 1.2; }
         .theme-hero .status-line { width: 3px; height: 28px; background: var(--ad-accent-color); border-radius: 2px; margin-top: 0; }
         .theme-hero .ad-images { display: flex; flex-direction: column; gap: 4px; margin: 0 24px; position: relative; border-radius: var(--radius); overflow: hidden; }
-        .theme-hero .hero-main { width: 100%; height: 180px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
+        .theme-hero .hero-main { width: 100%; height: 180px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; }
         .theme-hero .hero-main img { width: 100%; height: 100%; object-fit: cover; }
         .theme-hero .hero-thumbs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
-        .theme-hero .hero-thumb { height: 70px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
+        .theme-hero .hero-thumb { height: 70px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; }
         .theme-hero .hero-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .format-square.theme-hero .ad-images { max-height: 260px; }
         .format-vertical.theme-hero .ad-images { max-height: 420px; }
@@ -149,10 +148,16 @@
         .theme-masonry .agent-contact, .theme-masonry .agent-email { font-size: 0.75rem; color: var(--ad-text-color); opacity: 0.7; font-weight: 500; }
         .theme-masonry .company-website { font-size: 0.7rem; font-weight: 600; color: var(--ad-accent-color); text-align: left; line-height: 1.3; margin-top: 2px; }
 
+        .ad-image-slot, .hero-main, .hero-thumb { cursor: pointer; transition: background 0.2s; }
+        .ad-image-slot:hover, .hero-main:hover, .hero-thumb:hover { background-color: #cbd5e1; }
+        
         .ad-image-slot { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; transition: all 0.3s; }
-        .ad-image-slot.empty::before { content: ''; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center; background-size: contain; opacity: 0.5; }
-        .ad-image-slot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-        .ad-image-slot:hover img { transform: scale(1.05); }
+        
+        .ad-image-slot.empty::before, .hero-main.empty::before, .hero-thumb.empty::before { 
+            content: ''; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center; background-size: contain; opacity: 0.5; 
+        }
+        .ad-image-slot img, .hero-main img, .hero-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; pointer-events: none; }
+        .ad-image-slot:hover img, .hero-main:hover img, .hero-thumb:hover img { transform: scale(1.03); }
 
         .stamp-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); border: 3px solid var(--danger); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--danger); font-size: 1.8rem; font-weight: 800; padding: 10px 28px; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0; pointer-events: none; z-index: 20; border-radius: 6px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2); font-family: 'Inter', sans-serif; }
         .stamp-overlay.visible { opacity: 0.95; animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -241,7 +246,6 @@
                     <label class="control-label">Background Color</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="bgColorPicker" value="#ffffff" oninput="updateTheme()">
-                        <span class="color-value" id="bgColorValue">#FFFFFF</span>
                     </div>
                 </div>
                 <div id="gradientColorPickers" class="hidden">
@@ -250,14 +254,12 @@
                             <label class="control-label">From</label>
                             <div class="color-picker-wrapper">
                                 <input type="color" id="gradColor1" value="#667eea" oninput="updateTheme()">
-                                <span class="color-value" id="grad1Value">#667EEA</span>
                             </div>
                         </div>
                         <div>
                             <label class="control-label">To</label>
                             <div class="color-picker-wrapper">
                                 <input type="color" id="gradColor2" value="#764ba2" oninput="updateTheme()">
-                                <span class="color-value" id="grad2Value">#764BA2</span>
                             </div>
                         </div>
                     </div>
@@ -270,21 +272,18 @@
                         <label class="control-label">Text</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="textColorPicker" value="#1e293b" oninput="updateTheme()">
-                            <span class="color-value" id="textColorValue">#1E293B</span>
                         </div>
                     </div>
                     <div>
                         <label class="control-label">Title</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="titleColorPicker" value="#1e293b" oninput="updateTheme()">
-                            <span class="color-value" id="titleColorValue">#1E293B</span>
                         </div>
                     </div>
                     <div>
                         <label class="control-label">Accent</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="accentColorPicker" value="#6366f1" oninput="updateTheme()">
-                            <span class="color-value" id="accentColorValue">#6366F1</span>
                         </div>
                     </div>
                 </div>
@@ -426,40 +425,7 @@
         <div class="preview-label"><i class="fas fa-circle"></i> Live Preview</div>
 
         <div id="ad-canvas" class="format-square theme-grid">
-            <div class="ad-header">
-                <div class="status-badge" id="statusDisplay">FOR SALE</div>
-                <div class="status-line"></div>
             </div>
-
-            <div class="ad-images">
-                <div class="ad-image-slot empty" id="preview1"></div>
-                <div class="ad-image-slot empty" id="preview2"></div>
-                <div class="ad-image-slot empty" id="preview3"></div>
-                <div class="ad-image-slot empty" id="preview4"></div>
-                <div class="stamp-overlay" id="stampOverlay"></div>
-            </div>
-
-            <div class="property-features">
-                <div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">3</span></div>
-                <div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">2</span></div>
-                <div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">2</span></div>
-                <div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">250</span></div>
-            </div>
-
-            <div class="custom-caption" id="captionDisplay"></div>
-
-            <div class="ad-footer">
-                <div class="footer-left">
-                    <div class="agent-name" id="agentNameDisplay">Javeria Akhtar</div>
-                    <div class="agent-contact" id="agentContactDisplay">079 165 4894</div>
-                    <div class="agent-email" id="agentEmailDisplay">javeria@evolate.co.za</div>
-                    <div class="company-website" id="companyWebsiteDisplay">evolate.co.za</div>
-                </div>
-                <div class="footer-right">
-                    <img id="canvasLogo" class="company-logo" src="" style="display: none;">
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -471,10 +437,11 @@
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Ad exported successfully!</span>
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     let currentFormat = 'square';
     let bgMode = 'solid';
     let currentTheme = 'grid';
+    let uploadedImages = [null, null, null, null];
 
     function setFormat(format, btn) {
         currentFormat = format;
@@ -514,81 +481,87 @@
 
     function rebuildCanvasStructure(theme) {
         const canvas = document.getElementById('ad-canvas');
-        const status = document.getElementById('statusDisplay').innerText;
-        const caption = document.getElementById('captionDisplay').innerText;
-        const stampText = document.getElementById('stampOverlay').innerText;
-        const stampVisible = document.getElementById('stampOverlay').classList.contains('visible');
-        const logoSrc = document.getElementById('canvasLogo').src;
-        const logoDisplay = document.getElementById('canvasLogo').style.display;
+        
+        // Save temporary states if elements exist, otherwise fallback to standard values
+        const status = document.getElementById('statusDisplay') ? document.getElementById('statusDisplay').innerText : (document.getElementById('statusSelect').value === 'CUSTOM' ? document.getElementById('customStatus').value : document.getElementById('statusSelect').value);
+        const caption = document.getElementById('captionDisplay') ? document.getElementById('captionDisplay').innerText : document.getElementById('captionInput').value;
+        const stampText = document.getElementById('stampOverlay') ? document.getElementById('stampOverlay').innerText : (document.getElementById('stampSelect').value === 'CUSTOM' ? document.getElementById('customStamp').value : document.getElementById('stampSelect').value);
+        const stampVisible = document.getElementById('stampOverlay') ? document.getElementById('stampOverlay').classList.contains('visible') : (document.getElementById('stampSelect').value !== 'NONE');
+        
+        const logoSrc = document.getElementById('canvasLogo') ? document.getElementById('canvasLogo').src : '';
+        const logoDisplay = document.getElementById('canvasLogo') ? document.getElementById('canvasLogo').style.display : 'none';
 
-        const imgSrcs = [];
-        for (let i = 1; i <= 4; i++) {
-            const slot = document.getElementById('preview' + i);
-            const img = slot ? slot.querySelector('img') : null;
-            imgSrcs.push(img ? img.src : null);
-        }
+        const bedsVal = document.getElementById('bedsValue') ? document.getElementById('bedsValue').innerText : document.getElementById('bedsInput').value;
+        const bathsVal = document.getElementById('bathsValue') ? document.getElementById('bathsValue').innerText : document.getElementById('bathsInput').value;
+        const parkingVal = document.getElementById('parkingValue') ? document.getElementById('parkingValue').innerText : document.getElementById('parkingInput').value;
+        const areaVal = document.getElementById('areaValue') ? document.getElementById('areaValue').innerText : document.getElementById('areaInput').value;
+
+        const agentNameVal = document.getElementById('agentNameDisplay') ? document.getElementById('agentNameDisplay').innerText : document.getElementById('agentName').value;
+        const agentContactVal = document.getElementById('agentContactDisplay') ? document.getElementById('agentContactDisplay').innerText : document.getElementById('agentContact').value;
+        const agentEmailVal = document.getElementById('agentEmailDisplay') ? document.getElementById('agentEmailDisplay').innerText : document.getElementById('agentEmail').value;
+        const companyWebsiteVal = document.getElementById('companyWebsiteDisplay') ? document.getElementById('companyWebsiteDisplay').innerText : document.getElementById('companyWebsite').value;
 
         let html = '';
 
         if (theme === 'grid') {
             html = '<div class="ad-header"><div class="status-badge" id="statusDisplay">' + status + '</div><div class="status-line"></div></div>' +
                 '<div class="ad-images">' +
-                '<div class="ad-image-slot ' + (imgSrcs[0] ? '' : 'empty') + '" id="preview1">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
-                '<div class="ad-image-slot ' + (imgSrcs[1] ? '' : 'empty') + '" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
-                '<div class="ad-image-slot ' + (imgSrcs[2] ? '' : 'empty') + '" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
-                '<div class="ad-image-slot ' + (imgSrcs[3] ? '' : 'empty') + '" id="preview4">' + (imgSrcs[3] ? '<img src="' + imgSrcs[3] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[0] ? '' : 'empty') + '" id="preview1" onclick="document.getElementById(\'img1\').click()">' + (uploadedImages[0] ? '<img src="' + uploadedImages[0] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[1] ? '' : 'empty') + '" id="preview2" onclick="document.getElementById(\'img2\').click()">' + (uploadedImages[1] ? '<img src="' + uploadedImages[1] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[2] ? '' : 'empty') + '" id="preview3" onclick="document.getElementById(\'img3\').click()">' + (uploadedImages[2] ? '<img src="' + uploadedImages[2] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[3] ? '' : 'empty') + '" id="preview4" onclick="document.getElementById(\'img4\').click()">' + (uploadedImages[3] ? '<img src="' + uploadedImages[3] + '">' : '') + '</div>' +
                 '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
                 '<div class="property-features">' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + bedsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + bathsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + parkingVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + areaVal + '</span></div></div>' +
                 '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
                 '<div class="ad-footer"><div class="footer-left">' +
-                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
-                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
-                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
-                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="agent-name" id="agentNameDisplay">' + agentNameVal + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + agentContactVal + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + agentEmailVal + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + companyWebsiteVal + '</div></div>' +
                 '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
         } else if (theme === 'hero') {
             html = '<div class="ad-header"><div class="status-line"></div><div class="status-badge" id="statusDisplay">' + status + '</div></div>' +
                 '<div class="ad-images">' +
-                '<div class="hero-main" id="heroMain">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
+                '<div class="hero-main ' + (uploadedImages[0] ? '' : 'empty') + '" id="preview1" onclick="document.getElementById(\'img1\').click()">' + (uploadedImages[0] ? '<img src="' + uploadedImages[0] + '">' : '') + '</div>' +
                 '<div class="hero-thumbs">' +
-                '<div class="hero-thumb" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
-                '<div class="hero-thumb" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
-                '<div class="hero-thumb" id="preview4">' + (imgSrcs[3] ? '<img src="' + imgSrcs[3] + '">' : '') + '</div></div>' +
+                '<div class="hero-thumb ' + (uploadedImages[1] ? '' : 'empty') + '" id="preview2" onclick="document.getElementById(\'img2\').click()">' + (uploadedImages[1] ? '<img src="' + uploadedImages[1] + '">' : '') + '</div>' +
+                '<div class="hero-thumb ' + (uploadedImages[2] ? '' : 'empty') + '" id="preview3" onclick="document.getElementById(\'img3\').click()">' + (uploadedImages[2] ? '<img src="' + uploadedImages[2] + '">' : '') + '</div>' +
+                '<div class="hero-thumb ' + (uploadedImages[3] ? '' : 'empty') + '" id="preview4" onclick="document.getElementById(\'img4\').click()">' + (uploadedImages[3] ? '<img src="' + uploadedImages[3] + '">' : '') + '</div></div>' +
                 '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
                 '<div class="property-features">' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + bedsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + bathsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + parkingVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + areaVal + '</span></div></div>' +
                 '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
                 '<div class="ad-footer"><div class="footer-left">' +
-                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
-                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
-                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
-                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="agent-name" id="agentNameDisplay">' + agentNameVal + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + agentContactVal + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + agentEmailVal + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + companyWebsiteVal + '</div></div>' +
                 '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
         } else if (theme === 'masonry') {
             html = '<div class="ad-header"><div class="status-badge" id="statusDisplay">' + status + '</div><div class="status-line"></div></div>' +
                 '<div class="ad-images">' +
-                '<div class="ad-image-slot ' + (imgSrcs[0] ? '' : 'empty') + '" id="preview1">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
-                '<div class="ad-image-slot ' + (imgSrcs[1] ? '' : 'empty') + '" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
-                '<div class="ad-image-slot ' + (imgSrcs[2] ? '' : 'empty') + '" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[0] ? '' : 'empty') + '" id="preview1" onclick="document.getElementById(\'img1\').click()">' + (uploadedImages[0] ? '<img src="' + uploadedImages[0] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[1] ? '' : 'empty') + '" id="preview2" onclick="document.getElementById(\'img2\').click()">' + (uploadedImages[1] ? '<img src="' + uploadedImages[1] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (uploadedImages[2] ? '' : 'empty') + '" id="preview3" onclick="document.getElementById(\'img3\').click()">' + (uploadedImages[2] ? '<img src="' + uploadedImages[2] + '">' : '') + '</div>' +
                 '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
                 '<div class="property-features">' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
-                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + bedsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + bathsVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + parkingVal + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + areaVal + '</span></div></div>' +
                 '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
                 '<div class="ad-footer"><div class="footer-left">' +
-                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
-                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
-                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
-                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="agent-name" id="agentNameDisplay">' + agentNameVal + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + agentContactVal + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + agentEmailVal + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + companyWebsiteVal + '</div></div>' +
                 '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
         }
 
@@ -628,13 +601,6 @@
         const b = parseInt(accentColor.slice(5, 7), 16);
         root.style.setProperty('--ad-accent-bg', 'rgba(' + r + ', ' + g + ', ' + b + ', 0.08)');
 
-        document.getElementById('bgColorValue').textContent = document.getElementById('bgColorPicker').value.toUpperCase();
-        document.getElementById('grad1Value').textContent = document.getElementById('gradColor1').value.toUpperCase();
-        document.getElementById('grad2Value').textContent = document.getElementById('gradColor2').value.toUpperCase();
-        document.getElementById('textColorValue').textContent = textColor.toUpperCase();
-        document.getElementById('titleColorValue').textContent = titleColor.toUpperCase();
-        document.getElementById('accentColorValue').textContent = accentColor.toUpperCase();
-
         if (bgMode === 'solid') {
             const bgColor = document.getElementById('bgColorPicker').value;
             root.style.setProperty('--bg-color', bgColor);
@@ -652,22 +618,24 @@
         const display = document.getElementById('statusDisplay');
         if (select.value === 'CUSTOM') {
             customInput.classList.remove('hidden');
-            display.innerText = customInput.value || 'CUSTOM';
+            if (display) display.innerText = customInput.value || 'CUSTOM';
         } else {
             customInput.classList.add('hidden');
-            display.innerText = select.value;
+            if (display) display.innerText = select.value;
         }
     }
 
     function updateCustomStatus() {
         const val = document.getElementById('customStatus').value;
-        document.getElementById('statusDisplay').innerText = val || 'CUSTOM';
+        const display = document.getElementById('statusDisplay');
+        if (display) display.innerText = val || 'CUSTOM';
     }
 
     function updateStamp() {
         const select = document.getElementById('stampSelect');
         const customInput = document.getElementById('customStamp');
         const stamp = document.getElementById('stampOverlay');
+        if (!stamp) return;
         if (select.value === 'NONE') {
             stamp.classList.remove('visible');
             customInput.classList.add('hidden');
@@ -685,33 +653,37 @@
     function updateCustomStamp() {
         const val = document.getElementById('customStamp').value;
         const stamp = document.getElementById('stampOverlay');
+        if (!stamp) return;
         stamp.innerText = val || 'CUSTOM';
         if (val) stamp.classList.add('visible');
     }
 
     function updateCaption() {
         const val = document.getElementById('captionInput').value;
-        document.getElementById('captionDisplay').innerText = val;
+        const display = document.getElementById('captionDisplay');
+        if (display) display.innerText = val;
     }
 
     function updateText(elementId, value) {
-        document.getElementById(elementId).innerText = value || ' ';
+        const el = document.getElementById(elementId);
+        if (el) el.innerText = value || ' ';
     }
 
     function updateFeature(elementId, value) {
-        document.getElementById(elementId).innerText = value || '0';
+        const el = document.getElementById(elementId);
+        if (el) el.innerText = value || '0';
     }
 
     function loadImage(input, previewId, zoneId) {
-        const preview = document.getElementById(previewId);
+        const index = parseInt(previewId.replace('preview', '')) - 1;
         const zone = document.getElementById(zoneId);
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                preview.innerHTML = '<img src="' + e.target.result + '" alt="Property">';
-                preview.classList.remove('empty');
+                uploadedImages[index] = e.target.result;
                 zone.classList.add('has-image');
                 zone.innerHTML = '<img src="' + e.target.result + '" alt="Thumbnail">';
+                rebuildCanvasStructure(currentTheme);
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -723,12 +695,16 @@
         const logo = document.getElementById('canvasLogo');
         if (select.value === 'hosted') {
             customContainer.classList.add('hidden');
-            logo.src = 'https://shamsi.co.za/evolate.png';
-            logo.style.display = 'block';
+            if (logo) {
+                logo.src = 'https://shamsi.co.za/evolate.png';
+                logo.style.display = 'block';
+            }
         } else if (select.value === 'custom') {
             customContainer.classList.remove('hidden');
-            logo.src = '';
-            logo.style.display = 'none';
+            if (logo) {
+                logo.src = '';
+                logo.style.display = 'none';
+            }
             document.getElementById('logoUpload').value = '';
         }
     }
@@ -738,8 +714,10 @@
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                logo.src = e.target.result;
-                logo.style.display = 'block';
+                if (logo) {
+                    logo.src = e.target.result;
+                    logo.style.display = 'block';
+                }
                 const zone = input.closest('.control-group').querySelector('.upload-zone');
                 if (zone) {
                     zone.classList.add('has-image');
@@ -786,6 +764,7 @@
 
     function resetAll() {
         if (!confirm('Reset all fields to default?')) return;
+        uploadedImages = [null, null, null, null];
         document.getElementById('statusSelect').value = 'FOR SALE';
         document.getElementById('stampSelect').value = 'NONE';
         document.getElementById('bgColorPicker').value = '#ffffff';
@@ -804,11 +783,6 @@
         document.getElementById('agentEmail').value = 'javeria@evolate.co.za';
         document.getElementById('companyWebsite').value = 'evolate.co.za';
 
-        ['preview1','preview2','preview3','preview4'].forEach((id) => {
-            const el = document.getElementById(id);
-            if (el) { el.innerHTML = ''; el.classList.add('empty'); }
-        });
-
         ['uploadZone1','uploadZone2','uploadZone3','uploadZone4'].forEach(id => {
             const zone = document.getElementById(id);
             zone.classList.remove('has-image');
@@ -823,6 +797,7 @@
         setFormat('square', document.querySelector('.toggle-btn'));
         setBgMode('solid', document.querySelectorAll('.toggle-btn')[2]);
         setTheme('grid', document.querySelectorAll('.toggle-btn')[4]);
+        
         updateStatus();
         updateStamp();
         updateTheme();
@@ -840,8 +815,11 @@
         showToast('All fields reset to defaults');
     }
 
+    // Initial setup
+    rebuildCanvasStructure('grid');
     updateTheme();
     handleLogoSourceChange();
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"32c4731f4f794c8da2443a0e2b1394b7","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
