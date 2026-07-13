@@ -313,16 +313,20 @@
             margin-top: auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center; /* Horizontally aligns agent block and logo */
         }
 
-        .footer-left { flex: 1; }
+        .footer-left { 
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+        }
 
         .footer-right {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 8px;
+            justify-content: flex-end;
         }
 
         .agent-name {
@@ -341,19 +345,21 @@
             margin-bottom: 2px;
         }
 
+        .company-website {
+            font-size: 0.7rem; /* Made smaller */
+            font-weight: 500;
+            color: var(--text-color);
+            text-align: left; /* Aligned with agent details */
+            word-break: break-word;
+            line-height: 1.2;
+            opacity: 0.6;
+            margin-top: 6px;
+        }
+
         .company-logo {
             width: 90px;
             height: 90px;
             object-fit: contain;
-        }
-
-        .company-website {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-color);
-            text-align: right;
-            word-break: break-word;
-            line-height: 1.2;
         }
 
         .hidden { display: none; }
@@ -571,23 +577,20 @@
             <h3>Agent Details</h3>
             <input type="text" id="agentName" placeholder="Agent Name" value="" oninput="updateText('agentNameDisplay', this.value)" style="margin-bottom: 6px;">
             <input type="text" id="agentContact" placeholder="Contact Details" value="" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
-            <input type="text" id="agentEmail" placeholder="Email" value="" oninput="updateText('agentEmailDisplay', this.value)">
+            <input type="text" id="agentEmail" placeholder="Email" value="" oninput="updateText('agentEmailDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="companyWebsite" placeholder="Company Website" value="" oninput="updateText('companyWebsiteDisplay', this.value)">
         </div>
 
         <div class="control-group">
             <h3>Company Logo</h3>
             <select id="logoSourceSelect" onchange="handleLogoSourceChange()" style="margin-bottom: 6px;">
-                <option value="none">None</option>
-                <option value="hosted1">Hosted Logo 1</option>
-                <option value="hosted2">Hosted Logo 2</option>
+                <option value="hosted">Evolate Logo (Hosted)</option>
                 <option value="custom">Custom Upload</option>
             </select>
             
             <div id="customLogoUploadContainer" class="hidden" style="margin-bottom: 6px;">
                 <input type="file" id="logoUpload" accept="image/png, image/jpeg" onchange="loadLogo(this)">
             </div>
-            
-            <input type="text" id="companyWebsite" placeholder="Company Website" value="" oninput="updateText('companyWebsiteDisplay', this.value)">
         </div>
 
         <button class="btn-primary" onclick="exportAd()">Download PNG</button>
@@ -635,10 +638,10 @@
                     <div class="agent-name" id="agentNameDisplay">Javeria Akhtar</div>
                     <div class="agent-contact" id="agentContactDisplay">079 165 4894</div>
                     <div class="agent-email" id="agentEmailDisplay">javeria@evolate.co.za</div>
+                    <div class="company-website" id="companyWebsiteDisplay">evolate.co.za</div>
                 </div>
                 <div class="footer-right">
                     <img id="canvasLogo" class="company-logo" src="" style="display: none;">
-                    <div class="company-website" id="companyWebsiteDisplay">evolate.co.za</div>
                 </div>
             </div>
         </div>
@@ -782,22 +785,18 @@
         const customContainer = document.getElementById('customLogoUploadContainer');
         const logo = document.getElementById('canvasLogo');
         
-        if (select.value === 'none') {
+        if (select.value === 'hosted') {
             customContainer.classList.add('hidden');
-            logo.style.display = 'none';
-            logo.src = '';
-        } else if (select.value === 'hosted1') {
-            customContainer.classList.add('hidden');
-            // TODO: REPLACE THIS URL WITH YOUR ACTUAL HOSTED LOGO URL
+            // TODO: Ensure this URL points to your actual hosted evolate.png file
             logo.src = 'https://shamsi.co.za/evolate.png'; 
-            logo.style.display = 'block';
-        } else if (select.value === 'hosted2') {
-            customContainer.classList.add('hidden');
-            // TODO: REPLACE THIS URL WITH YOUR ACTUAL HOSTED LOGO URL
-            logo.src = 'https://shamsi.co.za/logo2.png';
             logo.style.display = 'block';
         } else if (select.value === 'custom') {
             customContainer.classList.remove('hidden');
+            // Clear the logo until the user uploads a new one
+            logo.src = '';
+            logo.style.display = 'none';
+            // Reset the file input so onchange triggers even if they select the same file again
+            document.getElementById('logoUpload').value = '';
         }
     }
 
@@ -852,6 +851,8 @@
 
     // Initialize
     updateTheme();
+    // Set default to hosted logo on load
+    handleLogoSourceChange();
 </script>
 </body>
 </html>
