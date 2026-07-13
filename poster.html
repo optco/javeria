@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Property Ad Generator - Elegant</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --title-color: #1a1a1a;
+            --danger-color: #dc2626;
+            --panel-bg: #1e1e24;
+            --panel-text: #e8e8ed;
+            --panel-input-bg: #2d2d35;
+            --panel-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: clamp(0.75rem, 4vw, 1.5rem);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .app-container { grid-template-columns: 1fr; }
+        }
+
+        /* Sidebar Panel - Scrolls naturally */
+        .glass-panel {
+            background: var(--panel-bg);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            color: var(--panel-text);
+        }
+
+        h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 24px; letter-spacing: -0.02em; color: #ffffff; }
+        h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; color: #9a9aa3; font-weight: 600; }
+
+        .control-group { margin-bottom: 20px; }
+        
+        input[type="text"], input[type="file"], select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-input-bg);
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--panel-text);
+            transition: border-color 0.2s;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        input[type="text"]::placeholder, textarea::placeholder { color: #6b6b75; }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: #ffffff;
+        }
+
+        input[type="color"] {
+            width: 100%;
+            height: 36px;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 2px;
+            background: var(--panel-input-bg);
+            cursor: pointer;
+        }
+
+        .color-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .color-row-double {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .feature-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .feature-label {
+            font-size: 0.7rem;
+            color: #9a9aa3;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 6px;
+            background: var(--panel-input-bg);
+            padding: 3px;
+            border-radius: 8px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #9a9aa3;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: #ffffff;
+            color: #1e1e24;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: #ffffff;
+            color: #1e1e24;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover { opacity: 0.9; }
+
+        /* STICKY PREVIEW - Floats so you can see the poster all the time */
+        .preview-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+            background: repeating-conic-gradient(#e5e5e5 0% 25%, #f0f0f0 0% 50%) 50% / 20px 20px;
+            border-radius: 20px;
+            min-height: 600px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        #ad-canvas {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .format-square { width: 500px; height: 500px; }
+        .format-vertical { width: 400px; height: 711px; }
+
+        .ad-header {
+            padding: 24px 24px 16px 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .status-badge {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--title-color);
+        }
+
+        .format-square .ad-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            margin: 0 24px;
+            background: transparent;
+            position: relative;
+            max-height: 220px;
+        }
+
+        .format-vertical .ad-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            margin: 0 24px;
+            background: transparent;
+            position: relative;
+            max-height: 400px;
+        }
+
+        .ad-image-slot {
+            background: #e8e8ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .ad-image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ad-image-slot.empty::after {
+            content: '';
+        }
+
+        .property-features {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 16px 24px;
+            margin: 0 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .feature-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .custom-caption {
+            padding: 12px 24px 0 24px;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.75;
+            font-weight: 400;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .custom-caption:empty {
+            display: none;
+        }
+
+        /* Stamp Effect - Transparent white bg */
+        .stamp-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-12deg);
+            border: 2px solid var(--danger-color);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: var(--danger-color);
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 8px 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 20;
+            border-radius: 4px;
+        }
+
+        .stamp-overlay.visible { opacity: 0.95; }
+
+        .ad-footer {
+            padding: 20px 24px 24px 24px;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .agent-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .agent-contact {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .agent-email {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        .company-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+        }
+
+        .company-website {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-color);
+            text-align: right;
+            word-break: break-word;
+            line-height: 1.2;
+        }
+
+        .hidden { display: none; }
+
+        /* Page Footer */
+        .page-footer {
+            width: 100%;
+            max-width: 1100px;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            font-size: 0.8rem;
+            color: #6e6e73;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .page-footer a {
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .page-footer a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Controls Panel (Scrolls naturally) -->
+    <div class="glass-panel">
+        <h2>Ad Generator</h2>
+
+        <div class="control-group">
+            <h3>Format</h3>
+            <div class="toggle-group">
+                <button class="toggle-btn active" onclick="setFormat('square', this)">Square</button>
+                <button class="toggle-btn" onclick="setFormat('vertical', this)">Story</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>Theme Colors</h3>
+            <div class="toggle-group" style="margin-bottom: 10px;">
+                <button class="toggle-btn active" onclick="setBgMode('solid', this)">Solid</button>
+                <button class="toggle-btn" onclick="setBgMode('gradient', this)">Gradient</button>
+            </div>
+            <div id="solidColorPicker">
+                <label style="font-size: 0.7rem; color: #9a9aa3; margin-bottom: 4px; display: block;">Background</label>
+                <input type="color" id="bgColorPicker" value="#ffffff" oninput="updateTheme()">
+            </div>
+            <div id="gradientColorPickers" class="hidden">
+                <div class="color-row-double">
+                    <div>
+                        <label style="font-size: 0.7rem; color: #9a9aa3; margin-bottom: 4px; display: block;">Color 1</label>
+                        <input type="color" id="gradColor1" value="#667eea" oninput="updateTheme()">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.7rem; color: #9a9aa3; margin-bottom: 4px; display: block;">Color 2</label>
+                        <input type="color" id="gradColor2" value="#764ba2" oninput="updateTheme()">
+                    </div>
+                </div>
+            </div>
+            <div class="color-row" style="margin-top: 10px;">
+                <div>
+                    <label style="font-size: 0.7rem; color: #9a9aa3; margin-bottom: 4px; display: block;">Text</label>
+                    <input type="color" id="textColorPicker" value="#1a1a1a" oninput="updateTheme()">
+                </div>
+                <div>
+                    <label style="font-size: 0.7rem; color: #9a9aa3; margin-bottom: 4px; display: block;">Title</label>
+                    <input type="color" id="titleColorPicker" value="#1a1a1a" oninput="updateTheme()">
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>Title</h3>
+            <select id="statusSelect" onchange="updateStatus()">
+                <option value="FOR SALE">FOR SALE</option>
+                <option value="TO RENT">TO RENT</option>
+                <option value="SOLD">SOLD</option>
+                <option value="RENTED">RENTED</option>
+                <option value="CUSTOM">CUSTOM</option>
+            </select>
+            <input type="text" id="customStatus" class="hidden" placeholder="Enter custom text" oninput="updateCustomStatus()" style="margin-top: 8px;">
+        </div>
+
+        <div class="control-group">
+            <h3>Stamp</h3>
+            <select id="stampSelect" onchange="updateStamp()">
+                <option value="NONE">None</option>
+                <option value="SOLD">SOLD</option>
+                <option value="RENTED">RENTED</option>
+                <option value="UNDER OFFER">UNDER OFFER</option>
+                <option value="CUSTOM">Custom</option>
+            </select>
+            <input type="text" id="customStamp" class="hidden" placeholder="Enter stamp text" oninput="updateCustomStamp()" style="margin-top: 8px;">
+        </div>
+
+        <div class="control-group">
+            <h3>Photos (Max 4)</h3>
+            <input type="file" id="img1" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview1')" style="margin-bottom: 6px;">
+            <input type="file" id="img2" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview2')" style="margin-bottom: 6px;">
+            <input type="file" id="img3" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview3')" style="margin-bottom: 6px;">
+            <input type="file" id="img4" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview4')">
+        </div>
+
+        <div class="control-group">
+            <h3>Property Features</h3>
+            <div class="features-grid">
+                <div class="feature-field">
+                    <label class="feature-label">Beds</label>
+                    <input type="text" id="bedsInput" placeholder="3" value="3" oninput="updateFeature('bedsValue', this.value)">
+                </div>
+                <div class="feature-field">
+                    <label class="feature-label">Baths</label>
+                    <input type="text" id="bathsInput" placeholder="2" value="2" oninput="updateFeature('bathsValue', this.value)">
+                </div>
+                <div class="feature-field">
+                    <label class="feature-label">Parking</label>
+                    <input type="text" id="parkingInput" placeholder="2" value="2" oninput="updateFeature('parkingValue', this.value)">
+                </div>
+                <div class="feature-field">
+                    <label class="feature-label">Area (sqm)</label>
+                    <input type="text" id="areaInput" placeholder="250" value="250" oninput="updateFeature('areaValue', this.value)">
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>Caption</h3>
+            <textarea id="captionInput" placeholder="Add a custom caption below features..." oninput="updateCaption()"></textarea>
+        </div>
+
+        <div class="control-group">
+            <h3>Agent Details</h3>
+            <input type="text" id="agentName" placeholder="Agent Name" value="Javeria" oninput="updateText('agentNameDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="agentContact" placeholder="Contact Details" value="082 123 4567" oninput="updateText('agentContactDisplay', this.value)" style="margin-bottom: 6px;">
+            <input type="text" id="agentEmail" placeholder="Email" value="javeria@evolate.co.za" oninput="updateText('agentEmailDisplay', this.value)">
+        </div>
+
+        <div class="control-group">
+            <h3>Company Logo (PNG)</h3>
+            <input type="file" id="logoUpload" accept="image/png" onchange="loadLogo(this)" style="margin-bottom: 6px;">
+            <input type="text" id="companyWebsite" placeholder="Company Website" value="www.evolate.co.za" oninput="updateText('companyWebsiteDisplay', this.value)">
+        </div>
+
+        <button class="btn-primary" onclick="exportAd()">Download PNG</button>
+    </div>
+
+    <!-- Preview Panel (Sticky - floats as you scroll) -->
+    <div class="preview-wrapper">
+        <div id="ad-canvas" class="format-square">
+            <div class="ad-header">
+                <div class="status-badge" id="statusDisplay">FOR SALE</div>
+            </div>
+
+            <div class="ad-images">
+                <div class="ad-image-slot empty" id="preview1"></div>
+                <div class="ad-image-slot empty" id="preview2"></div>
+                <div class="ad-image-slot empty" id="preview3"></div>
+                <div class="ad-image-slot empty" id="preview4"></div>
+                
+                <div class="stamp-overlay" id="stampOverlay"></div>
+            </div>
+
+            <div class="property-features">
+                <div class="feature-item">
+                    <i class="fas fa-bed feature-icon"></i>
+                    <span class="feature-value" id="bedsValue">3</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bath feature-icon"></i>
+                    <span class="feature-value" id="bathsValue">2</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-car feature-icon"></i>
+                    <span class="feature-value" id="parkingValue">2</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-ruler-combined feature-icon"></i>
+                    <span class="feature-value" id="areaValue">250</span>
+                </div>
+            </div>
+
+            <div class="custom-caption" id="captionDisplay"></div>
+
+            <div class="ad-footer">
+                <div class="footer-left">
+                    <div class="agent-name" id="agentNameDisplay">Javeria</div>
+                    <div class="agent-contact" id="agentContactDisplay">082 123 4567</div>
+                    <div class="agent-email" id="agentEmailDisplay">javeria@evolate.co.za</div>
+                </div>
+                <div class="footer-right">
+                    <img id="canvasLogo" class="company-logo" src="" style="display: none;">
+                    <div class="company-website" id="companyWebsiteDisplay">www.evolate.co.za</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-footer">
+    Powered by <a href="https://shamsi.co.za" target="_blank" rel="noopener">shamsi.co.za</a>
+</div>
+
+<script>
+    let currentFormat = 'square';
+    let bgMode = 'solid';
+
+    function setFormat(format, btn) {
+        currentFormat = format;
+        const canvas = document.getElementById('ad-canvas');
+        const btns = btn.parentElement.querySelectorAll('.toggle-btn');
+        
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (format === 'square') {
+            canvas.classList.remove('format-vertical');
+            canvas.classList.add('format-square');
+        } else {
+            canvas.classList.remove('format-square');
+            canvas.classList.add('format-vertical');
+        }
+    }
+
+    function setBgMode(mode, btn) {
+        bgMode = mode;
+        const solidPicker = document.getElementById('solidColorPicker');
+        const gradientPickers = document.getElementById('gradientColorPickers');
+        const btns = btn.parentElement.querySelectorAll('.toggle-btn');
+        
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (mode === 'solid') {
+            solidPicker.classList.remove('hidden');
+            gradientPickers.classList.add('hidden');
+        } else {
+            solidPicker.classList.add('hidden');
+            gradientPickers.classList.remove('hidden');
+        }
+        updateTheme();
+    }
+
+    function updateTheme() {
+        const root = document.documentElement;
+        const canvas = document.getElementById('ad-canvas');
+        
+        root.style.setProperty('--text-color', document.getElementById('textColorPicker').value);
+        root.style.setProperty('--title-color', document.getElementById('titleColorPicker').value);
+
+        if (bgMode === 'solid') {
+            const bgColor = document.getElementById('bgColorPicker').value;
+            root.style.setProperty('--bg-color', bgColor);
+            canvas.style.background = bgColor;
+        } else {
+            const color1 = document.getElementById('gradColor1').value;
+            const color2 = document.getElementById('gradColor2').value;
+            canvas.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+        }
+    }
+
+    function updateStatus() {
+        const select = document.getElementById('statusSelect');
+        const customInput = document.getElementById('customStatus');
+        const display = document.getElementById('statusDisplay');
+
+        if (select.value === 'CUSTOM') {
+            customInput.classList.remove('hidden');
+            display.innerText = customInput.value || 'CUSTOM';
+        } else {
+            customInput.classList.add('hidden');
+            display.innerText = select.value;
+        }
+    }
+
+    function updateCustomStatus() {
+        const val = document.getElementById('customStatus').value;
+        document.getElementById('statusDisplay').innerText = val || 'CUSTOM';
+    }
+
+    function updateStamp() {
+        const select = document.getElementById('stampSelect');
+        const customInput = document.getElementById('customStamp');
+        const stamp = document.getElementById('stampOverlay');
+
+        if (select.value === 'NONE') {
+            stamp.classList.remove('visible');
+            customInput.classList.add('hidden');
+        } else if (select.value === 'CUSTOM') {
+            customInput.classList.remove('hidden');
+            stamp.innerText = customInput.value || 'CUSTOM';
+            stamp.classList.add('visible');
+        } else {
+            customInput.classList.add('hidden');
+            stamp.innerText = select.value;
+            stamp.classList.add('visible');
+        }
+    }
+
+    function updateCustomStamp() {
+        const val = document.getElementById('customStamp').value;
+        const stamp = document.getElementById('stampOverlay');
+        stamp.innerText = val || 'CUSTOM';
+        if (val) stamp.classList.add('visible');
+    }
+
+    function updateCaption() {
+        const val = document.getElementById('captionInput').value;
+        document.getElementById('captionDisplay').innerText = val;
+    }
+
+    function updateText(elementId, value) {
+        document.getElementById(elementId).innerText = value || ' ';
+    }
+
+    function updateFeature(elementId, value) {
+        document.getElementById(elementId).innerText = value || '0';
+    }
+
+    function loadImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `<img src="${e.target.result}" alt="Property">`;
+                preview.classList.remove('empty');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function loadLogo(input) {
+        const logo = document.getElementById('canvasLogo');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                logo.src = e.target.result;
+                logo.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function exportAd() {
+        const canvas = document.getElementById('ad-canvas');
+        const originalRadius = canvas.style.borderRadius;
+        canvas.style.borderRadius = '0';
+
+        html2canvas(canvas, {
+            scale: 3,
+            backgroundColor: null,
+            useCORS: true
+        }).then(function(renderedCanvas) {
+            const link = document.createElement('a');
+            link.download = `property-ad-${Date.now()}.png`;
+            link.href = renderedCanvas.toDataURL('image/png');
+            link.click();
+            canvas.style.borderRadius = originalRadius;
+        });
+    }
+
+    // Initialize
+    updateTheme();
+</script>
+
+</body>
+</html>
