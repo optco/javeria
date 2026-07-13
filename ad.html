@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,957 +9,233 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #f0f2f5;
-            --bg-panel: #ffffff;
-            --bg-input: #f8f9fb;
-            --border-color: #e8eaed;
-            --border-focus: #6366f1;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-bg: #eef2ff;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
+            --bg-body: #f0f2f5; --bg-panel: #ffffff; --bg-input: #f8f9fb;
+            --border-color: #e8eaed; --border-focus: #6366f1;
+            --text-primary: #1e293b; --text-secondary: #64748b; --text-muted: #94a3b8;
+            --accent: #6366f1; --accent-light: #818cf8; --accent-bg: #eef2ff;
+            --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --radius-sm: 8px;
-            --radius: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --ad-text-color: #1e293b;
-            --ad-title-color: #1e293b;
-            --ad-accent-color: #6366f1;
-            --ad-accent-bg: rgba(99, 102, 241, 0.08);
-        }
-
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            outline: none; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            background: var(--bg-panel);
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            background: rgba(255,255,255,0.92);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1rem;
-            box-shadow: var(--shadow);
-        }
-
-        .brand-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .brand-text span {
-            color: var(--accent);
-        }
-
-        .top-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            background: var(--bg-panel);
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-        }
-
-        .btn-icon:hover {
-            background: var(--accent-bg);
-            color: var(--accent);
-            border-color: var(--accent-light);
-        }
-
-        /* Main Layout */
-        .app-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 0;
-            min-height: calc(100vh - 73px);
-        }
-
-        /* Sidebar Panel */
-        .sidebar {
-            background: var(--bg-panel);
-            border-right: 1px solid var(--border-color);
-            padding: 24px;
-            overflow-y: auto;
-            max-height: calc(100vh - 73px);
-            position: sticky;
-            top: 73px;
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        .section-card {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 16px;
-            transition: box-shadow 0.2s;
-        }
-
-        .section-card:hover {
-            box-shadow: var(--shadow);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--accent-bg);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 0.85rem;
-        }
-
-        .section-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .control-group { 
-            margin-bottom: 16px; 
-        }
-
-        .control-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .control-label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-
-        input[type="text"], 
-        input[type="file"], 
-        select, 
-        textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            border: 1.5px solid var(--border-color);
-            background: var(--bg-input);
-            font-family: inherit;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            transition: all 0.2s;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 72px;
-            line-height: 1.5;
-        }
-
-        input[type="text"]::placeholder, 
-        textarea::placeholder { 
-            color: var(--text-muted); 
-        }
-
-        input[type="text"]:focus, 
-        select:focus, 
-        textarea:focus {
-            border-color: var(--accent);
-            background: var(--bg-panel);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        /* Color Picker Styling */
-        .color-picker-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        input[type="color"] {
-            width: 44px;
-            height: 44px;
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 3px;
-            background: var(--bg-panel);
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        input[type="color"]:hover {
-            border-color: var(--accent-light);
-        }
-
-        .color-value {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            font-family: 'SF Mono', monospace;
-            text-transform: uppercase;
-        }
-
-        /* Toggle Group */
-        .toggle-group {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-input);
-            padding: 4px;
-            border-radius: var(--radius-sm);
-            border: 1.5px solid var(--border-color);
-        }
-
-        .toggle-btn {
-            flex: 1;
-            padding: 10px 12px;
-            border: none;
-            background: transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            transition: all 0.2s;
-            touch-action: manipulation;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .toggle-btn i {
-            font-size: 0.8rem;
-        }
-
-        .toggle-btn.active {
-            background: var(--bg-panel);
-            color: var(--accent);
-            font-weight: 600;
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Feature Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .feature-field {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .feature-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .feature-label i {
-            font-size: 0.7rem;
-        }
-
-        /* Image Upload */
-        .upload-zone {
-            border: 2px dashed var(--border-color);
-            border-radius: var(--radius);
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: var(--bg-input);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .upload-zone:hover {
-            border-color: var(--accent-light);
-            background: var(--accent-bg);
-        }
-
-        .upload-zone.has-image {
-            border-style: solid;
-            border-color: var(--success);
-            background: #ecfdf5;
-            padding: 0;
-            height: 100px;
-        }
-
-        .upload-zone img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-        }
-
-        .upload-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-        }
-
-        .upload-placeholder i {
-            font-size: 1.5rem;
-        }
-
-        .upload-placeholder span {
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .upload-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .upload-grid .upload-zone {
-            padding: 16px;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .upload-grid .upload-zone.has-image {
-            padding: 0;
-        }
-
-        .upload-grid .upload-placeholder i {
-            font-size: 1.2rem;
-        }
-
-        .upload-grid .upload-placeholder span {
-            font-size: 0.75rem;
-        }
-
-        /* Primary Button */
-        .btn-primary {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 4px;
-            touch-action: manipulation;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35);
-        }
-
-        .btn-primary:hover { 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.45);
-        }
-
-        .btn-primary:active { 
-            transform: translateY(0);
-        }
-
-        /* Preview Area */
-        .preview-area {
-            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            min-height: calc(100vh - 73px);
-        }
-
-        .preview-area::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .preview-label {
-            position: absolute;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(8px);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .preview-label i {
-            color: var(--success);
-            font-size: 0.7rem;
-        }
-
-        #ad-canvas {
-            background-color: var(--bg-panel);
-            color: var(--ad-text-color);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--shadow-xl);
-            border-radius: var(--radius-lg);
-        }
-
-        .format-square { 
-            width: 500px; 
-            height: 500px; 
-        }
-
-        .format-vertical { 
-            width: 400px; 
-            height: 711px; 
-        }
-
-        /* Ad Header */
-        .ad-header {
-            padding: 28px 28px 20px 28px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .status-badge {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--ad-title-color);
-            line-height: 1.2;
-        }
-
-        .status-line {
-            width: 40px;
-            height: 3px;
-            background: var(--ad-accent-color);
-            margin-top: 10px;
-            border-radius: 2px;
-        }
-
-        /* Ad Images */
-        .ad-images {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 4px;
-            margin: 0 24px;
-            background: transparent;
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .format-square .ad-images { 
-            max-height: 210px; 
-        }
-
-        .format-vertical .ad-images { 
-            max-height: 380px; 
-        }
-
-        .ad-image-slot {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .ad-image-slot.empty::before {
-            content: '';
-            width: 24px;
-            height: 24px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-            opacity: 0.5;
-        }
-
-        .ad-image-slot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .ad-image-slot:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Property Features — CLEAR BACKGROUND, ACCENT BORDER */
-        .property-features {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 14px 28px;
-            margin: 8px 24px 0 24px;
-            background: transparent;
-            border: 1.5px solid var(--ad-accent-color);
-            border-radius: var(--radius);
-        }
-
-        .feature-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: var(--radius-sm);
-            transition: background 0.2s;
-        }
-
-        .feature-item:hover {
-            background: var(--ad-accent-bg);
-        }
-
-        .feature-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--ad-accent-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--ad-accent-color);
-            font-size: 0.85rem;
-        }
-
-        .feature-value {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--ad-text-color);
-        }
-
-        /* Custom Caption */
-        .custom-caption {
-            padding: 12px 28px 0 28px;
-            font-size: 0.85rem;
-            color: var(--ad-text-color);
-            opacity: 0.75;
-            font-weight: 400;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        .custom-caption:empty { 
-            display: none; 
-        }
-
-        /* Stamp Effect */
-        .stamp-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            border: 3px solid var(--danger);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            color: var(--danger);
-            font-size: 1.8rem;
-            font-weight: 800;
-            padding: 10px 28px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 20;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .stamp-overlay.visible { 
-            opacity: 0.95; 
-            animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes stampIn {
-            0% { transform: translate(-50%, -50%) rotate(-15deg) scale(2); opacity: 0; }
-            100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 0.95; }
-        }
-
-        /* Ad Footer */
-        .ad-footer {
-            padding: 20px 28px 28px 28px;
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            background: linear-gradient(to top, rgba(0,0,0,0.02), transparent);
-        }
-
-        .footer-left { 
-            flex: 1; 
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .footer-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .agent-name {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--ad-text-color);
-            letter-spacing: -0.01em;
-        }
-
-        .agent-contact, .agent-email {
-            font-size: 0.8rem;
-            color: var(--ad-text-color);
-            opacity: 0.7;
-            font-weight: 500;
-        }
-
-        .company-website {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--ad-accent-color);
-            text-align: left;
-            word-break: break-word;
-            line-height: 1.3;
-            margin-top: 4px;
-        }
-
-        .company-logo {
-            width: 90px;
-            height: auto;
-            max-height: 80px;
-            object-fit: contain;
-            display: block;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-
-        .hidden { 
-            display: none !important; 
-        }
-
-        /* Page Footer */
-        .page-footer {
-            width: 100%;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            background: var(--bg-panel);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .page-footer a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .page-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Color Row */
-        .color-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .color-row-triple {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: var(--text-primary);
-            color: white;
-            padding: 12px 20px;
-            border-radius: var(--radius);
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: var(--shadow-xl);
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast i {
-            color: var(--success);
-        }
-
-        /* =========================================
-           RESPONSIVE - FIXED MOBILE PREVIEW
-           ========================================= */
-        @media (max-width: 1024px) {
-            .app-container {
-                grid-template-columns: 340px 1fr;
-            }
-        }
-
+            --radius-sm: 8px; --radius: 12px; --radius-lg: 16px; --radius-xl: 24px;
+            --ad-text-color: #1e293b; --ad-title-color: #1e293b;
+            --ad-accent-color: #6366f1; --ad-accent-bg: rgba(99, 102, 241, 0.08);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%); color: var(--text-primary); min-height: 100vh; padding: 0; overflow-x: hidden; }
+        .top-bar { background: var(--bg-panel); border-bottom: 1px solid var(--border-color); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); background: rgba(255,255,255,0.92); }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; box-shadow: var(--shadow); }
+        .brand-text { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; }
+        .brand-text span { color: var(--accent); }
+        .top-actions { display: flex; gap: 12px; }
+        .btn-icon { width: 40px; height: 40px; border-radius: var(--radius); border: 1px solid var(--border-color); background: var(--bg-panel); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 0.95rem; }
+        .btn-icon:hover { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-light); }
+        .app-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; gap: 0; min-height: calc(100vh - 73px); }
+        .sidebar { background: var(--bg-panel); border-right: 1px solid var(--border-color); padding: 24px; overflow-y: auto; max-height: calc(100vh - 73px); position: sticky; top: 73px; }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .section-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; transition: box-shadow 0.2s; }
+        .section-card:hover { box-shadow: var(--shadow); }
+        .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .section-icon { width: 32px; height: 32px; background: var(--accent-bg); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 0.85rem; }
+        .section-title { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.04em; }
+        .control-group { margin-bottom: 16px; }
+        .control-group:last-child { margin-bottom: 0; }
+        .control-label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
+        input[type="text"], input[type="file"], select, textarea { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); background: var(--bg-input); font-family: inherit; font-size: 0.9rem; color: var(--text-primary); transition: all 0.2s; }
+        textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+        input[type="text"]::placeholder, textarea::placeholder { color: var(--text-muted); }
+        input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--accent); background: var(--bg-panel); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+        .color-picker-wrapper { position: relative; display: flex; align-items: center; gap: 10px; }
+        input[type="color"] { width: 44px; height: 44px; border: 2px solid var(--border-color); border-radius: var(--radius-sm); padding: 3px; background: var(--bg-panel); cursor: pointer; transition: border-color 0.2s; }
+        input[type="color"]:hover { border-color: var(--accent-light); }
+        .color-value { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); font-family: 'SF Mono', monospace; text-transform: uppercase; }
+        .toggle-group { display: flex; gap: 4px; background: var(--bg-input); padding: 4px; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); }
+        .toggle-btn { flex: 1; padding: 10px 12px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.85rem; color: var(--text-secondary); transition: all 0.2s; touch-action: manipulation; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .toggle-btn i { font-size: 0.8rem; }
+        .toggle-btn.active { background: var(--bg-panel); color: var(--accent); font-weight: 600; box-shadow: var(--shadow-sm); }
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .feature-field { display: flex; flex-direction: column; gap: 4px; }
+        .feature-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px; }
+        .feature-label i { font-size: 0.7rem; }
+        .upload-zone { border: 2px dashed var(--border-color); border-radius: var(--radius); padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--bg-input); position: relative; overflow: hidden; }
+        .upload-zone:hover { border-color: var(--accent-light); background: var(--accent-bg); }
+        .upload-zone.has-image { border-style: solid; border-color: var(--success); background: #ecfdf5; padding: 0; height: 100px; }
+        .upload-zone img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm); }
+        .upload-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); }
+        .upload-placeholder i { font-size: 1.5rem; }
+        .upload-placeholder span { font-size: 0.8rem; font-weight: 500; }
+        .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .upload-grid .upload-zone { padding: 16px; height: 90px; display: flex; align-items: center; justify-content: center; }
+        .upload-grid .upload-zone.has-image { padding: 0; }
+        .upload-grid .upload-placeholder i { font-size: 1.2rem; }
+        .upload-grid .upload-placeholder span { font-size: 0.75rem; }
+        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent), #8b5cf6); color: white; border: none; border-radius: var(--radius); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; margin-top: 4px; touch-action: manipulation; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35); }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.45); }
+        .btn-primary:active { transform: translateY(0); }
+        .preview-area { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 40px 20px; position: relative; overflow: hidden; min-height: calc(100vh - 73px); }
+        .preview-area::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%); pointer-events: none; }
+        .preview-label { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); z-index: 10; display: flex; align-items: center; gap: 8px; }
+        .preview-label i { color: var(--success); font-size: 0.7rem; }
+        /* THEME 1: GRID */
+        #ad-canvas { background-color: var(--bg-panel); color: var(--ad-text-color); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; box-shadow: var(--shadow-xl); border-radius: var(--radius-lg); }
+        .format-square { width: 500px; height: 500px; }
+        .format-vertical { width: 400px; height: 711px; }
+        .theme-grid .ad-header { padding: 28px 28px 20px 28px; position: relative; z-index: 10; }
+        .theme-grid .status-badge { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ad-title-color); line-height: 1.2; }
+        .theme-grid .status-line { width: 40px; height: 3px; background: var(--ad-accent-color); margin-top: 10px; border-radius: 2px; }
+        .theme-grid .ad-images { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; margin: 0 24px; background: transparent; position: relative; border-radius: var(--radius); overflow: hidden; }
+        .format-square.theme-grid .ad-images { max-height: 210px; }
+        .format-vertical.theme-grid .ad-images { max-height: 380px; }
+        .theme-grid .property-features { display: flex; justify-content: space-around; align-items: center; padding: 14px 28px; margin: 8px 24px 0 24px; background: transparent; border: 1.5px solid var(--ad-accent-color); border-radius: var(--radius); }
+        .theme-grid .feature-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--radius-sm); }
+        .theme-grid .feature-icon { width: 32px; height: 32px; background: var(--ad-accent-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--ad-accent-color); font-size: 0.85rem; }
+        .theme-grid .feature-value { font-size: 0.9rem; font-weight: 700; color: var(--ad-text-color); }
+        .theme-grid .custom-caption { padding: 12px 28px 0 28px; font-size: 0.85rem; color: var(--ad-text-color); opacity: 0.75; font-weight: 400; line-height: 1.5; font-style: italic; }
+        .theme-grid .ad-footer { padding: 20px 28px 28px 28px; margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.02), transparent); }
+        .theme-grid .footer-left { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+        .theme-grid .footer-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
+        .theme-grid .agent-name { font-size: 1.05rem; font-weight: 700; color: var(--ad-text-color); letter-spacing: -0.01em; }
+        .theme-grid .agent-contact, .theme-grid .agent-email { font-size: 0.8rem; color: var(--ad-text-color); opacity: 0.7; font-weight: 500; }
+        .theme-grid .company-website { font-size: 0.75rem; font-weight: 600; color: var(--ad-accent-color); text-align: left; word-break: break-word; line-height: 1.3; margin-top: 4px; }
+
+        /* THEME 2: HERO */
+        .theme-hero .ad-header { padding: 24px 28px 16px 28px; position: relative; z-index: 10; display: flex; align-items: center; gap: 10px; }
+        .theme-hero .status-badge { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ad-title-color); line-height: 1.2; }
+        .theme-hero .status-line { width: 3px; height: 28px; background: var(--ad-accent-color); border-radius: 2px; margin-top: 0; }
+        .theme-hero .ad-images { display: flex; flex-direction: column; gap: 4px; margin: 0 24px; position: relative; border-radius: var(--radius); overflow: hidden; }
+        .theme-hero .hero-main { width: 100%; height: 180px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
+        .theme-hero .hero-main img { width: 100%; height: 100%; object-fit: cover; }
+        .theme-hero .hero-thumbs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+        .theme-hero .hero-thumb { height: 70px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
+        .theme-hero .hero-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .format-square.theme-hero .ad-images { max-height: 260px; }
+        .format-vertical.theme-hero .ad-images { max-height: 420px; }
+        .format-vertical.theme-hero .hero-main { height: 280px; }
+        .format-vertical.theme-hero .hero-thumb { height: 100px; }
+        .theme-hero .property-features { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 28px; margin: 10px 24px 0 24px; background: transparent; }
+        .theme-hero .feature-item { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 100px; border: 1.5px solid var(--ad-accent-color); background: transparent; }
+        .theme-hero .feature-icon { width: 20px; height: 20px; background: transparent; border-radius: 0; display: flex; align-items: center; justify-content: center; color: var(--ad-accent-color); font-size: 0.75rem; }
+        .theme-hero .feature-value { font-size: 0.85rem; font-weight: 700; color: var(--ad-text-color); }
+        .theme-hero .custom-caption { padding: 12px 28px 0 28px; font-size: 0.85rem; color: var(--ad-text-color); opacity: 0.75; font-weight: 400; line-height: 1.5; font-style: italic; }
+        .theme-hero .ad-footer { padding: 20px 28px 28px 28px; margin-top: auto; display: flex; flex-direction: column; align-items: center; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.02), transparent); gap: 12px; }
+        .theme-hero .footer-left { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .theme-hero .footer-right { display: flex; flex-direction: column; align-items: center; }
+        .theme-hero .agent-name { font-size: 1.1rem; font-weight: 700; color: var(--ad-text-color); letter-spacing: -0.01em; }
+        .theme-hero .agent-contact, .theme-hero .agent-email { font-size: 0.8rem; color: var(--ad-text-color); opacity: 0.7; font-weight: 500; }
+        .theme-hero .company-website { font-size: 0.75rem; font-weight: 600; color: var(--ad-accent-color); line-height: 1.3; margin-top: 2px; }
+
+        /* THEME 3: MASONRY */
+        .theme-masonry .ad-header { padding: 24px 28px 12px 28px; position: relative; z-index: 10; }
+        .theme-masonry .status-badge { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ad-title-color); line-height: 1.2; }
+        .theme-masonry .status-line { width: 32px; height: 2px; background: var(--ad-accent-color); margin-top: 6px; border-radius: 1px; }
+        .theme-masonry .ad-images { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; margin: 0 24px; position: relative; border-radius: var(--radius); overflow: hidden; }
+        .theme-masonry .ad-image-slot:first-child { grid-row: span 2; height: 100%; }
+        .format-square.theme-masonry .ad-images { max-height: 220px; }
+        .format-vertical.theme-masonry .ad-images { max-height: 400px; }
+        .theme-masonry .property-features { display: flex; justify-content: space-around; align-items: center; padding: 10px 20px; margin: 8px 24px 0 24px; background: transparent; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .theme-masonry .feature-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 8px; position: relative; }
+        .theme-masonry .feature-item:not(:last-child)::after { content: ''; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 1px; height: 24px; background: rgba(0,0,0,0.1); }
+        .theme-masonry .feature-icon { width: 24px; height: 24px; background: transparent; border-radius: 0; display: flex; align-items: center; justify-content: center; color: var(--ad-accent-color); font-size: 0.8rem; }
+        .theme-masonry .feature-value { font-size: 0.85rem; font-weight: 700; color: var(--ad-text-color); }
+        .theme-masonry .custom-caption { padding: 12px 28px 0 28px; font-size: 0.85rem; color: var(--ad-text-color); opacity: 0.75; font-weight: 400; line-height: 1.5; font-style: italic; }
+        .theme-masonry .ad-footer { padding: 16px 28px 24px 28px; margin-top: auto; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to top, rgba(0,0,0,0.03), transparent); border-top: 1px solid rgba(0,0,0,0.06); }
+        .theme-masonry .footer-left { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+        .theme-masonry .footer-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .theme-masonry .agent-name { font-size: 1rem; font-weight: 700; color: var(--ad-text-color); letter-spacing: -0.01em; }
+        .theme-masonry .agent-contact, .theme-masonry .agent-email { font-size: 0.75rem; color: var(--ad-text-color); opacity: 0.7; font-weight: 500; }
+        .theme-masonry .company-website { font-size: 0.7rem; font-weight: 600; color: var(--ad-accent-color); text-align: left; line-height: 1.3; margin-top: 2px; }
+
+        .ad-image-slot { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; transition: all 0.3s; }
+        .ad-image-slot.empty::before { content: ''; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center; background-size: contain; opacity: 0.5; }
+        .ad-image-slot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .ad-image-slot:hover img { transform: scale(1.05); }
+
+        .stamp-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); border: 3px solid var(--danger); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--danger); font-size: 1.8rem; font-weight: 800; padding: 10px 28px; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0; pointer-events: none; z-index: 20; border-radius: 6px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2); font-family: 'Inter', sans-serif; }
+        .stamp-overlay.visible { opacity: 0.95; animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes stampIn { 0% { transform: translate(-50%, -50%) rotate(-15deg) scale(2); opacity: 0; } 100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 0.95; } }
+
+        .company-logo { width: 90px; height: auto; max-height: 80px; object-fit: contain; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .custom-caption:empty { display: none; }
+        .hidden { display: none !important; }
+        .page-footer { width: 100%; text-align: center; padding: 1.5rem; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.5px; background: var(--bg-panel); border-top: 1px solid var(--border-color); }
+        .page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .page-footer a:hover { text-decoration: underline; }
+        .color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .color-row-triple { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: var(--text-primary); color: white; padding: 12px 20px; border-radius: var(--radius); font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-xl); z-index: 1000; transform: translateY(100px); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; gap: 10px; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast i { color: var(--success); }
+
+        @media (max-width: 1024px) { .app-container { grid-template-columns: 340px 1fr; } }
         @media (max-width: 900px) {
-            .app-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: relative;
-                top: 0;
-                max-height: none;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                order: 2;
-            }
-
-            .preview-area {
-                order: 1;
-                min-height: auto;
-                padding: 80px 16px 40px 16px;
-                overflow: visible;
-            }
-
-            .format-square {
-                transform: scale(0.72);
-                transform-origin: top center;
-            }
-
-            .format-vertical {
-                transform: scale(0.72);
-                transform-origin: top center;
-            }
+            .app-container { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; max-height: none; border-right: none; border-bottom: 1px solid var(--border-color); order: 2; }
+            .preview-area { order: 1; min-height: auto; padding: 80px 16px 40px 16px; overflow: visible; }
+            .format-square { transform: scale(0.72); transform-origin: top center; }
+            .format-vertical { transform: scale(0.72); transform-origin: top center; }
         }
-
         @media (max-width: 480px) {
-            .top-bar {
-                padding: 12px 16px;
-            }
-
-            .brand-text {
-                font-size: 1rem;
-            }
-
-            .sidebar {
-                padding: 16px;
-            }
-
-            .section-card {
-                padding: 16px;
-            }
-
-            .preview-area {
-                padding: 70px 8px 32px 8px;
-                overflow: visible;
-            }
-
-            .format-square {
-                transform: scale(0.62);
-                transform-origin: top center;
-            }
-
-            .format-vertical {
-                transform: scale(0.62);
-                transform-origin: top center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
+            .top-bar { padding: 12px 16px; } .brand-text { font-size: 1rem; }
+            .sidebar { padding: 16px; } .section-card { padding: 16px; }
+            .preview-area { padding: 70px 8px 32px 8px; overflow: visible; }
+            .format-square { transform: scale(0.62); transform-origin: top center; }
+            .format-vertical { transform: scale(0.62); transform-origin: top center; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
         }
-
-        /* Smooth transitions for all interactive elements */
-        button, input, select, textarea, .upload-zone, .section-card {
-            transition: all 0.2s ease;
-        }
+        button, input, select, textarea, .upload-zone, .section-card { transition: all 0.2s ease; }
     </style>
 <base target="_blank">
 </head>
 <body>
-
-<!-- Top Bar -->
 <div class="top-bar">
     <div class="brand">
-        <div class="brand-icon">
-            <i class="fas fa-home"></i>
-        </div>
+        <div class="brand-icon"><i class="fas fa-home"></i></div>
         <div class="brand-text">Property<span>Ad</span> Studio</div>
     </div>
     <div class="top-actions">
-        <button class="btn-icon" onclick="resetAll()" title="Reset All">
-            <i class="fas fa-rotate-left"></i>
-        </button>
-        <button class="btn-icon" onclick="exportAd()" title="Download PNG">
-            <i class="fas fa-download"></i>
-        </button>
+        <button class="btn-icon" onclick="resetAll()" title="Reset All"><i class="fas fa-rotate-left"></i></button>
+        <button class="btn-icon" onclick="exportAd()" title="Download PNG"><i class="fas fa-download"></i></button>
     </div>
 </div>
 
 <div class="app-container">
-    <!-- Controls Panel -->
     <div class="sidebar">
 
-        <!-- Format & Theme -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="section-title">Theme</div>
+            </div>
+            <div class="toggle-group">
+                <button class="toggle-btn active" onclick="setTheme('grid', this)"><i class="fas fa-th"></i> Grid</button>
+                <button class="toggle-btn" onclick="setTheme('hero', this)"><i class="fas fa-image"></i> Hero</button>
+                <button class="toggle-btn" onclick="setTheme('masonry', this)"><i class="fas fa-th-large"></i> Masonry</button>
+            </div>
+        </div>
+
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-palette"></i></div>
-                <div class="section-title">Layout & Theme</div>
+                <div class="section-title">Layout & Colors</div>
             </div>
 
             <div class="control-group">
                 <label class="control-label">Ad Format</label>
                 <div class="toggle-group">
-                    <button class="toggle-btn active" onclick="setFormat('square', this)">
-                        <i class="fas fa-square"></i> Square
-                    </button>
-                    <button class="toggle-btn" onclick="setFormat('vertical', this)">
-                        <i class="fas fa-mobile-alt"></i> Story
-                    </button>
+                    <button class="toggle-btn active" onclick="setFormat('square', this)"><i class="fas fa-square"></i> Square</button>
+                    <button class="toggle-btn" onclick="setFormat('vertical', this)"><i class="fas fa-mobile-alt"></i> Story</button>
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label">Background Style</label>
                 <div class="toggle-group" style="margin-bottom: 12px;">
-                    <button class="toggle-btn active" onclick="setBgMode('solid', this)">
-                        <i class="fas fa-fill-drip"></i> Solid
-                    </button>
-                    <button class="toggle-btn" onclick="setBgMode('gradient', this)">
-                        <i class="fas fa-gradient"></i> Gradient
-                    </button>
+                    <button class="toggle-btn active" onclick="setBgMode('solid', this)"><i class="fas fa-fill-drip"></i> Solid</button>
+                    <button class="toggle-btn" onclick="setBgMode('gradient', this)"><i class="fas fa-gradient"></i> Gradient</button>
                 </div>
                 <div id="solidColorPicker">
                     <label class="control-label">Background Color</label>
@@ -1015,7 +291,6 @@
             </div>
         </div>
 
-        <!-- Title & Stamp -->
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-tag"></i></div>
@@ -1045,7 +320,6 @@
             </div>
         </div>
 
-        <!-- Photos -->
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-images"></i></div>
@@ -1054,28 +328,16 @@
 
             <div class="upload-grid">
                 <div class="upload-zone" id="uploadZone1" onclick="document.getElementById('img1').click()">
-                    <div class="upload-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <span>Photo 1</span>
-                    </div>
+                    <div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo 1</span></div>
                 </div>
                 <div class="upload-zone" id="uploadZone2" onclick="document.getElementById('img2').click()">
-                    <div class="upload-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <span>Photo 2</span>
-                    </div>
+                    <div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo 2</span></div>
                 </div>
                 <div class="upload-zone" id="uploadZone3" onclick="document.getElementById('img3').click()">
-                    <div class="upload-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <span>Photo 3</span>
-                    </div>
+                    <div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo 3</span></div>
                 </div>
                 <div class="upload-zone" id="uploadZone4" onclick="document.getElementById('img4').click()">
-                    <div class="upload-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <span>Photo 4</span>
-                    </div>
+                    <div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo 4</span></div>
                 </div>
             </div>
             <input type="file" id="img1" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview1', 'uploadZone1')" class="hidden">
@@ -1084,7 +346,6 @@
             <input type="file" id="img4" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview4', 'uploadZone4')" class="hidden">
         </div>
 
-        <!-- Features -->
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-list"></i></div>
@@ -1105,13 +366,12 @@
                     <input type="text" id="parkingInput" placeholder="2" value="2" oninput="updateFeature('parkingValue', this.value)">
                 </div>
                 <div class="feature-field">
-                    <label class="feature-label"><i class="fas fa-ruler-combined"></i> Area (m²)</label>
+                    <label class="feature-label"><i class="fas fa-ruler-combined"></i> Area (m&sup2;)</label>
                     <input type="text" id="areaInput" placeholder="250" value="250" oninput="updateFeature('areaValue', this.value)">
                 </div>
             </div>
         </div>
 
-        <!-- Caption -->
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-align-left"></i></div>
@@ -1120,7 +380,6 @@
             <textarea id="captionInput" placeholder="Add a compelling description or caption for this property..." oninput="updateCaption()"></textarea>
         </div>
 
-        <!-- Agent -->
         <div class="section-card">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-user-tie"></i></div>
@@ -1151,10 +410,7 @@
                 </select>
                 <div id="customLogoUploadContainer" class="hidden">
                     <div class="upload-zone" onclick="document.getElementById('logoUpload').click()">
-                        <div class="upload-placeholder">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Click to upload logo</span>
-                        </div>
+                        <div class="upload-placeholder"><i class="fas fa-cloud-upload-alt"></i><span>Click to upload logo</span></div>
                     </div>
                     <input type="file" id="logoUpload" accept="image/png, image/jpeg" onchange="loadLogo(this)" class="hidden">
                 </div>
@@ -1166,13 +422,10 @@
         </button>
     </div>
 
-    <!-- Preview Panel -->
     <div class="preview-area">
-        <div class="preview-label">
-            <i class="fas fa-circle"></i> Live Preview
-        </div>
+        <div class="preview-label"><i class="fas fa-circle"></i> Live Preview</div>
 
-        <div id="ad-canvas" class="format-square">
+        <div id="ad-canvas" class="format-square theme-grid">
             <div class="ad-header">
                 <div class="status-badge" id="statusDisplay">FOR SALE</div>
                 <div class="status-line"></div>
@@ -1183,28 +436,14 @@
                 <div class="ad-image-slot empty" id="preview2"></div>
                 <div class="ad-image-slot empty" id="preview3"></div>
                 <div class="ad-image-slot empty" id="preview4"></div>
-
                 <div class="stamp-overlay" id="stampOverlay"></div>
             </div>
 
-            <!-- Property Features — CLEAR BACKGROUND, ACCENT BORDER -->
             <div class="property-features">
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-bed"></i></div>
-                    <span class="feature-value" id="bedsValue">3</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-bath"></i></div>
-                    <span class="feature-value" id="bathsValue">2</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-car"></i></div>
-                    <span class="feature-value" id="parkingValue">2</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-ruler-combined"></i></div>
-                    <span class="feature-value" id="areaValue">250</span>
-                </div>
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">3</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">2</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">2</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">250</span></div>
             </div>
 
             <div class="custom-caption" id="captionDisplay"></div>
@@ -1232,22 +471,19 @@
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Ad exported successfully!</span>
 </div>
-
 <script>
     let currentFormat = 'square';
     let bgMode = 'solid';
+    let currentTheme = 'grid';
 
     function setFormat(format, btn) {
         currentFormat = format;
         const canvas = document.getElementById('ad-canvas');
         const btns = btn.parentElement.querySelectorAll('.toggle-btn');
-
         btns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         canvas.style.opacity = '0';
         canvas.style.transform = 'scale(0.95)';
-
         setTimeout(() => {
             if (format === 'square') {
                 canvas.classList.remove('format-vertical');
@@ -1261,15 +497,111 @@
         }, 200);
     }
 
+    function setTheme(theme, btn) {
+        currentTheme = theme;
+        const canvas = document.getElementById('ad-canvas');
+        const btns = btn.parentElement.querySelectorAll('.toggle-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        canvas.style.opacity = '0';
+        setTimeout(() => {
+            canvas.classList.remove('theme-grid', 'theme-hero', 'theme-masonry');
+            canvas.classList.add('theme-' + theme);
+            rebuildCanvasStructure(theme);
+            canvas.style.opacity = '1';
+        }, 200);
+    }
+
+    function rebuildCanvasStructure(theme) {
+        const canvas = document.getElementById('ad-canvas');
+        const status = document.getElementById('statusDisplay').innerText;
+        const caption = document.getElementById('captionDisplay').innerText;
+        const stampText = document.getElementById('stampOverlay').innerText;
+        const stampVisible = document.getElementById('stampOverlay').classList.contains('visible');
+        const logoSrc = document.getElementById('canvasLogo').src;
+        const logoDisplay = document.getElementById('canvasLogo').style.display;
+
+        const imgSrcs = [];
+        for (let i = 1; i <= 4; i++) {
+            const slot = document.getElementById('preview' + i);
+            const img = slot ? slot.querySelector('img') : null;
+            imgSrcs.push(img ? img.src : null);
+        }
+
+        let html = '';
+
+        if (theme === 'grid') {
+            html = '<div class="ad-header"><div class="status-badge" id="statusDisplay">' + status + '</div><div class="status-line"></div></div>' +
+                '<div class="ad-images">' +
+                '<div class="ad-image-slot ' + (imgSrcs[0] ? '' : 'empty') + '" id="preview1">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (imgSrcs[1] ? '' : 'empty') + '" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (imgSrcs[2] ? '' : 'empty') + '" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (imgSrcs[3] ? '' : 'empty') + '" id="preview4">' + (imgSrcs[3] ? '<img src="' + imgSrcs[3] + '">' : '') + '</div>' +
+                '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
+                '<div class="property-features">' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
+                '<div class="ad-footer"><div class="footer-left">' +
+                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
+        } else if (theme === 'hero') {
+            html = '<div class="ad-header"><div class="status-line"></div><div class="status-badge" id="statusDisplay">' + status + '</div></div>' +
+                '<div class="ad-images">' +
+                '<div class="hero-main" id="heroMain">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
+                '<div class="hero-thumbs">' +
+                '<div class="hero-thumb" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
+                '<div class="hero-thumb" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
+                '<div class="hero-thumb" id="preview4">' + (imgSrcs[3] ? '<img src="' + imgSrcs[3] + '">' : '') + '</div></div>' +
+                '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
+                '<div class="property-features">' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
+                '<div class="ad-footer"><div class="footer-left">' +
+                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
+        } else if (theme === 'masonry') {
+            html = '<div class="ad-header"><div class="status-badge" id="statusDisplay">' + status + '</div><div class="status-line"></div></div>' +
+                '<div class="ad-images">' +
+                '<div class="ad-image-slot ' + (imgSrcs[0] ? '' : 'empty') + '" id="preview1">' + (imgSrcs[0] ? '<img src="' + imgSrcs[0] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (imgSrcs[1] ? '' : 'empty') + '" id="preview2">' + (imgSrcs[1] ? '<img src="' + imgSrcs[1] + '">' : '') + '</div>' +
+                '<div class="ad-image-slot ' + (imgSrcs[2] ? '' : 'empty') + '" id="preview3">' + (imgSrcs[2] ? '<img src="' + imgSrcs[2] + '">' : '') + '</div>' +
+                '<div class="stamp-overlay ' + (stampVisible ? 'visible' : '') + '" id="stampOverlay">' + stampText + '</div></div>' +
+                '<div class="property-features">' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bed"></i></div><span class="feature-value" id="bedsValue">' + document.getElementById('bedsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-bath"></i></div><span class="feature-value" id="bathsValue">' + document.getElementById('bathsValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-car"></i></div><span class="feature-value" id="parkingValue">' + document.getElementById('parkingValue').innerText + '</span></div>' +
+                '<div class="feature-item"><div class="feature-icon"><i class="fas fa-ruler-combined"></i></div><span class="feature-value" id="areaValue">' + document.getElementById('areaValue').innerText + '</span></div></div>' +
+                '<div class="custom-caption" id="captionDisplay">' + caption + '</div>' +
+                '<div class="ad-footer"><div class="footer-left">' +
+                '<div class="agent-name" id="agentNameDisplay">' + document.getElementById('agentNameDisplay').innerText + '</div>' +
+                '<div class="agent-contact" id="agentContactDisplay">' + document.getElementById('agentContactDisplay').innerText + '</div>' +
+                '<div class="agent-email" id="agentEmailDisplay">' + document.getElementById('agentEmailDisplay').innerText + '</div>' +
+                '<div class="company-website" id="companyWebsiteDisplay">' + document.getElementById('companyWebsiteDisplay').innerText + '</div></div>' +
+                '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" style="display: ' + logoDisplay + ';"></div></div>';
+        }
+
+        canvas.innerHTML = html;
+    }
+
     function setBgMode(mode, btn) {
         bgMode = mode;
         const solidPicker = document.getElementById('solidColorPicker');
         const gradientPickers = document.getElementById('gradientColorPickers');
         const btns = btn.parentElement.querySelectorAll('.toggle-btn');
-
         btns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         if (mode === 'solid') {
             solidPicker.classList.remove('hidden');
             gradientPickers.classList.add('hidden');
@@ -1283,7 +615,6 @@
     function updateTheme() {
         const root = document.documentElement;
         const canvas = document.getElementById('ad-canvas');
-
         const textColor = document.getElementById('textColorPicker').value;
         const titleColor = document.getElementById('titleColorPicker').value;
         const accentColor = document.getElementById('accentColorPicker').value;
@@ -1295,7 +626,7 @@
         const r = parseInt(accentColor.slice(1, 3), 16);
         const g = parseInt(accentColor.slice(3, 5), 16);
         const b = parseInt(accentColor.slice(5, 7), 16);
-        root.style.setProperty('--ad-accent-bg', `rgba(${r}, ${g}, ${b}, 0.08)`);
+        root.style.setProperty('--ad-accent-bg', 'rgba(' + r + ', ' + g + ', ' + b + ', 0.08)');
 
         document.getElementById('bgColorValue').textContent = document.getElementById('bgColorPicker').value.toUpperCase();
         document.getElementById('grad1Value').textContent = document.getElementById('gradColor1').value.toUpperCase();
@@ -1311,7 +642,7 @@
         } else {
             const color1 = document.getElementById('gradColor1').value;
             const color2 = document.getElementById('gradColor2').value;
-            canvas.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+            canvas.style.background = 'linear-gradient(135deg, ' + color1 + ', ' + color2 + ')';
         }
     }
 
@@ -1319,7 +650,6 @@
         const select = document.getElementById('statusSelect');
         const customInput = document.getElementById('customStatus');
         const display = document.getElementById('statusDisplay');
-
         if (select.value === 'CUSTOM') {
             customInput.classList.remove('hidden');
             display.innerText = customInput.value || 'CUSTOM';
@@ -1338,7 +668,6 @@
         const select = document.getElementById('stampSelect');
         const customInput = document.getElementById('customStamp');
         const stamp = document.getElementById('stampOverlay');
-
         if (select.value === 'NONE') {
             stamp.classList.remove('visible');
             customInput.classList.add('hidden');
@@ -1379,10 +708,10 @@
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                preview.innerHTML = `<img src="${e.target.result}" alt="Property">`;
+                preview.innerHTML = '<img src="' + e.target.result + '" alt="Property">';
                 preview.classList.remove('empty');
                 zone.classList.add('has-image');
-                zone.innerHTML = `<img src="${e.target.result}" alt="Thumbnail">`;
+                zone.innerHTML = '<img src="' + e.target.result + '" alt="Thumbnail">';
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -1392,10 +721,9 @@
         const select = document.getElementById('logoSourceSelect');
         const customContainer = document.getElementById('customLogoUploadContainer');
         const logo = document.getElementById('canvasLogo');
-
         if (select.value === 'hosted') {
             customContainer.classList.add('hidden');
-            logo.src = 'https://shamsi.co.za/evolate.png'; 
+            logo.src = 'https://shamsi.co.za/evolate.png';
             logo.style.display = 'block';
         } else if (select.value === 'custom') {
             customContainer.classList.remove('hidden');
@@ -1415,7 +743,7 @@
                 const zone = input.closest('.control-group').querySelector('.upload-zone');
                 if (zone) {
                     zone.classList.add('has-image');
-                    zone.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
+                    zone.innerHTML = '<img src="' + e.target.result + '" alt="Logo">';
                 }
             }
             reader.readAsDataURL(input.files[0]);
@@ -1426,39 +754,26 @@
         const toast = document.getElementById('toast');
         document.getElementById('toastMessage').textContent = message;
         toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
+        setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
     function exportAd() {
         const originalCanvas = document.getElementById('ad-canvas');
-
         const clone = originalCanvas.cloneNode(true);
-
         clone.style.transform = 'none';
         clone.style.marginBottom = '0';
         clone.style.marginLeft = '0';
         clone.style.marginRight = '0';
-
         clone.style.position = 'absolute';
         clone.style.left = '-9999px';
         clone.style.top = '0';
-
         document.body.appendChild(clone);
-
         setTimeout(() => {
-            html2canvas(clone, {
-                scale: 3,
-                backgroundColor: null,
-                useCORS: true,
-                allowTaint: true
-            }).then(function(renderedCanvas) {
+            html2canvas(clone, { scale: 3, backgroundColor: null, useCORS: true, allowTaint: true }).then(function(renderedCanvas) {
                 const link = document.createElement('a');
-                link.download = `property-ad-${Date.now()}.png`;
+                link.download = 'property-ad-' + Date.now() + '.png';
                 link.href = renderedCanvas.toDataURL('image/png');
                 link.click();
-
                 document.body.removeChild(clone);
                 showToast('Ad downloaded successfully!');
             }).catch(err => {
@@ -1471,7 +786,6 @@
 
     function resetAll() {
         if (!confirm('Reset all fields to default?')) return;
-
         document.getElementById('statusSelect').value = 'FOR SALE';
         document.getElementById('stampSelect').value = 'NONE';
         document.getElementById('bgColorPicker').value = '#ffffff';
@@ -1490,15 +804,15 @@
         document.getElementById('agentEmail').value = 'javeria@evolate.co.za';
         document.getElementById('companyWebsite').value = 'evolate.co.za';
 
-        ['preview1','preview2','preview3','preview4'].forEach((id, i) => {
-            document.getElementById(id).innerHTML = '';
-            document.getElementById(id).classList.add('empty');
+        ['preview1','preview2','preview3','preview4'].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) { el.innerHTML = ''; el.classList.add('empty'); }
         });
 
         ['uploadZone1','uploadZone2','uploadZone3','uploadZone4'].forEach(id => {
             const zone = document.getElementById(id);
             zone.classList.remove('has-image');
-            zone.innerHTML = `<div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo ${id.replace('uploadZone','')}</span></div>`;
+            zone.innerHTML = '<div class="upload-placeholder"><i class="fas fa-plus"></i><span>Photo ' + id.replace('uploadZone','') + '</span></div>';
         });
 
         document.getElementById('img1').value = '';
@@ -1508,24 +822,24 @@
 
         setFormat('square', document.querySelector('.toggle-btn'));
         setBgMode('solid', document.querySelectorAll('.toggle-btn')[2]);
+        setTheme('grid', document.querySelectorAll('.toggle-btn')[4]);
         updateStatus();
         updateStamp();
         updateTheme();
         updateCaption();
 
-        document.getElementById('bedsValue').innerText = '3';
-        document.getElementById('bathsValue').innerText = '2';
-        document.getElementById('parkingValue').innerText = '2';
-        document.getElementById('areaValue').innerText = '250';
-        document.getElementById('agentNameDisplay').innerText = 'Javeria Akhtar';
-        document.getElementById('agentContactDisplay').innerText = '079 165 4894';
-        document.getElementById('agentEmailDisplay').innerText = 'javeria@evolate.co.za';
-        document.getElementById('companyWebsiteDisplay').innerText = 'evolate.co.za';
+        const bedsV = document.getElementById('bedsValue'); if(bedsV) bedsV.innerText = '3';
+        const bathsV = document.getElementById('bathsValue'); if(bathsV) bathsV.innerText = '2';
+        const parkV = document.getElementById('parkingValue'); if(parkV) parkV.innerText = '2';
+        const areaV = document.getElementById('areaValue'); if(areaV) areaV.innerText = '250';
+        const agentN = document.getElementById('agentNameDisplay'); if(agentN) agentN.innerText = 'Javeria Akhtar';
+        const agentC = document.getElementById('agentContactDisplay'); if(agentC) agentC.innerText = '079 165 4894';
+        const agentE = document.getElementById('agentEmailDisplay'); if(agentE) agentE.innerText = 'javeria@evolate.co.za';
+        const compW = document.getElementById('companyWebsiteDisplay'); if(compW) compW.innerText = 'evolate.co.za';
 
         showToast('All fields reset to defaults');
     }
 
-    // Initialize
     updateTheme();
     handleLogoSourceChange();
 </script>
