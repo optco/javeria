@@ -50,7 +50,15 @@
         .color-picker-wrapper { position: relative; display: flex; align-items: center; gap: 10px; }
         input[type="color"] { width: 44px; height: 44px; border: 2px solid var(--border-color); border-radius: var(--radius-sm); padding: 3px; background: var(--bg-panel); cursor: pointer; transition: border-color 0.2s; }
         input[type="color"]:hover { border-color: var(--accent-light); }
-        .color-value { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); font-family: 'SF Mono', monospace; text-transform: uppercase; }
+        
+        .color-value-input {
+            width: 65px; border: 1px solid var(--border-color);
+            background: var(--bg-panel); border-radius: 4px; padding: 4px;
+            font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+            font-family: 'SF Mono', monospace; text-transform: uppercase; text-align: center;
+        }
+        .color-value-input:focus { border-color: var(--accent); }
+
         .toggle-group { display: flex; gap: 4px; background: var(--bg-input); padding: 4px; border-radius: var(--radius-sm); border: 1.5px solid var(--border-color); }
         .toggle-btn { flex: 1; padding: 10px 12px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.85rem; color: var(--text-secondary); transition: all 0.2s; touch-action: manipulation; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .toggle-btn i { font-size: 0.8rem; }
@@ -97,10 +105,8 @@
         .theme-hero .status-line { width: 3px; height: 28px; background: var(--ad-accent-color); border-radius: 2px; margin-top: 0; }
         .theme-hero .ad-images { display: flex; flex-direction: column; gap: 4px; margin: 0 24px; position: relative; border-radius: var(--radius); overflow: hidden; }
         .theme-hero .hero-main { width: 100%; height: 180px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
-        .theme-hero .hero-main img { width: 100%; height: 100%; object-fit: cover; }
         .theme-hero .hero-thumbs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
         .theme-hero .hero-thumb { height: 70px; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); }
-        .theme-hero .hero-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .format-square.theme-hero .ad-images { max-height: 260px; }
         .format-vertical.theme-hero .ad-images { max-height: 420px; }
         .format-vertical.theme-hero .hero-main { height: 280px; }
@@ -138,6 +144,7 @@
         .theme-masonry .agent-contact, .theme-masonry .agent-email { font-size: 0.75rem; color: var(--ad-text-color); opacity: 0.7; font-weight: 500; }
         .theme-masonry .company-website { font-size: 0.7rem; font-weight: 600; color: var(--ad-accent-color); text-align: left; line-height: 1.3; margin-top: 2px; }
 
+        .hero-main, .hero-thumb { cursor: pointer; position: relative; overflow: hidden; display: flex; }
         .ad-image-slot { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; transition: all 0.3s; cursor: pointer; }
         
         .ad-image-slot.empty::before { 
@@ -149,16 +156,25 @@
             opacity: 0.7; 
         }
         
-        .hero-main, .hero-thumb { cursor: pointer; }
-        .ad-image-slot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .ad-image-slot img, .hero-main img, .hero-thumb img {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center; 
+            transition: transform 0.4s;
+        }
+
         .ad-image-slot:hover img { transform: scale(1.05); }
 
         .stamp-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); border: 3px solid var(--danger); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--danger); font-size: 1.8rem; font-weight: 800; padding: 10px 28px; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0; pointer-events: none; z-index: 20; border-radius: 6px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2); font-family: 'Inter', sans-serif; }
         .stamp-overlay.visible { opacity: 0.95; animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
         @keyframes stampIn { 0% { transform: translate(-50%, -50%) rotate(-15deg) scale(2); opacity: 0; } 100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 0.95; } }
 
-        .company-logo { width: 90px; height: auto; max-height: 80px; object-fit: contain; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); cursor: pointer; min-height: 30px; min-width: 50px; background: rgba(0,0,0,0.02); border-radius: var(--radius-sm); border: 1px dashed transparent; }
-        .company-logo:hover { border-color: var(--ad-accent-color); background: rgba(99, 102, 241, 0.05); }
+        .company-logo { width: 90px; height: auto; max-height: 80px; object-fit: contain; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); cursor: pointer; min-height: 30px; min-width: 50px; background: transparent; border-radius: var(--radius-sm); border: 1px dashed transparent; }
+        .company-logo:hover { border-color: var(--ad-accent-color); background: transparent; }
         
         .hidden { display: none !important; }
         .page-footer { width: 100%; text-align: center; padding: 1.5rem; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.5px; background: var(--bg-panel); border-top: 1px solid var(--border-color); }
@@ -240,7 +256,7 @@
                     <label class="control-label">Background Color</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="bgColorPicker" value="#ffffff" oninput="updateTheme()">
-                        <span class="color-value" id="bgColorValue">#FFFFFF</span>
+                        <input type="text" class="color-value-input" id="bgColorValue" value="#FFFFFF" maxlength="7" oninput="syncHexColor('bgColorPicker', this.value)">
                     </div>
                 </div>
                 <div id="gradientColorPickers" class="hidden">
@@ -249,14 +265,14 @@
                             <label class="control-label">From</label>
                             <div class="color-picker-wrapper">
                                 <input type="color" id="gradColor1" value="#667eea" oninput="updateTheme()">
-                                <span class="color-value" id="grad1Value">#667EEA</span>
+                                <input type="text" class="color-value-input" id="grad1Value" value="#667EEA" maxlength="7" oninput="syncHexColor('gradColor1', this.value)">
                             </div>
                         </div>
                         <div>
                             <label class="control-label">To</label>
                             <div class="color-picker-wrapper">
                                 <input type="color" id="gradColor2" value="#764ba2" oninput="updateTheme()">
-                                <span class="color-value" id="grad2Value">#764BA2</span>
+                                <input type="text" class="color-value-input" id="grad2Value" value="#764BA2" maxlength="7" oninput="syncHexColor('gradColor2', this.value)">
                             </div>
                         </div>
                     </div>
@@ -269,21 +285,21 @@
                         <label class="control-label">Text</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="textColorPicker" value="#1e293b" oninput="updateTheme()">
-                            <span class="color-value" id="textColorValue">#1E293B</span>
+                            <input type="text" class="color-value-input" id="textColorValue" value="#1E293B" maxlength="7" oninput="syncHexColor('textColorPicker', this.value)">
                         </div>
                     </div>
                     <div>
                         <label class="control-label">Title</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="titleColorPicker" value="#1e293b" oninput="updateTheme()">
-                            <span class="color-value" id="titleColorValue">#1E293B</span>
+                            <input type="text" class="color-value-input" id="titleColorValue" value="#1E293B" maxlength="7" oninput="syncHexColor('titleColorPicker', this.value)">
                         </div>
                     </div>
                     <div>
                         <label class="control-label">Accent</label>
                         <div class="color-picker-wrapper">
                             <input type="color" id="accentColorPicker" value="#6366f1" oninput="updateTheme()">
-                            <span class="color-value" id="accentColorValue">#6366F1</span>
+                            <input type="text" class="color-value-input" id="accentColorValue" value="#6366F1" maxlength="7" oninput="syncHexColor('accentColorPicker', this.value)">
                         </div>
                     </div>
                 </div>
@@ -371,7 +387,6 @@
     Crafted with care by <a href="https://shamsi.co.za" target="_blank" rel="noopener">shamsi.co.za</a>
 </div>
 
-<!-- Hidden native file inputs -->
 <input type="file" id="img1" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview1')" class="hidden">
 <input type="file" id="img2" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview2')" class="hidden">
 <input type="file" id="img3" accept="image/png, image/jpeg" onchange="loadImage(this, 'preview3')" class="hidden">
@@ -388,6 +403,16 @@
     let bgMode = 'solid';
     let currentTheme = 'grid';
     const DEFAULT_CAPTION = "Click to type property description or features...";
+
+    function syncHexColor(pickerId, hexCode) {
+        let formattedHex = hexCode.trim();
+        if (!formattedHex.startsWith('#')) formattedHex = '#' + formattedHex;
+        
+        if (/^#[0-9A-Fa-f]{6}$/i.test(formattedHex)) {
+            document.getElementById(pickerId).value = formattedHex;
+            updateTheme();
+        }
+    }
 
     function setFormat(format, btn) {
         currentFormat = format;
@@ -550,12 +575,12 @@
         const b = parseInt(accentColor.slice(5, 7), 16);
         root.style.setProperty('--ad-accent-bg', 'rgba(' + r + ', ' + g + ', ' + b + ', 0.08)');
 
-        document.getElementById('bgColorValue').textContent = document.getElementById('bgColorPicker').value.toUpperCase();
-        document.getElementById('grad1Value').textContent = document.getElementById('gradColor1').value.toUpperCase();
-        document.getElementById('grad2Value').textContent = document.getElementById('gradColor2').value.toUpperCase();
-        document.getElementById('textColorValue').textContent = textColor.toUpperCase();
-        document.getElementById('titleColorValue').textContent = titleColor.toUpperCase();
-        document.getElementById('accentColorValue').textContent = accentColor.toUpperCase();
+        document.getElementById('bgColorValue').value = document.getElementById('bgColorPicker').value.toUpperCase();
+        document.getElementById('grad1Value').value = document.getElementById('gradColor1').value.toUpperCase();
+        document.getElementById('grad2Value').value = document.getElementById('gradColor2').value.toUpperCase();
+        document.getElementById('textColorValue').value = textColor.toUpperCase();
+        document.getElementById('titleColorValue').value = titleColor.toUpperCase();
+        document.getElementById('accentColorValue').value = accentColor.toUpperCase();
 
         if (bgMode === 'solid') {
             const bgColor = document.getElementById('bgColorPicker').value;
@@ -625,14 +650,12 @@
     }
 
     function exportAd() {
-        // Drop absolute focus outline styles temporarily during export
         const elements = document.querySelectorAll('[contenteditable="true"]');
         elements.forEach(el => el.blur());
 
         const originalCanvas = document.getElementById('ad-canvas');
         const clone = originalCanvas.cloneNode(true);
         
-        // Hide caption block if it is empty or matches default placeholder text
         const clonedCaption = clone.querySelector('#captionDisplay');
         if (clonedCaption) {
             const captionText = clonedCaption.textContent.trim();
@@ -693,7 +716,6 @@
         updateStamp();
         updateTheme();
 
-        // Restore preview editable elements
         document.getElementById('statusDisplay').innerText = 'FOR SALE';
         document.getElementById('bedsValue').innerText = '3';
         document.getElementById('bathsValue').innerText = '2';
