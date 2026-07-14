@@ -152,7 +152,6 @@
         .theme-hero .feature-value { font-size: 0.85rem; font-weight: 700; color: var(--ad-text-color); display: inline-block; min-width: 10px; text-align: center; }
         .theme-hero .custom-caption { padding: 12px 28px 0 28px; font-size: 0.85rem; color: var(--ad-text-color); opacity: 0.75; font-weight: 400; line-height: 1.5; font-style: italic; min-height: 20px; }
         
-        /* Updated compact horizontal footer layout matching other themes */
         .theme-hero .ad-footer { padding: 20px 28px 28px 28px; margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.02), transparent); }
         .theme-hero .footer-left { flex: 1; display: flex; flex-direction: column; gap: 3px; }
         .theme-hero .footer-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
@@ -175,7 +174,6 @@
         .theme-masonry .feature-value { font-size: 0.85rem; font-weight: 700; color: var(--ad-text-color); display: inline-block; min-width: 10px; text-align: center; }
         .theme-masonry .custom-caption { padding: 12px 28px 0 28px; font-size: 0.85rem; color: var(--ad-text-color); opacity: 0.75; font-weight: 400; line-height: 1.5; font-style: italic; min-height: 20px; }
         
-        /* Masonry theme changes: Removed border-top line from under the caption */
         .theme-masonry .ad-footer { padding: 16px 28px 24px 28px; margin-top: auto; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to top, rgba(0,0,0,0.03), transparent); border-top: none; }
         
         .theme-masonry .footer-left { flex: 1; display: flex; flex-direction: column; gap: 2px; }
@@ -224,6 +222,27 @@
         .toast { position: fixed; bottom: 24px; right: 24px; background: var(--text-primary); color: white; padding: 12px 20px; border-radius: var(--radius); font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-xl); z-index: 1000; transform: translateY(100px); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; gap: 10px; }
         .toast.show { transform: translateY(0); opacity: 1; }
         .toast i { color: var(--success); }
+
+        /* Header Title Group & Price Badge */
+                   .header-title-group {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between; /* Pushes title left and price right */
+            flex-wrap: wrap;
+            flex: 1; /* Ensures it stretches fully in the Hero theme */
+            width: 100%; /* Ensures it stretches fully in Grid/Masonry themes */
+        }
+        .price-badge {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ad-accent-color);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .theme-hero .price-badge, .theme-masonry .price-badge {
+            font-size: 1.25rem;
+        }
 
         @media (max-width: 1024px) { .app-container { grid-template-columns: 340px 1fr; } }
         @media (max-width: 900px) {
@@ -410,7 +429,10 @@
 
         <div id="ad-canvas" class="format-square theme-grid">
             <div class="ad-header">
-                <div class="status-badge" id="statusDisplay" contenteditable="true">FOR SALE</div>
+                <div class="header-title-group">
+                    <div class="status-badge" id="statusDisplay" contenteditable="true">FOR SALE</div>
+                    <div class="price-badge" id="priceDisplay" contenteditable="true">R </div>
+                </div>
                 <div class="status-line"></div>
             </div>
 
@@ -440,7 +462,7 @@
                 </div>
             </div>
 
-            <div class="custom-caption" id="captionDisplay" contenteditable="true" placeholder="Click here to type property description...">Click to type property description or features...</div>
+            <div class="custom-caption" id="captionDisplay" contenteditable="true" placeholder="Click here to type property description...">Caption</div>
 
             <div class="ad-footer">
                 <div class="footer-left">
@@ -545,6 +567,7 @@
     function rebuildCanvasStructure(theme) {
         const canvas = document.getElementById('ad-canvas');
         const status = document.getElementById('statusDisplay').innerHTML;
+        const price = document.getElementById('priceDisplay') ? document.getElementById('priceDisplay').innerHTML : 'R ';
         const caption = document.getElementById('captionDisplay').innerHTML;
         const stampText = document.getElementById('stampOverlay').innerHTML;
         const stampVisible = document.getElementById('stampOverlay').classList.contains('visible');
@@ -577,9 +600,10 @@
         }
 
         let html = '';
+        const titleGroup = '<div class="header-title-group"><div class="status-badge" id="statusDisplay" contenteditable="true">' + status + '</div><div class="price-badge" id="priceDisplay" contenteditable="true">' + price + '</div></div>';
 
         if (theme === 'grid') {
-            html = '<div class="ad-header"><div class="status-badge" id="statusDisplay" contenteditable="true">' + status + '</div><div class="status-line"></div></div>' +
+            html = '<div class="ad-header">' + titleGroup + '<div class="status-line"></div></div>' +
                 '<div class="ad-images">' +
                 getSlotHtml(1, imgSrcs[0]) +
                 getSlotHtml(2, imgSrcs[1]) +
@@ -598,7 +622,7 @@
                 '<div class="company-website" id="companyWebsiteDisplay" contenteditable="true">' + companyWebsite + '</div></div>' +
                 '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" onclick="document.getElementById(\'logoUpload\').click()" title="Click to change logo"></div></div>';
         } else if (theme === 'hero') {
-            html = '<div class="ad-header"><div class="status-line"></div><div class="status-badge" id="statusDisplay" contenteditable="true">' + status + '</div></div>' +
+            html = '<div class="ad-header"><div class="status-line"></div>' + titleGroup + '</div>' +
                 '<div class="ad-images">' +
                 getHeroMainHtml(imgSrcs[0]) +
                 '<div class="hero-thumbs">' +
@@ -618,7 +642,7 @@
                 '<div class="company-website" id="companyWebsiteDisplay" contenteditable="true">' + companyWebsite + '</div></div>' +
                 '<div class="footer-right"><img id="canvasLogo" class="company-logo" src="' + logoSrc + '" onclick="document.getElementById(\'logoUpload\').click()" title="Click to change logo"></div></div>';
         } else if (theme === 'masonry') {
-            html = '<div class="ad-header"><div class="status-badge" id="statusDisplay" contenteditable="true">' + status + '</div><div class="status-line"></div></div>' +
+            html = '<div class="ad-header">' + titleGroup + '<div class="status-line"></div></div>' +
                 '<div class="ad-images">' +
                 getSlotHtml(1, imgSrcs[0]) +
                 getSlotHtml(2, imgSrcs[1]) +
@@ -859,6 +883,8 @@
         updateTheme();
 
         document.getElementById('statusDisplay').innerText = 'FOR SALE';
+        const priceDisplay = document.getElementById('priceDisplay');
+        if (priceDisplay) priceDisplay.innerText = 'R ';
         document.getElementById('bedsValue').innerText = '3';
         document.getElementById('bathsValue').innerText = '2';
         document.getElementById('parkingValue').innerText = '2';
