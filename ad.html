@@ -224,7 +224,7 @@
         .toast i { color: var(--success); }
 
         /* Header Title Group & Price Badge */
-                   .header-title-group {
+        .header-title-group {
             display: flex;
             align-items: baseline;
             justify-content: space-between; /* Pushes title left and price right */
@@ -260,19 +260,19 @@
             .format-vertical { transform: scale(0.62); transform-origin: top center; }
         }
         button, select, .section-card { transition: all 0.2s ease; }
-/* Center labels and inputs for Background, Text, Title, and Accent */
-#solidColorPicker, 
-.color-row > div, 
-.color-row-triple > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* Center labels and inputs for Background, Text, Title, and Accent */
+        #solidColorPicker, 
+        .color-row > div, 
+        .color-row-triple > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* Ensure labels are centered */
-.control-label {
-    text-align: center;
-}
+        /* Ensure labels are centered */
+        .control-label {
+            text-align: center;
+        }
     </style>
 <base target="_blank">
 </head>
@@ -336,7 +336,7 @@
                             </div>
                         </div>
                         <div id="gradientColorPickers" class="hidden">
-                            <div style="display: flex; gap: 8px;">
+                            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
                                 <div style="flex: 1;">
                                     <label class="control-label">BG From</label>
                                     <div class="color-picker-wrapper">
@@ -350,6 +350,15 @@
                                         <input type="color" id="gradColor2" value="#000000" oninput="updateTheme()">
                                         <input type="text" class="color-value-input" id="grad2Value" value="#000000" maxlength="7" oninput="syncHexColor('gradColor2', this.value)">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="control-group" style="margin-bottom: 0;">
+                                <label class="control-label">Gradient Angle</label>
+                                <div class="toggle-group">
+                                    <button class="toggle-btn" onclick="setGradAngle(45, this)">45°</button>
+                                    <button class="toggle-btn" onclick="setGradAngle(90, this)">90°</button>
+                                    <button class="toggle-btn active" onclick="setGradAngle(135, this)">135°</button>
+                                    <button class="toggle-btn" onclick="setGradAngle(180, this)">180°</button>
                                 </div>
                             </div>
                         </div>
@@ -494,10 +503,11 @@
     <span id="toastMessage">Ad exported successfully!</span>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     let currentFormat = 'square';
     let bgMode = 'solid';
     let currentTheme = 'grid';
+    let gradAngle = 135;
     const DEFAULT_CAPTION = "Click to type property description or features...";
 
     function syncHexColor(pickerId, hexCode) {
@@ -701,6 +711,14 @@
         updateTheme();
     }
 
+    function setGradAngle(angle, btn) {
+        gradAngle = angle;
+        const btns = btn.parentElement.querySelectorAll('.toggle-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateTheme();
+    }
+
     function updateTheme() {
         const root = document.documentElement;
         const canvas = document.getElementById('ad-canvas');
@@ -731,7 +749,7 @@
         } else {
             const color1 = document.getElementById('gradColor1').value;
             const color2 = document.getElementById('gradColor2').value;
-            canvas.style.background = 'linear-gradient(135deg, ' + color1 + ', ' + color2 + ')';
+            canvas.style.background = `linear-gradient(${gradAngle}deg, ${color1}, ${color2})`;
         }
     }
 
@@ -846,12 +864,12 @@
     function resetAll() {
         if (!confirm('Reset all fields to default?')) return;
         document.getElementById('stampSelect').value = 'NONE';
-        document.getElementById('bgColorPicker').value = '#ffffff';
-        document.getElementById('textColorPicker').value = '#1e293b';
-        document.getElementById('titleColorPicker').value = '#1e293b';
-        document.getElementById('accentColorPicker').value = '#6366f1';
-        document.getElementById('gradColor1').value = '#667eea';
-        document.getElementById('gradColor2').value = '#764ba2';
+        document.getElementById('bgColorPicker').value = '#000000';
+        document.getElementById('textColorPicker').value = '#ffffff';
+        document.getElementById('titleColorPicker').value = '#E7C973';
+        document.getElementById('accentColorPicker').value = '#E7C973';
+        document.getElementById('gradColor1').value = '#ffffff';
+        document.getElementById('gradColor2').value = '#000000';
 
         ['preview1','preview2','preview3'].forEach((id) => {
             const el = document.getElementById(id);
@@ -879,6 +897,9 @@
         const modernFontBtn = document.querySelector('button[onclick*="setPageFont(\'modern\'"]');
         if (modernFontBtn) setPageFont('modern', modernFontBtn);
 
+        const gradAngleBtn = document.querySelector('button[onclick*="setGradAngle(135"]');
+        if (gradAngleBtn) setGradAngle(135, gradAngleBtn);
+
         updateStamp();
         updateTheme();
 
@@ -901,5 +922,6 @@
 
     updateTheme();
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"32c4731f4f794c8da2443a0e2b1394b7","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
