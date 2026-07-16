@@ -4,6 +4,22 @@
 
 const AGENT_CONFIG = {
 
+  // ── Listings ──
+  listings: {
+    forSale: {
+      url: "https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917",
+      count: 43
+    },
+    toRent: {
+      url: "https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917",
+      count: 12
+    },
+    evolate: {
+      url: "https://www.evolate.co.za/estate-agent/javeria-akhtar",
+      count: 133
+    }
+  },
+  
   // ── Personal Info ──
   name: {
     first: "Javeria",
@@ -35,22 +51,6 @@ const AGENT_CONFIG = {
     tiktokUsername: "soldbyjaveria",
     instagram: "https://www.instagram.com/soldbyjaveria",
     instagramUsername: "soldbyjaveria"
-  },
-
-  // ── Listings ──
-  listings: {
-    forSale: {
-      url: "https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917",
-      count: 42
-    },
-    toRent: {
-      url: "https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917",
-      count: 10
-    },
-    evolate: {
-      url: "https://www.evolate.co.za/estate-agent/javeria-akhtar",
-      count: 130
-    }
   },
 
   // ── Areas Serviced ──
