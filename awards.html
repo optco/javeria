@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Agent of the Month - Awards Gallery</title>
+  <meta name="theme-color" content="#6a11cb">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    .awards-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px 110px; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 24px; background: rgba(102,126,234,.2);
+      border-radius: 50px; color: #fff; text-decoration: none;
+      margin-bottom: 30px; transition: background .3s;
+    }
+    .back-link:hover { background: rgba(102,126,234,.4); }
+
+    .page-header { text-align: center; margin-bottom: 50px; }
+    .page-header h1 {
+      font-size: 2.8rem; color: #ffffff;
+      text-shadow: 0 2px 20px rgba(255,255,255,.25);
+      margin-bottom: 10px;
+    }
+    .page-header h1 i { color: #ffd700; margin-right: 10px; }
+    .page-header p { font-size: 1.15rem; color: rgba(255,255,255,.75); }
+
+    .year-section { margin-bottom: 22px; }
+    .year-header {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      font-size: 1.9rem; font-weight: 700; color: #fff;
+      background: rgba(255,255,255,.06); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.12); border-radius: 16px;
+      padding: 20px 28px; cursor: pointer; transition: background .3s;
+      font-family: inherit;
+    }
+    .year-header:hover { background: rgba(255,255,255,.12); }
+    .year-header .chev { transition: transform .4s; }
+    .year-section.open .year-header .chev { transform: rotate(180deg); }
+
+    .year-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s ease; }
+    .year-section.open .year-content { grid-template-rows: 1fr; }
+    .year-inner { overflow: hidden; min-height: 0; }
+
+    .months-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 22px; padding: 25px 5px 10px;
+    }
+
+    /* Month cards hidden by default, shown only when an image loads */
+    .month-card {
+      display: none;
+      background: rgba(255,255,255,.05); backdrop-filter: blur(10px);
+      border-radius: 16px; padding: 18px; border: 1px solid rgba(255,255,255,.1);
+    }
+    .month-card.has-image { display: block; }
+
+    .month-name { font-size: 1.25rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 14px; }
+
+    .awards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .award-label {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,.75); margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .award-label i { color: #ffd700; }
+
+    .award-image {
+      width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+      border-radius: 10px; border: 1px solid rgba(255,255,255,.15);
+      cursor: zoom-in; display: block;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .award-image:hover { transform: scale(1.15); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+
+    /* Hide broken images entirely */
+    .award-image.broken { display: none; }
+
+    /* When only one image exists, let it span full width */
+    .awards-row.single .award-type { grid-column: 1 / -1; }
+    .awards-row.single .award-image { max-width: 60%; margin: 0 auto; }
+
+    .no-image { display: none; }
+
+    .empty-message {
+      text-align: center; color: rgba(255,255,255,.4);
+      padding: 40px 20px; font-size: 1.1rem;
+      display: none;
+    }
+    .empty-message.show { display: block; }
+
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,.88);
+      backdrop-filter: blur(6px); display: none;
+      align-items: center; justify-content: center;
+      z-index: 2000; padding: 20px;
+    }
+    .lightbox.show { display: flex; }
+    .lightbox img {
+      max-width: min(92vw, 560px); max-height: 85vh;
+      border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 25px;
+      width: 50px; height: 50px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.15); color: #fff;
+      font-size: 1.2rem; cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,.3); transform: rotate(90deg); }
+    .lightbox-caption {
+      position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.9); font-size: 1rem;
+      background: rgba(0,0,0,.45); padding: 8px 20px;
+      border-radius: 50px; white-space: nowrap;
+    }
+
+    #go-top {
+      position: fixed; right: 25px; bottom: 25px;
+      width: 52px; height: 52px; border-radius: 50%; border: none;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff; font-size: 1.2rem; cursor: pointer;
+      opacity: 0; visibility: hidden; transform: translateY(15px);
+      transition: all .35s; z-index: 1500;
+      box-shadow: 0 8px 24px rgba(102,126,234,.4);
+    }
+    #go-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    #go-top:hover { transform: translateY(-4px); }
+
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 2rem; }
+      .year-header { font-size: 1.4rem; padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+  <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
+  <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
+</button>
+
+<div class="bg-gradient"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="awards-container">
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Profile
+  </a>
+
+  <div class="page-header">
+    <h1><i class="fas fa-trophy"></i>Best Agent of the Month</h1>
+    <p>Sales &amp; Rental Achievement Awards</p>
+  </div>
+
+  <div id="awards-gallery"></div>
+  <div class="empty-message" id="empty-msg">
+    <i class="fas fa-inbox" style="font-size: 2.5rem; margin-bottom: 15px; display: block;"></i>
+    No awards uploaded yet. Check back soon.
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">
+    <i class="fas fa-times"></i>
+  </button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- Floating go to top -->
+<button type="button" id="go-top" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+  const months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  const monthAbbrev = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+
+  const years = [2026, 2025, 2024];
+
+  function awardBlock(year, mIdx, type) {
+    const src = 'awards/' + type + monthAbbrev[mIdx] + String(year).slice(-2) + '.jpg';
+    const label = type === 'sale' ? 'Sale' : 'Rent';
+    const icon = type === 'sale' ? 'fa-house' : 'fa-key';
+    const caption = label + ' ' + months[mIdx] + ' ' + year;
+    return `
+      <div class="award-type">
+        <div class="award-label"><i class="fas ${icon}"></i> ${label}</div>
+        <img src="${src}" alt="${caption}" class="award-image" loading="lazy">
+      </div>`;
+  }
+
+  function createMonthCard(year, mIdx) {
+    return `
+      <div class="month-card" data-month="${mIdx}">
+        <h3 class="month-name">${months[mIdx]}</h3>
+        <div class="awards-row">
+          ${awardBlock(year, mIdx, 'sale')}
+          ${awardBlock(year, mIdx, 'rent')}
+        </div>
+      </div>`;
+  }
+
+  const gallery = document.getElementById('awards-gallery');
+  gallery.innerHTML = years.map(year => `
+    <div class="year-section" id="year-${year}">
+      <button type="button" class="year-header" data-year="${year}" aria-expanded="false">
+        <span><i class="fas fa-calendar"></i>&nbsp; ${year}</span>
+        <i class="fas fa-chevron-down chev"></i>
+      </button>
+      <div class="year-content">
+        <div class="year-inner">
+          <div class="months-grid">
+            ${Array.from({length: 12}, (_, i) => createMonthCard(year, i)).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Image load/fail logic: show month card only if at least one image loads
+  let anyImageLoaded = false;
+
+  gallery.querySelectorAll('.month-card').forEach(card => {
+    const images = card.querySelectorAll('.award-image');
+    let loadedCount = 0;
+    let failedCount = 0;
+    const total = images.length;
+
+    function checkComplete() {
+      if (loadedCount > 0) {
+        card.classList.add('has-image');
+        anyImageLoaded = true;
+
+        // If only one image loaded, adjust layout
+        if (loadedCount === 1) {
+          card.querySelector('.awards-row').classList.add('single');
+        }
+      }
+    }
+
+    images.forEach(img => {
+      const onFail = () => {
+        img.classList.add('broken');
+        failedCount++;
+        if (failedCount + loadedCount === total) checkComplete();
+      };
+      const onLoad = () => {
+        loadedCount++;
+        if (failedCount + loadedCount === total) checkComplete();
+      };
+
+      if (img.complete) {
+        if (img.naturalWidth > 0) onLoad();
+        else onFail();
+      } else {
+        img.addEventListener('load', onLoad);
+        img.addEventListener('error', onFail);
+      }
+    });
+  });
+
+  // After all images have had time to load, hide empty year sections and show empty message if needed
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      // Hide year sections that have no visible month cards
+      document.querySelectorAll('.year-section').forEach(section => {
+        const visibleCards = section.querySelectorAll('.month-card.has-image');
+        if (visibleCards.length === 0) {
+          section.style.display = 'none';
+        }
+      });
+
+      // Show empty message if nothing loaded at all
+      if (!anyImageLoaded) {
+        document.getElementById('empty-msg').classList.add('show');
+      }
+    }, 1500);
+  });
+
+  // Year accordion
+  document.querySelectorAll('.year-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = document.getElementById('year-' + btn.dataset.year);
+      const open = section.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  gallery.addEventListener('click', e => {
+    const img = e.target.closest('.award-image');
+    if (!img || img.classList.contains('broken')) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = img.alt;
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Floating go to top
+  const goTop = document.getElementById('go-top');
+  window.addEventListener('scroll', () => {
+    goTop.classList.toggle('show', window.scrollY > 300);
+  });
+  goTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+<script src="javascript.js"></script>
+
+</body>
+</html>
