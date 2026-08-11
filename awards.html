@@ -177,7 +177,7 @@
   const years = [2026, 2025, 2024];
 
   function awardBlock(year, mIdx, type) {
-    const src = type + monthAbbrev[mIdx] + String(year).slice(-2) + '.jpg';
+    const src = 'awards/' + type + monthAbbrev[mIdx] + String(year).slice(-2) + '.jpg';
     const label = type === 'sale' ? 'Sale' : 'Rent';
     const icon = type === 'sale' ? 'fa-house' : 'fa-key';
     const caption = label + ' ' + months[mIdx] + ' ' + year;
