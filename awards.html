@@ -51,7 +51,6 @@
       gap: 22px; padding: 25px 5px 10px;
     }
 
-    /* Month cards hidden by default, shown only when an image loads */
     .month-card {
       display: none;
       background: rgba(255,255,255,.05); backdrop-filter: blur(10px);
@@ -77,14 +76,12 @@
     }
     .award-image:hover { transform: scale(1.15); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
 
-    /* Hide broken images entirely */
-    .award-image.broken { display: none; }
+    /* Hide entire award block (label + image) when missing */
+    .award-type.broken { display: none; }
 
     /* When only one image exists, let it span full width */
-    .awards-row.single .award-type { grid-column: 1 / -1; }
+    .awards-row.single { grid-template-columns: 1fr; }
     .awards-row.single .award-image { max-width: 60%; margin: 0 auto; }
-
-    .no-image { display: none; }
 
     .empty-message {
       text-align: center; color: rgba(255,255,255,.4);
@@ -134,6 +131,7 @@
     @media (max-width: 600px) {
       .page-header h1 { font-size: 2rem; }
       .year-header { font-size: 1.4rem; padding: 16px 20px; }
+      .awards-row.single .award-image { max-width: 80%; }
     }
   </style>
 </head>
@@ -189,7 +187,7 @@
 
   function awardBlock(year, mIdx, type) {
     const src = 'awards/' + type + monthAbbrev[mIdx] + String(year).slice(-2) + '.jpg';
-    const label = type === 'sale' ? 'Sale' : 'Rent';
+    const label = type === 'sale' ? 'Most Sales' : 'Most Rentals';
     const icon = type === 'sale' ? 'fa-house' : 'fa-key';
     const caption = label + ' ' + months[mIdx] + ' ' + year;
     return `
@@ -249,8 +247,10 @@
     }
 
     images.forEach(img => {
+      const awardType = img.closest('.award-type');
+
       const onFail = () => {
-        img.classList.add('broken');
+        awardType.classList.add('broken');
         failedCount++;
         if (failedCount + loadedCount === total) checkComplete();
       };
@@ -272,7 +272,6 @@
   // After all images have had time to load, hide empty year sections and show empty message if needed
   window.addEventListener('load', () => {
     setTimeout(() => {
-      // Hide year sections that have no visible month cards
       document.querySelectorAll('.year-section').forEach(section => {
         const visibleCards = section.querySelectorAll('.month-card.has-image');
         if (visibleCards.length === 0) {
@@ -280,7 +279,6 @@
         }
       });
 
-      // Show empty message if nothing loaded at all
       if (!anyImageLoaded) {
         document.getElementById('empty-msg').classList.add('show');
       }
@@ -303,7 +301,9 @@
 
   gallery.addEventListener('click', e => {
     const img = e.target.closest('.award-image');
-    if (!img || img.classList.contains('broken')) return;
+    if (!img) return;
+    const awardType = img.closest('.award-type');
+    if (awardType && awardType.classList.contains('broken')) return;
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightboxCaption.textContent = img.alt;
