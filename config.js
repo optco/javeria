@@ -8,15 +8,15 @@ const AGENT_CONFIG = {
   listings: {
     forSale: {
       url: "https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917",
-      count: 43
+      count: 41
     },
     toRent: {
       url: "https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917",
-      count: 12
+      count: 13
     },
     evolate: {
       url: "https://www.evolate.co.za/estate-agent/javeria-akhtar",
-      count: 133
+      count: 137
     }
   },
   
