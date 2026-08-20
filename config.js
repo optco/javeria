@@ -3,6 +3,8 @@
 // ============================================
 
 const AGENT_CONFIG = {
+
+  // ── Listings ──
   listings: {
     forSale: {
       url: "https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917",
@@ -18,9 +20,10 @@ const AGENT_CONFIG = {
     }
   },
   
+  // ── Personal Info ──
   name: {
     first: "Javeria",
-    middle: "Shamsi",
+    middle: "Shamsi",     // Displayed in bold
     last: "Akhtar",
     full: "Javeria Shamsi Akhtar"
   },
@@ -29,26 +32,28 @@ const AGENT_CONFIG = {
   profileImage: "https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg",
   profileUrl: "https://www.property24.com/estate-agents/evolate-real-estate/javeria-s-akhtar/465917",
 
+  // ── Short Link ──
   shortLink: {
     url: "https://shamsi.co.za",
     text: "shamsi.co.za"
   },
 
+  // ── Contact ──
   contact: {
     phone: "+27791654894",
     email: "javeria@evolate.co.za",
-    whatsapp: "27791654894"
+    whatsapp: "27791654894"   // No + sign, for wa.me link
   },
 
+  // ── Social Media ──
   social: {
     tiktok: "https://www.tiktok.com/@soldbyjaveria",
     tiktokUsername: "soldbyjaveria",
     instagram: "https://www.instagram.com/soldbyjaveria",
-    instagramUsername: "soldbyjaveria",
-    facebook: "https://www.facebook.com/soldbyjaveria",
-    facebookUsername: "soldbyjaveria"
+    instagramUsername: "soldbyjaveria"
   },
 
+  // ── Areas Serviced ──
   areas: [
     "Boksburg",
     "Centurion",
@@ -60,6 +65,7 @@ const AGENT_CONFIG = {
     "Sandton"
   ],
 
+  // ── Company ──
   company: {
     name: "Evolate Properties",
     formerName: "Titan Property Group",
@@ -69,10 +75,12 @@ const AGENT_CONFIG = {
     tagline: "Helping clients buy, sell & rent with confidence."
   },
 
+  // ── Review ──
   review: {
     url: "https://search.google.com/local/writereview?placeid=ChIJs3RFH15zlR4RolPpvy-Aw4g"
   },
 
+  // ── Contact Form (Web3Forms) ──
   web3forms: {
     accessKey: "e53831f5-bc05-491f-8e5f-6de8293f334e",
     subject: "New Inquiry from Javeria's Profile",
@@ -80,6 +88,7 @@ const AGENT_CONFIG = {
     redirectDesktop: "https://akhtar.co.za/javeria?thanks=1"
   },
 
+  // ── SEO / Meta ──
   seo: {
     pageTitle: "Javeria Shamsi Akhtar | Property Broker & Lease Advisor",
     description: "Award-winning Property Broker & Lease Advisor at Evolate Properties. Expert guidance for buying, selling, and renting properties.",
@@ -89,6 +98,7 @@ const AGENT_CONFIG = {
     twitterCreator: "@soldbyjaveria"
   },
 
+  // ── Expertise (for Schema.org) ──
   expertise: [
     "Real Estate",
     "Property Investment",
