@@ -490,3 +490,75 @@ body {
   .company-info { font-size: 0.9rem; text-align: left; margin: 0; }
   .company-tag { margin: 0; font-size: 0.8rem; }
 }
+/* ========================================
+   TOP TICKER BAR
+   ======================================== */
+.ticker-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 32px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.ticker-item:hover {
+  color: var(--text-secondary);
+}
+
+.ticker-item i {
+  font-size: 1.1rem;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* LAYOUT ADJUSTMENTS FOR FIXED TICKER */
+.theme-toggle {
+  top: 64px; /* Original 20px + 44px ticker height */
+}
+
+.container {
+  padding-top: 64px; /* Prevents content from hiding behind the ticker */
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    bottom: 16px;
+    top: auto; /* Keeps theme toggle at bottom on mobile as originally designed */
+  }
+  .container {
+    padding-top: 44px;
+  }
+}
