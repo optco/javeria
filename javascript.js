@@ -82,7 +82,7 @@ function resolve(obj, path) {
     setMeta('meta[name="twitter:creator"]', C.seo.twitterCreator);
   }
 
-  // 9. SCHEMA.ORG JSON-LD
+   // 9. SCHEMA.ORG JSON-LD
   const schemaEl = document.getElementById('json-ld-schema');
   if (schemaEl) {
     const schema = {
@@ -94,7 +94,11 @@ function resolve(obj, path) {
       "image": C.profileImage,
       "telephone": C.contact.phone,
       "email": C.contact.email,
-      "sameAs": [C.social.tiktok, C.social.instagram],
+      "sameAs": [
+        C.social.tiktok, 
+        C.social.instagram,
+        C.social.facebook 
+      ],
       "worksFor": {
         "@type": "Organization",
         "name": C.company.name,
@@ -105,7 +109,6 @@ function resolve(obj, path) {
     };
     schemaEl.textContent = JSON.stringify(schema, null, 2);
   }
-})();
 
 // ---------- Theme Toggle ----------
 (function() {
