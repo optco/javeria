@@ -51,6 +51,8 @@ const AGENT_CONFIG = {
     tiktokUsername: "soldbyjaveria",
     instagram: "https://www.instagram.com/soldbyjaveria",
     instagramUsername: "soldbyjaveria"
+    facebook: "https://www.facebook.com/soldbyjaveria",
+    facebookUsername: "soldbyjaveria"
   },
 
   // ── Areas Serviced ──
