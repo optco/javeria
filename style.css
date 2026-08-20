@@ -165,7 +165,8 @@ body {
 .social-btn:nth-child(3){animation-delay:0.55s}
 .social-btn:nth-child(4){animation-delay:0.6s}
 .social-btn:nth-child(5){animation-delay:0.65s}
-.social-btn:nth-child(6){animation-delay:0.7s} /* Added for the new CV button */
+.social-btn:nth-child(6){animation-delay:0.7s}
+.social-btn:nth-child(7){animation-delay:0.75s}
 
 .social-btn:hover { background: var(--social-bg-hover); transform: scale(1.15) translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.35); }
 .social-btn.whatsapp:hover { background: #25d366; border-color: #25d366; color: #fff; box-shadow: 0 16px 36px rgba(37,211,102,0.9); }
@@ -173,7 +174,8 @@ body {
 .social-btn.email:hover { background: #d14836; border-color: #d14836; color: #fff; box-shadow: 0 16px 36px rgba(209,72,54,0.9); }
 .social-btn.tiktok:hover { background: #000; border-color: #69c9d0; color: #fff; box-shadow: 0 16px 36px rgba(105,201,208,0.9); }
 .social-btn.instagram:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; box-shadow: 0 16px 36px rgba(188,24,136,0.9); }
-.social-btn.cv:hover { background: #007bff; border-color: #007bff; color: #fff; box-shadow: 0 16px 36px rgba(0,123,255,0.9); } /* Added CV hover color */
+.social-btn.cv:hover { background: #007bff; border-color: #007bff; color: #fff; box-shadow: 0 16px 36px rgba(0,123,255,0.9); }
+.social-btn.facebook:hover { background: #1877F2; border-color: #1877F2; color: #fff; box-shadow: 0 16px 36px rgba(24,119,242,0.9); }
 
 /* LINKS BOX - MOBILE */
 .links-box { width: 100%; display: flex; flex-direction: column; gap: 12px; }
