@@ -24,7 +24,10 @@
   --btn-primary-hover: linear-gradient(135deg, #5a0db5, #1a68e0);
   --transition-speed: 0.4s;
 }
-
+.bg-gradient, .orb {
+  animation: none !important;
+  display: none !important;
+}
 [data-theme="dark"] {
   --bg-gradient-start: #0f0c29; --bg-gradient-end: #302b63;
   --bg-gradient-mid1: #24243e; --bg-gradient-mid2: #1a1a2e;
