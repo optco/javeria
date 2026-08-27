@@ -24,9 +24,18 @@
   --btn-primary-hover: linear-gradient(135deg, #5a0db5, #1a68e0);
   --transition-speed: 0.4s;
 }
-.bg-gradient, .orb {
+/* =======================================
+   BACKGROUND ANIMATION OVERRIDES
+   ======================================= */
+.bg-gradient {
   animation: none !important;
-  display: none !important;
+  display: block !important; /* Ensures the background remains visible */
+  background-size: 100% 100% !important; /* Shows the full gradient blend instead of a zoomed-in slice */
+  background-position: center !important;
+}
+
+.orb {
+  display: none !important; /* Hides the floating animated orbs */
 }
 [data-theme="dark"] {
   --bg-gradient-start: #0f0c29; --bg-gradient-end: #302b63;
