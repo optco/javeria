@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#6a11cb">
+  <meta name="theme-color" content="#D4AF37">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="">
   <meta property="og:description" content="">
@@ -16,7 +16,7 @@
   <meta property="og:url" content="">
   <meta property="og:site_name" content="">
   <meta property="profile:first_name" content="">
-  <meta property=":last_name" content="">
+  <meta property="profile:last_name" content="">
   <meta property="profile:username" content="">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="">
@@ -24,10 +24,10 @@
   <meta name="twitter:image" content="">
   <meta name="twitter:creator" content="">
 
-  <!--- Schema.org injected by javascript.js --->
   <script type="application/ld+json" id="json-ld-schema"></script>
-
   <link rel="icon" type="image/webp" id="favicon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 /* =======================================
    BASE & VARIABLES
@@ -35,65 +35,31 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg-gradient-start: #000000; --bg-gradient-end: #E7C96F;
-  --bg-gradient-mid1: #000000; --bg-gradient-mid2: #11998e;
-  --bg-gradient-mid3: #fc466b; --bg-gradient-mid4: #3f5efb;
-  --glass-bg: rgba(255,255,255,0.12); --glass-bg-hover: rgba(255,255,255,0.18);
-  --glass-border: rgba(255,255,255,0.35); --glass-shadow: rgba(31,38,135,0.25);
-  --text-primary: #ffffff; --text-secondary: rgba(255,255,255,0.9);
-  --text-muted: rgba(255,255,255,0.75); --text-dim: rgba(255,255,255,0.55);
-  --orb-color-1: rgba(255,255,255,0.25); --orb-color-2: rgba(255,150,50,0.25);
-  --orb-color-3: rgba(100,200,255,0.25);
-  --link-bg: rgba(255,255,255,0.15); --link-bg-hover: rgba(255,255,255,0.35);
+  --bg-gradient-start: #000000;
+  --bg-gradient-end: #D4AF37;
+  --glass-bg: rgba(255,255,255,0.12);
+  --glass-bg-hover: rgba(255,255,255,0.18);
+  --glass-border: rgba(255,255,255,0.35);
+  --glass-shadow: rgba(31,38,135,0.25);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.9);
+  --text-muted: rgba(255,255,255,0.75);
+  --text-dim: rgba(255,255,255,0.55);
+  --link-bg: rgba(255,255,255,0.15);
+  --link-bg-hover: rgba(255,255,255,0.35);
   --link-border: rgba(255,255,255,0.3);
-  --badge-bg: rgba(255,255,255,0.25); --badge-border: rgba(255,255,255,0.4);
-  --social-bg: rgba(255,255,255,0.15); --social-bg-hover: rgba(255,255,255,0.35);
+  --badge-bg: rgba(255,255,255,0.25);
+  --badge-border: rgba(255,255,255,0.4);
+  --social-bg: rgba(255,255,255,0.15);
+  --social-bg-hover: rgba(255,255,255,0.35);
   --social-border: rgba(255,255,255,0.4);
-  --input-bg: rgba(255,255,255,0.08); --input-border: rgba(255,255,255,0.25);
-  --input-focus-border: rgba(255,255,255,0.6); --input-placeholder: rgba(255,255,255,0.5);
+  --input-bg: rgba(255,255,255,0.08);
+  --input-border: rgba(255,255,255,0.25);
+  --input-focus-border: rgba(255,255,255,0.6);
+  --input-placeholder: rgba(255,255,255,0.5);
   --btn-primary-bg: linear-gradient(135deg, #6a11cb, #2575fc);
   --btn-primary-hover: linear-gradient(135deg, #5a0db5, #1a68e0);
   --transition-speed: 0.4s;
-}
-/* =======================================
-   BACKGROUND ANIMATION OVERRIDES
-   ======================================= */
-.bg-gradient {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-  z-index: -2;
-  /* Simple two-color diagonal fade */
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-  /* Ensure it covers the screen exactly once, no zooming */
-  background-size: 100% 100%; 
-  background-position: center;
-}
-
-.orb {
-  display: none !important; /* Hides the floating animated orbs */
-}
-[data-theme="dark"] {
-  --bg-gradient-start: #0f0c29; --bg-gradient-end: #302b63;
-  --bg-gradient-mid1: #24243e; --bg-gradient-mid2: #1a1a2e;
-  --bg-gradient-mid3: #16213e; --bg-gradient-mid4: #0f3460;
-  --glass-bg: rgba(20,20,35,0.65); --glass-bg-hover: rgba(30,30,50,0.75);
-  --glass-border: rgba(255,255,255,0.15); --glass-shadow: rgba(0,0,0,0.4);
-  --text-primary: #f8f9fa; --text-secondary: rgba(248,249,250,0.95);
-  --text-muted: rgba(248,249,250,0.8); --text-dim: rgba(248,249,250,0.6);
-  --orb-color-1: rgba(100,100,255,0.2); --orb-color-2: rgba(255,100,150,0.15);
-  --orb-color-3: rgba(50,200,255,0.15);
-  --link-bg: rgba(255,255,255,0.08); --link-bg-hover: rgba(255,255,255,0.18);
-  --link-border: rgba(255,255,255,0.15);
-  --badge-bg: rgba(255,255,255,0.12); --badge-border: rgba(255,255,255,0.25);
-  --social-bg: rgba(255,255,255,0.1); --social-bg-hover: rgba(255,255,255,0.22);
-  --social-border: rgba(255,255,255,0.2);
-  --input-bg: rgba(255,255,255,0.05); --input-border: rgba(255,255,255,0.15);
-  --input-focus-border: rgba(255,255,255,0.4); --input-placeholder: rgba(255,255,255,0.4);
-  --btn-primary-bg: linear-gradient(135deg, #5a0db5, #1a68e0);
-  --btn-primary-hover: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
 body {
@@ -106,29 +72,23 @@ body {
   line-height: 1.5;
 }
 
-/* ANIMATED BACKGROUND */
+/* STATIC BACKGROUND */
 .bg-gradient {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-  background: linear-gradient(-45deg, var(--bg-gradient-start), var(--bg-gradient-mid4), var(--bg-gradient-mid1), var(--bg-gradient-mid2), var(--bg-gradient-mid3), var(--bg-gradient-end));
-  background-size: 400% 400%;
-  animation: liquidFlow 12s ease infinite;
-  transition: background var(--transition-speed) ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  background-size: 100% 100%;
+  background-position: center;
 }
-.orb {
-  position: fixed; border-radius: 50%; filter: blur(60px); z-index: -1;
-  animation: floatOrb 8s ease-in-out infinite alternate, fadeIn 1.5s ease-out forwards;
-  pointer-events: none; transition: background var(--transition-speed) ease;
-}
-.orb-1 { width: 250px; height: 250px; background: var(--orb-color-1); top: 10%; left: -5%; animation-delay: 0s, 0.2s; }
-.orb-2 { width: 300px; height: 300px; background: var(--orb-color-2); bottom: 15%; right: -8%; animation-delay: 2s, 0.4s; }
-.orb-3 { width: 200px; height: 200px; background: var(--orb-color-3); top: 50%; left: 20%; animation-delay: 4s, 0.6s; }
 
-@keyframes liquidFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes floatOrb { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.15); } }
-@keyframes fadeIn { to { opacity: 1; } }
 @keyframes jumpIn { 0%{opacity:0;transform:translateY(40px) scale(0.95);filter:blur(8px)} 60%{transform:translateY(-8px) scale(1.02);filter:blur(0)} 80%{transform:translateY(4px) scale(0.99)} 100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)} }
 @keyframes fadeInUp { 0%{opacity:0;transform:translateY(30px)} 100%{opacity:1;transform:translateY(0)} }
 @keyframes popIn { 0%{opacity:0;transform:scale(0.8)} 60%{transform:scale(1.1)} 100%{opacity:1;transform:scale(1)} }
+@keyframes subtlePulse { 0%,100%{box-shadow:0 4px 24px rgba(0,0,0,0.25)} 50%{box-shadow:0 6px 32px rgba(255,255,255,0.5)} }
 
 /* CONTAINER */
 .container {
@@ -215,7 +175,7 @@ body {
 .social-btn:nth-child(3){animation-delay:0.55s}
 .social-btn:nth-child(4){animation-delay:0.6s}
 .social-btn:nth-child(5){animation-delay:0.65s}
-.social-btn:nth-child(6){animation-delay:0.7s} /* Added for the new CV button */
+.social-btn:nth-child(6){animation-delay:0.7s}
 
 .social-btn:hover { background: var(--social-bg-hover); transform: scale(1.15) translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.35); }
 .social-btn.whatsapp:hover { background: #25d366; border-color: #25d366; color: #fff; box-shadow: 0 16px 36px rgba(37,211,102,0.9); }
@@ -223,7 +183,7 @@ body {
 .social-btn.email:hover { background: #d14836; border-color: #d14836; color: #fff; box-shadow: 0 16px 36px rgba(209,72,54,0.9); }
 .social-btn.tiktok:hover { background: #000; border-color: #69c9d0; color: #fff; box-shadow: 0 16px 36px rgba(105,201,208,0.9); }
 .social-btn.instagram:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; box-shadow: 0 16px 36px rgba(188,24,136,0.9); }
-.social-btn.cv:hover { background: #007bff; border-color: #007bff; color: #fff; box-shadow: 0 16px 36px rgba(0,123,255,0.9); } /* Added CV hover color */
+.social-btn.cv:hover { background: #007bff; border-color: #007bff; color: #fff; box-shadow: 0 16px 36px rgba(0,123,255,0.9); }
 
 /* LINKS BOX - MOBILE */
 .links-box { width: 100%; display: flex; flex-direction: column; gap: 12px; }
@@ -409,27 +369,9 @@ body {
 .company-tag a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
 .company-tag a:hover { color: var(--text-primary); text-decoration: underline; }
 
-/* THEME TOGGLE */
-.theme-toggle {
-  position: fixed; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%;
-  background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 100; transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow: 0 4px 20px var(--glass-shadow); padding: 0;
-}
-.theme-toggle:hover { background: var(--glass-bg-hover); transform: scale(1.1) rotate(8deg); box-shadow: 0 6px 28px var(--glass-shadow); }
-.theme-toggle:active { transform: scale(0.95); }
-.theme-icon { font-size: 1.4rem; transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease; position: absolute; }
-.theme-icon.moon { opacity: 0; transform: rotate(-30deg) scale(0.8); }
-.theme-icon.sun { opacity: 1; transform: rotate(0) scale(1); }
-[data-theme="dark"] .theme-icon.sun { opacity: 0; transform: rotate(30deg) scale(0.8); }
-[data-theme="dark"] .theme-icon.moon { opacity: 1; transform: rotate(0) scale(1); }
-
 /* AVATAR HOVER */
 .avatar-link { display: inline-block; transition: transform 0.3s ease, filter 0.3s ease; border-radius: 50%; cursor: pointer; position: relative; }
 .avatar-link:hover { transform: scale(1.08); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25)); }
-@keyframes subtlePulse { 0%,100%{box-shadow:0 4px 24px rgba(0,0,0,0.25)} 50%{box-shadow:0 6px 32px rgba(255,255,255,0.5)} }
-.avatar-link:hover .avatar-ring { animation: none; }
 
 /* ACCESSIBILITY */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
@@ -440,8 +382,6 @@ body {
   .avatar-ring{width:95px;height:95px}
   .name{font-size:1.3rem}
   .social-btn{width:40px;height:40px;font-size:1.1rem}
-  .theme-toggle{bottom:16px;right:12px;width:42px;height:42px}
-  .theme-icon{font-size:1.2rem}
   .form-input, .form-textarea { padding: 10px 12px; font-size: 0.9rem; }
   .form-submit { padding: 12px; font-size: 0.9rem; }
 }
@@ -455,7 +395,6 @@ body {
     display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: start;
   }
 
-  /* LEFT SIDEBAR */
   .profile-section {
     grid-column: 1; position: sticky; top: 40px; align-self: start;
     display: flex; flex-direction: column; gap: 24px;
@@ -472,14 +411,12 @@ body {
   .profile-header .title { font-size: 1rem; margin-top: -2px; }
   .badge, .short-link { font-size: 0.8rem; padding: 6px 14px; }
 
-  /* FIX APPLIED HERE: No background, border, padding, or blur on the container */
   .social-links {
     justify-content: center; flex-wrap: nowrap; gap: 12px;
     animation: none !important;
   }
   .social-btn { opacity: 1; animation: none !important; width: 44px; height: 44px; font-size: 1.2rem; }
 
-  /* RIGHT COLUMN: 2-COLUMN CARDS */
   .links-box {
     grid-column: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
   }
@@ -527,7 +464,6 @@ body {
   .card-cta i { transition: transform 0.3s ease; }
   .link-card:hover .card-cta i { transform: translateX(4px); }
 
-  /* FOOTER: NO BG, LOGO LEFT, TEXT RIGHT */
   .company-section {
     grid-column: 1 / -1; margin-top: 32px; padding: 20px 0;
     background: transparent; border-top: 1px solid var(--glass-border);
@@ -540,6 +476,7 @@ body {
   .company-info { font-size: 0.9rem; text-align: left; margin: 0; }
   .company-tag { margin: 0; font-size: 0.8rem; }
 }
+
 /* ========================================
    TOP TICKER BAR
    ======================================== */
@@ -595,245 +532,219 @@ body {
 }
 
 /* LAYOUT ADJUSTMENTS FOR FIXED TICKER */
-.theme-toggle {
-  top: 64px; /* Original 20px + 44px ticker height */
-}
-
 .container {
-  padding-top: 64px; /* Prevents content from hiding behind the ticker */
+  padding-top: 64px;
 }
 
 @media (max-width: 480px) {
-  .theme-toggle {
-    bottom: 16px;
-    top: auto; /* Keeps theme toggle at bottom on mobile as originally designed */
-  }
   .container {
     padding-top: 44px;
   }
 } 
 </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
- <!-- ADD THESE BACKGROUND ELEMENTS -->
   <div class="bg-gradient"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <!-- END BACKGROUND ELEMENTS -->
   
-<script src="ticker.js"></script>
-<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-  <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
-  <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
-</button>
-<div class="container">
+  <script src="ticker.js"></script>
+  <div class="container">
 
-  <aside class="profile-section">
-    <div class="profile-header glass">
-      <a data-href="profileUrl" target="_blank" rel="noopener" title="View Full Profile" class="avatar-link">
-        <div class="avatar-ring">
-          <div class="avatar" data-bg="profileImage" role="img"></div>
-        </div>
-      </a>
-      <h1 class="name"><span data-text="name.first"></span> <b data-text="name.middle"></b> <span data-text="name.last"></span></h1>
-      <p class="title" data-text="title"></p>
-      
-      <!-- UPDATED: Badge is now a clickable link to the awards page -->
-      <a href="awards.html" class="short-link" title="View Monthly Awards">
-        <i class="fas fa-trophy"></i> <span data-text="badge"></span>
-      </a>
-      
-      <a data-href="shortLink.url" class="short-link" title=""><i class="fas fa-link"></i> <span data-text="shortLink.text"></span></a>
-    </div>
-
-    <div class="social-links">
-      <a data-href="contact.whatsapp" data-href-prefix="https://wa.me/" target="_blank" rel="noopener" class="social-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a data-href="contact.phone" data-href-prefix="tel:" class="social-btn phone" title="Call"><i class="fas fa-phone-alt"></i></a>
-      <a data-href="contact.email" data-href-prefix="mailto:" class="social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
-      <a data-href="social.tiktok" target="_blank" rel="noopener" class="social-btn tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a data-href="social.instagram" target="_blank" rel="noopener" class="social-btn instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-       <a href="https://facebook.com/soldbyjaveria" target="_blank" rel="noopener" class="social-btn cv" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      
-      
-    </div>
-  </aside>
-
-  <main class="links-box">
-
-    <!-- MOBILE LINKS -->
-    <div class="mobile-links glass">
-      <div class="box-title"><i class="fas fa-link"></i> Quick Links</div>
-      <a data-href="listings.forSale.url" target="_blank" rel="noopener" class="link-btn">
-        <i class="fas fa-house"></i> <span class="text-label">For Sale → Property24 <span class="numberbox" data-text="listings.forSale.count"></span></span>
-      </a>
-      <a data-href="listings.toRent.url" target="_blank" rel="noopener" class="link-btn">
-        <i class="fas fa-key"></i> <span class="text-label">To Rent → Property24 <span class="numberbox" data-text="listings.toRent.count"></span></span>
-      </a>
-      <a data-href="listings.evolate.url" target="_blank" rel="noopener" class="link-btn">
-        <i class="fas fa-building"></i> Listings on Evolate.co.za <span class="numberbox" data-text="listings.evolate.count"></span>
-      </a>
-      <a data-href="company.aboutUrl" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-circle-info"></i> About <span data-text="company.name"></span></a>
-      <a data-href="review.url" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-star"></i> Write a Review</a>
-
-      <button type="button" class="contact-trigger" id="contact-trigger-mobile">
-        <i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span>
-      </button>
-
-      <div class="contact-form-wrapper" id="contact-form-mobile">
-        <div class="contact-form-inner">
-          <div class="contact-form-header">
-            <h4><i class="fas fa-paper-plane"></i> Send a Message</h4>
-            <button type="button" class="contact-close" id="contact-close-mobile" aria-label="Close form">
-              <i class="fas fa-times"></i>
-            </button>
+    <aside class="profile-section">
+      <div class="profile-header glass">
+        <a data-href="profileUrl" target="_blank" rel="noopener" title="View Full Profile" class="avatar-link">
+          <div class="avatar-ring">
+            <div class="avatar" data-bg="profileImage" role="img"></div>
           </div>
-          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-            <input type="hidden" name="access_key" data-value="web3forms.accessKey">
-            <input type="hidden" name="subject" data-value="web3forms.subject">
-            <input type="hidden" name="redirect" data-value="web3forms.redirectMobile">
+        </a>
+        <h1 class="name"><span data-text="name.first"></span> <b data-text="name.middle"></b> <span data-text="name.last"></span></h1>
+        <p class="title" data-text="title"></p>
+        
+        <a href="awards.html" class="short-link" title="View Monthly Awards">
+          <i class="fas fa-trophy"></i> <span data-text="badge"></span>
+        </a>
+        
+        <a data-href="shortLink.url" class="short-link" title=""><i class="fas fa-link"></i> <span data-text="shortLink.text"></span></a>
+      </div>
 
-            <div class="form-group">
-              <label for="name-mobile">Your Name *</label>
-              <input type="text" id="name-mobile" name="name" class="form-input" required placeholder="e.g. John Smith">
+      <div class="social-links">
+        <a data-href="contact.whatsapp" data-href-prefix="https://wa.me/" target="_blank" rel="noopener" class="social-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a data-href="contact.phone" data-href-prefix="tel:" class="social-btn phone" title="Call"><i class="fas fa-phone-alt"></i></a>
+        <a data-href="contact.email" data-href-prefix="mailto:" class="social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
+        <a data-href="social.tiktok" target="_blank" rel="noopener" class="social-btn tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a data-href="social.instagram" target="_blank" rel="noopener" class="social-btn instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/soldbyjaveria" target="_blank" rel="noopener" class="social-btn cv" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </aside>
+
+    <main class="links-box">
+
+      <div class="mobile-links glass">
+        <div class="box-title"><i class="fas fa-link"></i> Quick Links</div>
+        <a data-href="listings.forSale.url" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-house"></i> <span class="text-label">For Sale &rarr; Property24 <span class="numberbox" data-text="listings.forSale.count"></span></span>
+        </a>
+        <a data-href="listings.toRent.url" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-key"></i> <span class="text-label">To Rent &rarr; Property24 <span class="numberbox" data-text="listings.toRent.count"></span></span>
+        </a>
+        <a data-href="listings.evolate.url" target="_blank" rel="noopener" class="link-btn">
+          <i class="fas fa-building"></i> Listings on Evolate.co.za <span class="numberbox" data-text="listings.evolate.count"></span>
+        </a>
+        <a data-href="company.aboutUrl" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-circle-info"></i> About <span data-text="company.name"></span></a>
+        <a data-href="review.url" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-star"></i> Write a Review</a>
+
+        <button type="button" class="contact-trigger" id="contact-trigger-mobile">
+          <i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span>
+        </button>
+
+        <div class="contact-form-wrapper" id="contact-form-mobile">
+          <div class="contact-form-inner">
+            <div class="contact-form-header">
+              <h4><i class="fas fa-paper-plane"></i> Send a Message</h4>
+              <button type="button" class="contact-close" id="contact-close-mobile" aria-label="Close form">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
-            <div class="form-group">
-              <label for="email-mobile">Email Address *</label>
-              <input type="email" id="email-mobile" name="email" class="form-input" required placeholder="you@example.com">
-            </div>
-            <div class="form-group">
-              <label for="message-mobile">Message *</label>
-              <textarea id="message-mobile" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
-            </div>
-            <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
-            <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
-          </form>
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+              <input type="hidden" name="access_key" data-value="web3forms.accessKey">
+              <input type="hidden" name="subject" data-value="web3forms.subject">
+              <input type="hidden" name="redirect" data-value="web3forms.redirectMobile">
+
+              <div class="form-group">
+                <label for="name-mobile">Your Name *</label>
+                <input type="text" id="name-mobile" name="name" class="form-input" required placeholder="e.g. John Smith">
+              </div>
+              <div class="form-group">
+                <label for="email-mobile">Email Address *</label>
+                <input type="email" id="email-mobile" name="email" class="form-input" required placeholder="you@example.com">
+              </div>
+              <div class="form-group">
+                <label for="message-mobile">Message *</label>
+                <textarea id="message-mobile" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
+              </div>
+              <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
+              <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- DESKTOP CARDS -->
-    <div class="desktop-cards">
-      <a data-href="listings.forSale.url" target="_blank" rel="noopener" class="link-card">
-        <div class="card-media">
-          <img src="https://images.pexels.com/photos/7736029/pexels-photo-7736029.jpeg" alt="Properties for Sale" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-house"></i> <span class="text-label">For Sale → Property24 <span class="numberbox" data-text="listings.forSale.count"></span></span></h3>
-          <p>Browse exclusive listings across South Africa. Filter by price, location, bedrooms, and property type.</p>
-          <span class="card-cta">View Listings <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </a>
-      <a data-href="listings.toRent.url" target="_blank" rel="noopener" class="link-card">
-        <div class="card-media">
-          <img src="https://images.pexels.com/photos/31015267/pexels-photo-31015267.jpeg" alt="Properties to Rent" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-key"></i> <span class="text-label">To Rent → Property24 <span class="numberbox" data-text="listings.toRent.count"></span></span></h3>
-          <p>Discover rental opportunities from apartments to family homes. Flexible lease terms and professional management.</p>
-          <span class="card-cta">Browse Rentals <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </a>
+      <div class="desktop-cards">
+        <a data-href="listings.forSale.url" target="_blank" rel="noopener" class="link-card">
+          <div class="card-media">
+            <img src="https://images.pexels.com/photos/7736029/pexels-photo-7736029.jpeg" alt="Properties for Sale" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3><i class="fas fa-house"></i> <span class="text-label">For Sale &rarr; Property24 <span class="numberbox" data-text="listings.forSale.count"></span></span></h3>
+            <p>Browse exclusive listings across South Africa. Filter by price, location, bedrooms, and property type.</p>
+            <span class="card-cta">View Listings <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a data-href="listings.toRent.url" target="_blank" rel="noopener" class="link-card">
+          <div class="card-media">
+            <img src="https://images.pexels.com/photos/31015267/pexels-photo-31015267.jpeg" alt="Properties to Rent" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3><i class="fas fa-key"></i> <span class="text-label">To Rent &rarr; Property24 <span class="numberbox" data-text="listings.toRent.count"></span></span></h3>
+            <p>Discover rental opportunities from apartments to family homes. Flexible lease terms and professional management.</p>
+            <span class="card-cta">Browse Rentals <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
 
-      <a data-href="listings.evolate.url" target="_blank" rel="noopener" class="link-card">
-        <div class="card-media">
-          <img src="https://images.pexels.com/photos/32170343/pexels-photo-32170343.jpeg" alt="Listings at Evolate" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-building"></i> Evolate.co.za Listings <span class="numberbox" data-text="listings.evolate.count"></span></h3>
-          <p>View the full portfolio directly on the Evolate Properties platform. Updated in real-time with new listings.</p>
-          <span class="card-cta">Explore Portfolio <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </a>
+        <a data-href="listings.evolate.url" target="_blank" rel="noopener" class="link-card">
+          <div class="card-media">
+            <img src="https://images.pexels.com/photos/32170343/pexels-photo-32170343.jpeg" alt="Listings at Evolate" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3><i class="fas fa-building"></i> Evolate.co.za Listings <span class="numberbox" data-text="listings.evolate.count"></span></h3>
+            <p>View the full portfolio directly on the Evolate Properties platform. Updated in real-time with new listings.</p>
+            <span class="card-cta">Explore Portfolio <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
 
-      <a data-href="company.aboutUrl" target="_blank" rel="noopener" class="link-card">
-        <div class="card-media">
-          <img src="https://images.pexels.com/photos/22718136/pexels-photo-22718136.jpeg" alt="About Evolate" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-circle-info"></i> About <span data-text="company.name"></span></h3>
-          <p>Learn about the award-winning team, client-first philosophy, and why we're trusted by property investors nationwide.</p>
-          <span class="card-cta">Meet the Team <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </a>
+        <a data-href="company.aboutUrl" target="_blank" rel="noopener" class="link-card">
+          <div class="card-media">
+            <img src="https://images.pexels.com/photos/22718136/pexels-photo-22718136.jpeg" alt="About Evolate" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3><i class="fas fa-circle-info"></i> About <span data-text="company.name"></span></h3>
+            <p>Learn about the award-winning team, client-first philosophy, and why we're trusted by property investors nationwide.</p>
+            <span class="card-cta">Meet the Team <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
 
-      <a data-href="review.url" target="_blank" rel="noopener" class="link-card">
-        <div class="card-media">
-          <img src="https://images.pexels.com/photos/163029/pen-filler-leave-communication-163029.jpeg" alt="Write a Review" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-star"></i> Write a Review</h3>
-          <p>Your feedback helps others make confident property decisions. Share your experience working with us.</p>
-          <span class="card-cta">Leave Review <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </a>
+        <a data-href="review.url" target="_blank" rel="noopener" class="link-card">
+          <div class="card-media">
+            <img src="https://images.pexels.com/photos/163029/pen-filler-leave-communication-163029.jpeg" alt="Write a Review" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3><i class="fas fa-star"></i> Write a Review</h3>
+            <p>Your feedback helps others make confident property decisions. Share your experience working with us.</p>
+            <span class="card-cta">Leave Review <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
 
-      <button type="button" class="contact-trigger-card" id="open-contact-modal">
-        <div class="card-content">
-          <a title="Areas Served" class="short-link" data-href="profileUrl" onclick="event.stopPropagation();" id="areas-link"></a>
-          <h3><i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span></h3>
-          <p>Have a question or ready to start your property journey? Send a message directly.</p>
-          <span class="card-cta">Open Form <i class="fas fa-arrow-right"></i></span>
-        </div>
+        <button type="button" class="contact-trigger-card" id="open-contact-modal">
+          <div class="card-content">
+            <a title="Areas Served" class="short-link" data-href="profileUrl" onclick="event.stopPropagation();" id="areas-link"></a>
+            <h3><i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span></h3>
+            <p>Have a question or ready to start your property journey? Send a message directly.</p>
+            <span class="card-cta">Open Form <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </button>
+      </div>
+
+    </main>
+
+    <footer class="company-section">
+      <div class="company-logo-wrap">
+        <a data-href="company.url" target="_blank" rel="noopener" title="Visit Company Website">
+          <img data-src="company.logo" alt="Company Logo" class="company-logo-img">
+        </a>
+      </div>
+      <p class="company-info">
+        Formerly <span data-text="company.formerName"></span><br>
+        <span data-text="company.tagline"></span>
+      </p>
+      <div class="company-tag">
+        &copy; 2026 <a data-href="company.url" data-text="company.name"></a>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="modal-overlay" id="contact-modal">
+    <div class="modal-content glass">
+      <button type="button" class="modal-close-btn" id="close-contact-modal" aria-label="Close form">
+        <i class="fas fa-times"></i>
       </button>
-    </div>
-
-  </main>
-
-  <footer class="company-section">
-    <div class="company-logo-wrap">
-      <a data-href="company.url" target="_blank" rel="noopener" title="Visit Company Website">
-        <img data-src="company.logo" alt="Company Logo" class="company-logo-img">
-      </a>
-    </div>
-    <p class="company-info">
-      Formerly <span data-text="company.formerName"></span><br>
-      <span data-text="company.tagline"></span>
-    </p>
-    <div class="company-tag">
-      © 2026 <a data-href="company.url" data-text="company.name"></a>
-    </div>
-  </footer>
-
-</div>
-
-<!-- CONTACT MODAL (DESKTOP) -->
-<div class="modal-overlay" id="contact-modal">
-  <div class="modal-content glass">
-    <button type="button" class="modal-close-btn" id="close-contact-modal" aria-label="Close form">
-      <i class="fas fa-times"></i>
-    </button>
-    <h2 class="modal-title"><i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span></h2>
-    <div class="modal-body">
-      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-        <input type="hidden" name="access_key" data-value="web3forms.accessKey">
-        <input type="hidden" name="subject" data-value="web3forms.subject">
-        <input type="hidden" name="redirect" data-value="web3forms.redirectDesktop">
-<input type="hidden" name="subject" value="New message via Shamsi.co.za">
-        <div class="form-group">
-          <label for="name-modal">Your Name *</label>
-          <input type="text" id="name-modal" name="name" class="form-input" required placeholder="e.g. John Smith">
-        </div>
-        <div class="form-group">
-          <label for="email-modal">Email Address *</label>
-          <input type="email" id="email-modal" name="email" class="form-input" required placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label for="message-modal">Message *</label>
-          <textarea id="message-modal" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
-        <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
-      </form>
+      <h2 class="modal-title"><i class="fas fa-paper-plane"></i> Contact <span data-text="name.first"></span></h2>
+      <div class="modal-body">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <input type="hidden" name="access_key" data-value="web3forms.accessKey">
+          <input type="hidden" name="subject" data-value="web3forms.subject">
+          <input type="hidden" name="redirect" data-value="web3forms.redirectDesktop">
+          <input type="hidden" name="subject" value="New message via Shamsi.co.za">
+          <div class="form-group">
+            <label for="name-modal">Your Name *</label>
+            <input type="text" id="name-modal" name="name" class="form-input" required placeholder="e.g. John Smith">
+          </div>
+          <div class="form-group">
+            <label for="email-modal">Email Address *</label>
+            <input type="email" id="email-modal" name="email" class="form-input" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message-modal">Message *</label>
+            <textarea id="message-modal" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
+          <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Config MUST load first -->
-<script src="config.js"></script>
-<script src="javascript.js"></script>
-<script src="https://theattn.com/load.js"></script>
-
+  <script src="config.js"></script>
+  <script src="javascript.js"></script>
+  <script src="https://theattn.com/load.js"></script>
 </body>
 </html>
