@@ -5,8 +5,7 @@
 
 :root {
   --bg-gradient-start: #000000; --bg-gradient-end: #E7C96F;
-  --bg-gradient-mid1: #f4791f; --bg-gradient-mid2: #11998e;
-  --bg-gradient-mid3: #fc466b; --bg-gradient-mid4: #3f5efb;
+  
   --glass-bg: rgba(255,255,255,0.12); --glass-bg-hover: rgba(255,255,255,0.18);
   --glass-border: rgba(255,255,255,0.35); --glass-shadow: rgba(31,38,135,0.25);
   --text-primary: #ffffff; --text-secondary: rgba(255,255,255,0.9);
