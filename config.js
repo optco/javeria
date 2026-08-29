@@ -29,7 +29,7 @@ const AGENT_CONFIG = {
   },
   title: "Property Broker & Lease Advisor",
   badge: "Multiple Award-Winning Agent",
-  profileImage: "https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg",
+  profileImage: "img/javeria.png",
   profileUrl: "https://www.property24.com/estate-agents/evolate-real-estate/javeria-s-akhtar/465917",
 
   // ── Short Link ──
