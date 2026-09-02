@@ -476,77 +476,11 @@ body {
   .company-info { font-size: 0.9rem; text-align: left; margin: 0; }
   .company-tag { margin: 0; font-size: 0.8rem; }
 }
-
-/* ========================================
-   TOP TICKER BAR
-   ======================================== */
-.ticker-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 44px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
-  z-index: 9999;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-track {
-  display: flex;
-  white-space: nowrap;
-  animation: tickerScroll 30s linear infinite;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 32px;
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.ticker-item:hover {
-  color: var(--text-secondary);
-}
-
-.ticker-item i {
-  font-size: 1.1rem;
-}
-
-@keyframes tickerScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* LAYOUT ADJUSTMENTS FOR FIXED TICKER */
-.container {
-  padding-top: 64px;
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding-top: 44px;
-  }
-} 
 </style>
 </head>
 <body>
   <div class="bg-gradient"></div>
   
-  <script src="ticker.js"></script>
   <div class="container">
 
     <aside class="profile-section">
@@ -558,15 +492,13 @@ body {
         </a>
         <h1 class="name"><span data-text="name.first"></span> <b data-text="name.middle"></b> <span data-text="name.last"></span></h1>
         <p class="title" data-text="title"></p>
-     <!-- tagline -->
         <div style="line-height: 1.1; margin: 0; padding: 0;">
-    <span style="display: block; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 0; padding-bottom: 3px; border-bottom: 2px solid #D4AF37;">YOUR PROPERTY</span>
-    <span style="display: block; font-style: italic; font-family: Georgia, serif; font-size: 1.2em; color: #fff; margin: 0; padding-top: 3px;">My Priority</span>
-</div>
+          <span style="display: block; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 0; padding-bottom: 3px; border-bottom: 2px solid #D4AF37;">YOUR PROPERTY</span>
+          <span style="display: block; font-style: italic; font-family: Georgia, serif; font-size: 1.2em; color: #fff; margin: 0; padding-top: 3px;">My Priority</span>
+        </div>
         <a href="awards.html" class="short-link" title="View Monthly Awards">
           <i class="fas fa-trophy"></i> <span data-text="badge"></span>
         </a>
- 
         <a data-href="shortLink.url" class="short-link" title=""><i class="fas fa-link"></i> <span data-text="shortLink.text"></span></a>
       </div>
 
@@ -626,7 +558,7 @@ body {
                 <textarea id="message-mobile" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
               </div>
               <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
-              <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
+              <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
             </form>
           </div>
         </div>
@@ -727,7 +659,6 @@ body {
           <input type="hidden" name="access_key" data-value="web3forms.accessKey">
           <input type="hidden" name="subject" data-value="web3forms.subject">
           <input type="hidden" name="redirect" data-value="web3forms.redirectDesktop">
-          <input type="hidden" name="subject" value="New message via Shamsi.co.za">
           <div class="form-group">
             <label for="name-modal">Your Name *</label>
             <input type="text" id="name-modal" name="name" class="form-input" required placeholder="e.g. John Smith">
@@ -741,14 +672,60 @@ body {
             <textarea id="message-modal" name="message" class="form-textarea" required placeholder="How can I help you?"></textarea>
           </div>
           <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
-          <p class="form-note">contact@shamsi.co.za responses within 24 business hours. All inquiries confidential.</p>
+          <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
         </form>
       </div>
     </div>
   </div>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="config.js"></script>
   <script src="javascript.js"></script>
   <script src="https://theattn.com/load.js"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"32c4731f4f794c8da2443a0e2b1394b7","r":1}' crossorigin="anonymous"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileTrigger = document.getElementById('contact-trigger-mobile');
+      const mobileFormWrapper = document.getElementById('contact-form-mobile');
+      const mobileClose = document.getElementById('contact-close-mobile');
+
+      if (mobileTrigger && mobileFormWrapper) {
+        mobileTrigger.addEventListener('click', function() {
+          mobileFormWrapper.classList.toggle('active');
+        });
+      }
+
+      if (mobileClose && mobileFormWrapper) {
+        mobileClose.addEventListener('click', function() {
+          mobileFormWrapper.classList.remove('active');
+        });
+      }
+
+      const desktopTrigger = document.getElementById('open-contact-modal');
+      const modal = document.getElementById('contact-modal');
+      const modalClose = document.getElementById('close-contact-modal');
+
+      if (desktopTrigger && modal) {
+        desktopTrigger.addEventListener('click', function() {
+          modal.classList.add('active');
+        });
+      }
+
+      if (modalClose && modal) {
+        modalClose.addEventListener('click', function() {
+          modal.classList.remove('active');
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
