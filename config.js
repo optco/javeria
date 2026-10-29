@@ -28,7 +28,7 @@ const AGENT_CONFIG = {
     full: "Javeria Shamsi Akhtar"
   },
   title: "Property Broker & Lease Advisor",
-  badge: "Multiple Award-Winning Agent",
+  badge: "Awards Gallery",
   profileImage: "/img/javeria.png",
   profileUrl: "https://www.property24.com/estate-agents/evolate-real-estate/javeria-s-akhtar/465917",
 
